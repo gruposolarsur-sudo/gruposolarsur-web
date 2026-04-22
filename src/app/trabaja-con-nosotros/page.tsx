@@ -92,7 +92,7 @@ export default function WorkWithUsPage() {
 
               <a
                 href="#candidatura"
-                className="mt-9 inline-flex min-h-14 items-center justify-center gap-2 rounded-full bg-blue-900 px-8 py-4 text-base font-bold !text-white shadow-[0_18px_40px_rgba(23,37,84,0.22)] transition hover:bg-blue-800 hover:!text-white"
+                className="mt-9 inline-flex min-h-14 w-full items-center justify-center gap-2 rounded-full bg-blue-900 px-8 py-4 text-base font-bold !text-white shadow-[0_18px_40px_rgba(23,37,84,0.22)] transition hover:bg-blue-800 hover:!text-white sm:w-auto"
                 style={{ color: "#fff" }}
               >
                 Enviar candidatura
@@ -150,7 +150,7 @@ export default function WorkWithUsPage() {
               {valueCards.map(({ icon: Icon, title }) => (
                 <article
                   key={title}
-                  className="rounded-[1.35rem] border border-slate-200 bg-[linear-gradient(180deg,#ffffff_0%,#fbfdff_100%)] p-6 shadow-[0_18px_42px_rgba(15,23,42,0.06)]"
+                  className="rounded-[1.25rem] border border-slate-200 bg-[linear-gradient(180deg,#ffffff_0%,#fbfdff_100%)] p-5 shadow-[0_18px_42px_rgba(15,23,42,0.06)] sm:rounded-[1.35rem] sm:p-6"
                 >
                   <div className="inline-flex h-12 w-12 items-center justify-center rounded-[0.95rem] bg-blue-50 text-blue-900">
                     <Icon size={23} aria-hidden="true" />

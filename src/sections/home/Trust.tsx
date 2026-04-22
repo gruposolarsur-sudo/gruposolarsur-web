@@ -103,7 +103,7 @@ export function Trust() {
             {featureCards.map(({ icon: Icon, title, copy, variant }) => (
               <article
                 key={title}
-                className={`flex min-h-[260px] flex-col rounded-[1.35rem] border px-6 py-7 ${cardStyles[variant]} sm:min-h-[270px] sm:px-7 sm:py-8`}
+                className={`flex flex-col rounded-[1.25rem] border px-5 py-6 ${cardStyles[variant]} sm:min-h-[270px] sm:rounded-[1.35rem] sm:px-7 sm:py-8`}
               >
                 <Icon
                   size={30}

@@ -179,7 +179,7 @@ export function CookieConsent() {
             role="dialog"
             aria-modal="true"
             aria-labelledby="cookie-settings-title"
-            className="w-full max-w-2xl rounded-[1.35rem] border border-slate-200 bg-white p-5 text-slate-700 shadow-[0_28px_80px_rgba(2,8,23,0.28)] sm:p-6"
+            className="max-h-[calc(100dvh-2rem)] w-full max-w-2xl overflow-y-auto rounded-[1.35rem] border border-slate-200 bg-white p-5 text-slate-700 shadow-[0_28px_80px_rgba(2,8,23,0.28)] sm:p-6"
           >
             <div className="flex items-start justify-between gap-4">
               <div>

@@ -47,11 +47,11 @@ export function Projects() {
           </p>
         </div>
 
-        <div className="mt-10 grid auto-rows-fr gap-5 lg:grid-cols-3">
+        <div className="mt-10 grid auto-rows-fr gap-4 lg:grid-cols-3 lg:gap-5">
           {solutionCards.map(({ icon: Icon, title, copy }) => (
             <article
               key={title}
-              className="min-h-[242px] rounded-[1.35rem] border border-white/12 bg-[linear-gradient(180deg,rgba(53,80,159,0.78)_0%,rgba(43,68,143,0.72)_100%)] px-7 py-8 shadow-[inset_0_1px_0_rgba(255,255,255,0.08)]"
+              className="rounded-[1.25rem] border border-white/12 bg-[linear-gradient(180deg,rgba(53,80,159,0.78)_0%,rgba(43,68,143,0.72)_100%)] px-5 py-6 shadow-[inset_0_1px_0_rgba(255,255,255,0.08)] sm:min-h-[242px] sm:rounded-[1.35rem] sm:px-7 sm:py-8"
             >
               <div className="inline-flex h-12 w-12 items-center justify-center rounded-[0.9rem] bg-white/9 text-yellow-300">
                 <Icon size={24} strokeWidth={2} aria-hidden="true" />

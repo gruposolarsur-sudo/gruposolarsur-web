@@ -202,7 +202,7 @@ export function Footer() {
                         className="shrink-0 text-yellow-300"
                         aria-hidden="true"
                       />
-                      <span>{label}</span>
+                      <span className="min-w-0 break-words">{label}</span>
                     </a>
                   ) : (
                     <span className="flex items-center gap-3">
@@ -212,7 +212,7 @@ export function Footer() {
                         className="shrink-0 text-yellow-300"
                         aria-hidden="true"
                       />
-                      <span>{label}</span>
+                      <span className="min-w-0 break-words">{label}</span>
                     </span>
                   )}
                 </li>

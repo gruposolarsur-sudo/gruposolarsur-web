@@ -23,16 +23,60 @@
 }
 
 html {
+  max-width: 100%;
+  overflow-x: clip;
   scroll-behavior: smooth;
 }
 
 body {
   min-height: 100vh;
   margin: 0;
+  max-width: 100%;
+  overflow-x: clip;
   background: var(--background);
   color: var(--foreground);
   font-family: var(--font-inter), sans-serif;
   text-rendering: optimizeLegibility;
+}
+
+img,
+svg,
+video,
+canvas {
+  max-width: 100%;
+}
+
+button,
+input,
+select,
+textarea {
+  font: inherit;
+}
+
+button,
+a {
+  -webkit-tap-highlight-color: transparent;
+}
+
+[class*="tracking-"] {
+  letter-spacing: 0 !important;
+}
+
+:where(h1, h2, h3, h4, p, li, dd, dt, a, button, label, input, select, textarea) {
+  overflow-wrap: break-word;
+}
+
+@supports (text-wrap: balance) {
+  h1,
+  h2,
+  h3 {
+    text-wrap: balance;
+  }
+
+  p,
+  li {
+    text-wrap: pretty;
+  }
 }
 
 a {
@@ -431,6 +475,12 @@ a {
   height: 2px;
   background: linear-gradient(90deg, transparent, rgba(30, 58, 138, 0.12), transparent);
   transform: translateY(-50%);
+}
+
+@media (max-width: 1279px) {
+  .process-flow::before {
+    display: none;
+  }
 }
 
 .process-card {

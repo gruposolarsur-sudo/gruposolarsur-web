@@ -138,7 +138,7 @@ export function Services() {
   return (
     <section
       id="servicios"
-      className="relative overflow-hidden bg-[linear-gradient(180deg,#ffffff_0%,#f8fbff_100%)] py-24"
+      className="relative overflow-hidden bg-[linear-gradient(180deg,#ffffff_0%,#f8fbff_100%)] py-16 sm:py-20 lg:py-24"
     >
       <div className="absolute inset-x-0 top-0 h-px bg-[linear-gradient(90deg,transparent,rgba(14,165,233,0.35),transparent)]" />
       <div className="absolute left-0 top-24 h-28 w-full -skew-y-2 bg-blue-50/60" />
@@ -163,7 +163,7 @@ export function Services() {
 
             <a
               href="#contacto"
-              className="mt-8 inline-flex min-h-14 items-center justify-center gap-2 rounded-full bg-blue-900 px-7 py-4 text-base font-bold !text-white shadow-[0_18px_40px_rgba(23,37,84,0.22)] transition hover:bg-blue-800 hover:!text-white"
+              className="mt-8 inline-flex min-h-14 w-full items-center justify-center gap-2 rounded-full bg-blue-900 px-7 py-4 text-base font-bold !text-white shadow-[0_18px_40px_rgba(23,37,84,0.22)] transition hover:bg-blue-800 hover:!text-white sm:w-auto"
               style={{ color: "#fff" }}
             >
               Solicitar estudio gratuito
@@ -186,7 +186,7 @@ export function Services() {
             }) => (
               <article
                 key={title}
-                className={`group relative flex h-full min-h-[22rem] flex-col overflow-hidden rounded-lg border p-5 shadow-[0_16px_34px_rgba(15,23,42,0.06)] transition duration-300 hover:-translate-y-1 hover:shadow-[0_22px_42px_rgba(15,23,42,0.11)] sm:p-6 ${toneStyles[tone].card}`}
+                className={`group relative flex h-full min-h-[19rem] flex-col overflow-hidden rounded-lg border p-5 shadow-[0_16px_34px_rgba(15,23,42,0.06)] transition duration-300 hover:-translate-y-1 hover:shadow-[0_22px_42px_rgba(15,23,42,0.11)] sm:min-h-[22rem] sm:p-6 ${toneStyles[tone].card}`}
               >
                 <div className={`absolute -right-5 -top-5 ${toneStyles[tone].ghost}`}>
                   <Icon size={96} strokeWidth={1.25} aria-hidden="true" />

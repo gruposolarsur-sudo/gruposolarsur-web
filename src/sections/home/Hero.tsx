@@ -72,14 +72,14 @@ export function Hero() {
   return (
     <section
       id="inicio"
-      className="relative overflow-hidden bg-[radial-gradient(circle_at_top_left,rgba(250,204,21,0.22),transparent_28%),radial-gradient(circle_at_82%_18%,rgba(147,197,253,0.22),transparent_24%),linear-gradient(180deg,#fffdf7_0%,#f4f9ff_48%,#eef5ff_100%)] pb-24 pt-16 sm:pt-20 lg:pb-36 lg:pt-24"
+      className="relative overflow-hidden bg-[radial-gradient(circle_at_top_left,rgba(250,204,21,0.22),transparent_28%),radial-gradient(circle_at_82%_18%,rgba(147,197,253,0.22),transparent_24%),linear-gradient(180deg,#fffdf7_0%,#f4f9ff_48%,#eef5ff_100%)] pb-20 pt-12 sm:pt-20 lg:pb-36 lg:pt-24"
     >
       <div className="absolute inset-x-0 top-0 h-32 bg-[radial-gradient(circle_at_center,rgba(250,204,21,0.34),transparent_68%)] blur-3xl" />
       <div className="absolute -left-24 top-24 h-64 w-64 rounded-full bg-yellow-200/35 blur-3xl" />
       <div className="absolute -right-20 top-32 h-72 w-72 rounded-full bg-blue-200/35 blur-3xl" />
 
       <Container className="relative">
-        <div className="grid gap-14 lg:grid-cols-[minmax(0,1.08fr)_minmax(0,0.92fr)] lg:items-start lg:gap-16">
+        <div className="grid gap-10 sm:gap-14 lg:grid-cols-[minmax(0,1.08fr)_minmax(0,0.92fr)] lg:items-start lg:gap-16">
           <div className="relative z-10 max-w-2xl lg:pr-6">
             <h1 className="max-w-[14.4ch] overflow-visible text-[2.3rem] font-extrabold leading-[0.97] tracking-[-0.05em] text-blue-950 min-[380px]:text-[2.55rem] sm:max-w-[13.2ch] sm:text-[4.2rem] sm:leading-[0.92] lg:max-w-[12.8ch] lg:text-[5rem]">
               <span className="block">Convierte tu tejado en</span>
@@ -97,11 +97,11 @@ export function Hero() {
               que empieces a ahorrar con una solución real.
             </p>
 
-            <div className="mt-9 grid gap-4 sm:grid-cols-3">
+            <div className="mt-8 grid gap-3 min-[520px]:grid-cols-3 sm:mt-9 sm:gap-4">
               {quickStats.map((stat) => (
                 <div
                   key={stat.label}
-                  className="rounded-[1.6rem] border border-white/70 bg-white/85 px-5 py-5 shadow-[0_18px_40px_rgba(15,23,42,0.08)] backdrop-blur"
+                  className="rounded-[1.25rem] border border-white/70 bg-white/85 px-4 py-4 shadow-[0_18px_40px_rgba(15,23,42,0.08)] backdrop-blur sm:rounded-[1.6rem] sm:px-5 sm:py-5"
                 >
                   <div className="text-2xl font-bold tracking-tight text-blue-950">
                     {stat.value}
@@ -140,11 +140,11 @@ export function Hero() {
           </div>
         </div>
 
-        <div className="mt-10 grid auto-rows-fr gap-4 sm:grid-cols-2 xl:grid-cols-4">
+        <div className="mt-10 grid auto-rows-fr gap-3 sm:grid-cols-2 sm:gap-4 xl:grid-cols-4">
           {reassuranceItems.map(({ icon: Icon, title, copy }) => (
             <article
               key={title}
-              className="flex h-full min-h-[184px] flex-col rounded-[1.45rem] border border-slate-200/80 bg-white/88 px-5 py-6 shadow-[0_18px_40px_rgba(15,23,42,0.06)] lg:min-h-[184px]"
+              className="flex h-full flex-col rounded-[1.25rem] border border-slate-200/80 bg-white/88 px-4 py-5 shadow-[0_18px_40px_rgba(15,23,42,0.06)] sm:min-h-[184px] sm:rounded-[1.45rem] sm:px-5 sm:py-6 lg:min-h-[184px]"
             >
               <div className="flex h-full items-start gap-4">
                 <div className="flex h-14 w-14 shrink-0 items-center justify-center rounded-[1.1rem] bg-blue-900 text-white shadow-lg shadow-blue-900/20">

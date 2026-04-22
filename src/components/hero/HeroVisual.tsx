@@ -329,14 +329,14 @@ function SimulationMetric({
   const valueClass =
     tone === "accent"
       ? highlightZero
-        ? "text-[1.48rem] font-black tracking-[-0.05em] text-yellow-200 sm:text-[1.6rem]"
-        : "text-[1.48rem] font-black tracking-[-0.05em] text-yellow-200 sm:text-[1.6rem]"
+        ? "text-[1.18rem] font-black tracking-[-0.05em] text-yellow-200 min-[380px]:text-[1.34rem] sm:text-[1.6rem]"
+        : "text-[1.18rem] font-black tracking-[-0.05em] text-yellow-200 min-[380px]:text-[1.34rem] sm:text-[1.6rem]"
       : tone === "success"
-        ? "text-[1.08rem] font-bold tracking-[-0.04em] text-emerald-200 sm:text-[1.16rem]"
-        : "text-[0.98rem] font-semibold tracking-[-0.04em] text-white sm:text-[1.05rem]";
+        ? "text-[0.92rem] font-bold tracking-[-0.04em] text-emerald-200 min-[380px]:text-[1rem] sm:text-[1.16rem]"
+        : "text-[0.88rem] font-semibold tracking-[-0.04em] text-white min-[380px]:text-[0.96rem] sm:text-[1.05rem]";
 
   return (
-    <div className={`rounded-[1.15rem] border px-2.5 py-2.5 ${wrapperClass}`}>
+    <div className={`rounded-[1rem] border px-2 py-2 sm:rounded-[1.15rem] sm:px-2.5 sm:py-2.5 ${wrapperClass}`}>
       <div
         className={`text-[0.56rem] font-semibold uppercase tracking-[0.14em] ${labelClass}`}
       >
@@ -383,8 +383,8 @@ function SavingsCard() {
         "--hero-delay": "1.5s",
       } as CSSProperties}
     >
-      <div className="w-[20.25rem] rounded-[1.85rem] border border-blue-800/90 bg-[linear-gradient(180deg,rgba(19,35,75,0.98),rgba(29,78,216,0.92))] px-4 py-4 shadow-[0_28px_72px_rgba(23,37,84,0.34)] backdrop-blur sm:w-[24.75rem] sm:px-4.5">
-        <div className="text-[0.5rem] font-semibold uppercase tracking-[0.16em] text-blue-100/74 sm:text-[0.54rem]">
+      <div className="w-[calc(100vw-4.5rem)] max-w-[20.25rem] rounded-[1.55rem] border border-blue-800/90 bg-[linear-gradient(180deg,rgba(19,35,75,0.98),rgba(29,78,216,0.92))] px-3 py-3.5 shadow-[0_28px_72px_rgba(23,37,84,0.34)] backdrop-blur sm:w-[24.75rem] sm:max-w-none sm:rounded-[1.85rem] sm:px-4.5 sm:py-4">
+        <div className="text-[0.5rem] font-semibold uppercase leading-4 tracking-[0.16em] text-blue-100/74 sm:text-[0.54rem]">
           SIMULACIÓN · VIVIENDA EN SEVILLA · CONSUMO 9.800 KWH/AÑO
         </div>
 
@@ -414,7 +414,7 @@ function SavingsCard() {
             </div>
           </div>
 
-          <div className="mt-3.5 grid grid-cols-3 gap-2">
+          <div className="mt-3.5 grid grid-cols-3 gap-1.5 sm:gap-2">
             <SimulationMetric label="Sin placas" value={current.sin} />
             <SimulationMetric
               label="Con solar"
@@ -441,17 +441,17 @@ function SavingsCard() {
 
 export function HeroVisual() {
   return (
-    <div className="relative mx-auto max-w-[510px] xl:max-w-[530px]">
+    <div className="relative mx-auto w-full max-w-[510px] xl:max-w-[530px]">
       <div className="absolute left-12 top-8 h-28 w-28 rounded-full bg-yellow-200/34 blur-3xl" />
       <div className="absolute right-4 top-28 h-44 w-44 rounded-full bg-blue-200/28 blur-3xl" />
       <div className="absolute bottom-12 left-1/2 h-28 w-60 -translate-x-1/2 rounded-full bg-blue-200/18 blur-3xl" />
 
-      <div className="rounded-[2.2rem] border border-white/80 bg-white/62 p-4 shadow-[0_40px_110px_rgba(37,99,235,0.14)] backdrop-blur sm:p-6">
-        <div className="relative overflow-hidden rounded-[1.95rem] border border-white/80 bg-[radial-gradient(circle_at_22%_16%,rgba(250,204,21,0.11),transparent_18%),radial-gradient(circle_at_84%_22%,rgba(96,165,250,0.14),transparent_26%),linear-gradient(180deg,#fdfeff_0%,#eff6ff_54%,#e9f2ff_100%)] px-5 py-6 shadow-[inset_0_1px_0_rgba(255,255,255,0.78)] sm:min-h-[900px] sm:px-6 sm:py-7">
+      <div className="rounded-[1.55rem] border border-white/80 bg-white/62 p-3 shadow-[0_40px_110px_rgba(37,99,235,0.14)] backdrop-blur sm:rounded-[2.2rem] sm:p-6">
+        <div className="relative min-h-[760px] overflow-hidden rounded-[1.35rem] border border-white/80 bg-[radial-gradient(circle_at_22%_16%,rgba(250,204,21,0.11),transparent_18%),radial-gradient(circle_at_84%_22%,rgba(96,165,250,0.14),transparent_26%),linear-gradient(180deg,#fdfeff_0%,#eff6ff_54%,#e9f2ff_100%)] px-3 py-5 shadow-[inset_0_1px_0_rgba(255,255,255,0.78)] min-[420px]:min-h-[820px] sm:min-h-[900px] sm:rounded-[1.95rem] sm:px-6 sm:py-7">
           <div className="absolute inset-x-0 top-0 h-28 bg-[radial-gradient(circle_at_center,rgba(255,255,255,0.44),transparent_68%)]" />
 
           <div className="hero-sun-enter absolute left-1/2 top-[8.2%] z-20 -translate-x-1/2">
-            <div className="relative h-[5.5rem] w-[5.5rem] rounded-full bg-[radial-gradient(circle,#fff8d6_0%,#facc15_54%,rgba(250,204,21,0.08)_72%,transparent_73%)] shadow-[0_0_48px_rgba(250,204,21,0.28)]">
+            <div className="relative h-[4.8rem] w-[4.8rem] rounded-full bg-[radial-gradient(circle,#fff8d6_0%,#facc15_54%,rgba(250,204,21,0.08)_72%,transparent_73%)] shadow-[0_0_48px_rgba(250,204,21,0.28)] sm:h-[5.5rem] sm:w-[5.5rem]">
               <div className="hero-sun-halo absolute inset-0 rounded-full border border-yellow-200/80" />
               <div className="absolute inset-[0.95rem] rounded-full bg-[radial-gradient(circle,#fffbee_0%,#ffd857_82%)]" />
             </div>

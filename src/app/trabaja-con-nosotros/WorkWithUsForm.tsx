@@ -178,7 +178,7 @@ export function WorkWithUsForm() {
             autoComplete="tel"
             inputMode="tel"
             placeholder="640 292 375"
-            className="h-14 w-full rounded-2xl border border-slate-200 bg-white px-4 text-base text-slate-900 outline-none transition placeholder:text-slate-400 focus:border-yellow-300 focus:ring-4 focus:ring-yellow-300/25 sm:-mt-12"
+            className="h-14 w-full rounded-2xl border border-slate-200 bg-white px-4 text-base text-slate-900 outline-none transition placeholder:text-slate-400 focus:border-yellow-300 focus:ring-4 focus:ring-yellow-300/25"
           />
         </label>
 
@@ -195,7 +195,7 @@ export function WorkWithUsForm() {
               event.currentTarget.setCustomValidity(cvError);
               setStatus(cvError ? { kind: "error", message: cvError } : null);
             }}
-            className="flex h-14 w-full items-center rounded-2xl border border-slate-200 bg-white px-4 py-3 text-sm text-slate-700 outline-none transition file:mr-4 file:rounded-full file:border-0 file:bg-blue-900 file:px-4 file:py-2 file:text-sm file:font-bold file:text-white focus:border-yellow-300 focus:ring-4 focus:ring-yellow-300/25"
+            className="flex min-h-14 w-full min-w-0 items-center rounded-2xl border border-slate-200 bg-white px-3 py-3 text-sm text-slate-700 outline-none transition file:mr-3 file:rounded-full file:border-0 file:bg-blue-900 file:px-3 file:py-2 file:text-sm file:font-bold file:text-white focus:border-yellow-300 focus:ring-4 focus:ring-yellow-300/25 sm:px-4 sm:file:mr-4 sm:file:px-4"
           />
           <span className="text-xs font-medium leading-5 text-slate-500">
             Formatos permitidos: PDF, DOCX, ODT, TXT o RTF. Máximo 2 MB.
@@ -237,7 +237,7 @@ export function WorkWithUsForm() {
       <div className="mt-2 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
         <button
           type="submit"
-          className="inline-flex h-14 items-center justify-center gap-2 rounded-full bg-blue-900 px-8 py-4 text-base font-extrabold !text-white shadow-[0_18px_40px_rgba(23,37,84,0.22)] transition hover:bg-blue-800 hover:!text-white"
+          className="inline-flex h-14 w-full items-center justify-center gap-2 rounded-full bg-blue-900 px-8 py-4 text-base font-extrabold !text-white shadow-[0_18px_40px_rgba(23,37,84,0.22)] transition hover:bg-blue-800 hover:!text-white sm:w-auto"
         >
           Enviar candidatura
           <ArrowRight size={18} aria-hidden="true" />

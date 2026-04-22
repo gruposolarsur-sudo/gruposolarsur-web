@@ -1,13 +1,18 @@
+"use client";
+
 import type { ElementType } from "react";
 import Image from "next/image";
 import Link from "next/link";
+import { useState } from "react";
 import {
   ChartNoAxesCombined,
   ChevronDown,
   FileText,
+  Menu,
   Phone,
   SunMedium,
   Wrench,
+  X,
 } from "lucide-react";
 
 import {
@@ -76,16 +81,26 @@ const serviceLinks: Array<{
 ];
 
 export function Header() {
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+
+  function closeMobileMenu() {
+    setIsMobileMenuOpen(false);
+  }
+
   return (
     <header className="sticky top-0 z-50 border-b border-slate-200/80 bg-white/95 backdrop-blur">
-      <Container className="flex items-center justify-between py-3">
-        <Link className="flex shrink-0 items-center" href="/#inicio">
+      <Container className="flex items-center justify-between gap-3 py-3">
+        <Link
+          className="flex shrink-0 items-center"
+          href="/#inicio"
+          onClick={closeMobileMenu}
+        >
           <Image
             src="/logos/logo-solarsur.svg"
             alt="Logo de Grupo SolarSur"
             width={160}
             height={50}
-            className="h-10 w-auto sm:h-12"
+            className="h-9 w-auto min-[380px]:h-10 sm:h-12"
             priority
           />
         </Link>
@@ -173,14 +188,110 @@ export function Header() {
             651 194 097
           </a>
           <Link
-            className="header-cta-heartbeat rounded-full bg-blue-900 px-4 py-2.5 text-xs font-semibold !text-white shadow-lg shadow-blue-900/15 transition hover:bg-blue-800 hover:!text-white sm:px-5 sm:py-3 sm:text-sm"
+            className="header-cta-heartbeat rounded-full bg-blue-900 px-3 py-2.5 text-xs font-semibold !text-white shadow-lg shadow-blue-900/15 transition hover:bg-blue-800 hover:!text-white min-[380px]:px-4 sm:px-5 sm:py-3 sm:text-sm"
             href="/#contacto"
             style={{ color: "#fff" }}
+            onClick={closeMobileMenu}
           >
-            Solicitar estudio
+            <span className="min-[420px]:hidden">Estudio</span>
+            <span className="hidden min-[420px]:inline">Solicitar estudio</span>
           </Link>
+          <button
+            type="button"
+            onClick={() => setIsMobileMenuOpen((current) => !current)}
+            className="inline-flex h-11 w-11 shrink-0 items-center justify-center rounded-full border border-slate-200 bg-white text-blue-950 shadow-sm transition hover:border-blue-200 hover:bg-blue-50 lg:hidden"
+            aria-label={
+              isMobileMenuOpen
+                ? "Cerrar menú principal"
+                : "Abrir menú principal"
+            }
+            aria-expanded={isMobileMenuOpen}
+            aria-controls="mobile-navigation"
+          >
+            {isMobileMenuOpen ? (
+              <X size={20} strokeWidth={2.2} aria-hidden="true" />
+            ) : (
+              <Menu size={20} strokeWidth={2.2} aria-hidden="true" />
+            )}
+          </button>
         </div>
       </Container>
+
+      {isMobileMenuOpen ? (
+        <div
+          id="mobile-navigation"
+          className="border-t border-slate-200 bg-white shadow-[0_18px_48px_rgba(15,23,42,0.12)] lg:hidden"
+        >
+          <Container className="py-4">
+            <nav aria-label="Principal móvil" className="grid gap-4">
+              <div className="grid gap-2">
+                {navigation.map((item) => (
+                  <Link
+                    key={item.label}
+                    href={item.href}
+                    onClick={closeMobileMenu}
+                    className="flex min-h-12 items-center rounded-2xl border border-slate-200 bg-slate-50 px-4 text-sm font-bold text-blue-950 transition hover:border-blue-200 hover:bg-blue-50"
+                  >
+                    {item.label}
+                  </Link>
+                ))}
+              </div>
+
+              <div className="rounded-2xl border border-slate-200 bg-white p-3 shadow-[0_12px_32px_rgba(15,23,42,0.06)]">
+                <p className="px-2 text-xs font-extrabold uppercase text-slate-500">
+                  Servicios
+                </p>
+                <div className="mt-2 grid gap-1.5">
+                  {serviceLinks.map((service) => {
+                    const Icon = service.icon;
+
+                    return (
+                      <Link
+                        key={service.label}
+                        href={service.href}
+                        onClick={closeMobileMenu}
+                        className="flex gap-3 rounded-xl px-2 py-2.5 text-blue-950 transition hover:bg-blue-50"
+                      >
+                        <span
+                          className={`mt-0.5 flex h-9 w-9 shrink-0 items-center justify-center rounded-xl ${service.iconClass}`}
+                        >
+                          <Icon size={18} strokeWidth={2.2} aria-hidden="true" />
+                        </span>
+                        <span className="min-w-0">
+                          <span className="block text-sm font-bold leading-5">
+                            {service.label}
+                          </span>
+                          <span className="mt-0.5 block text-xs leading-5 text-slate-500">
+                            {service.description}
+                          </span>
+                        </span>
+                      </Link>
+                    );
+                  })}
+                </div>
+              </div>
+
+              <div className="grid gap-2 min-[420px]:grid-cols-2">
+                <a
+                  className="inline-flex min-h-12 items-center justify-center gap-2 rounded-full border border-blue-100 bg-blue-50 px-4 text-sm font-bold text-blue-900 transition hover:border-blue-200 hover:bg-blue-100"
+                  href="tel:651194097"
+                  onClick={closeMobileMenu}
+                >
+                  <Phone size={16} aria-hidden="true" />
+                  651 194 097
+                </a>
+                <Link
+                  className="inline-flex min-h-12 items-center justify-center rounded-full bg-blue-900 px-4 text-sm font-bold !text-white shadow-lg shadow-blue-900/15 transition hover:bg-blue-800"
+                  href="/#contacto"
+                  onClick={closeMobileMenu}
+                >
+                  Solicitar estudio
+                </Link>
+              </div>
+            </nav>
+          </Container>
+        </div>
+      ) : null}
     </header>
   );
 }
