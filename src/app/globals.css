@@ -62,8 +62,14 @@ a {
   letter-spacing: 0 !important;
 }
 
-:where(h1, h2, h3, h4, p, li, dd, dt, a, button, label, input, select, textarea) {
+:where(p, li, dd, dt, a, button, label, input, select, textarea) {
   overflow-wrap: break-word;
+}
+
+:where(h1, h2, h3, h4) {
+  overflow-wrap: normal;
+  word-break: normal;
+  hyphens: manual;
 }
 
 @supports (text-wrap: balance) {

@@ -461,7 +461,7 @@ export default function PhotovoltaicSolarPanelsPage() {
                 <p className="text-[0.78rem] font-semibold uppercase tracking-[0.32em] text-amber-500">
                   Qué incluye
                 </p>
-                <h2 className="mt-4 max-w-[12ch] text-4xl font-extrabold leading-tight tracking-tight sm:text-[3.2rem]">
+                <h2 className="mt-4 max-w-[16ch] text-4xl font-extrabold leading-tight tracking-tight sm:text-[3.2rem]">
                   Acompañamiento completo de principio a fin
                 </h2>
                 <p className="mt-5 max-w-md text-lg leading-8 text-blue-50/78">
@@ -481,14 +481,10 @@ export default function PhotovoltaicSolarPanelsPage() {
               </div>
 
               <div className="grid auto-rows-fr gap-4 sm:grid-cols-2">
-                {includedItems.map(({ icon: Icon, title, copy }, index) => (
+                {includedItems.map(({ icon: Icon, title, copy }) => (
                   <article
                     key={title}
-                    className={`relative flex h-full min-h-[15rem] flex-col overflow-hidden rounded-lg border p-6 shadow-[0_20px_46px_rgba(0,0,0,0.18)] ${
-                      index === 0
-                        ? "border-yellow-300/40 bg-white/14"
-                        : "border-white/10 bg-white/8"
-                    }`}
+                    className="relative flex h-full min-h-[15rem] flex-col overflow-hidden rounded-lg border border-yellow-300/40 bg-white/14 p-6 shadow-[0_20px_46px_rgba(0,0,0,0.18)]"
                   >
                     <Icon
                       size={96}
@@ -497,11 +493,7 @@ export default function PhotovoltaicSolarPanelsPage() {
                       aria-hidden="true"
                     />
                     <div
-                      className={`relative flex h-12 w-12 items-center justify-center rounded-lg ${
-                        index === 0
-                          ? "bg-yellow-300 text-blue-950"
-                          : "bg-white/12 text-yellow-200"
-                      }`}
+                      className="relative flex h-12 w-12 items-center justify-center rounded-lg bg-yellow-300 text-blue-950"
                     >
                       <Icon size={23} aria-hidden="true" />
                     </div>

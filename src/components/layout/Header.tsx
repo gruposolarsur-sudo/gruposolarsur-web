@@ -1,6 +1,6 @@
 "use client";
 
-import type { ElementType } from "react";
+import type { ElementType, SVGProps } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
@@ -28,6 +28,36 @@ const navigation = [
   { label: "Empleo", href: "/trabaja-con-nosotros" },
   { label: "Contacto", href: "/#contacto" },
 ];
+
+type StudySearchIconProps = SVGProps<SVGSVGElement> & {
+  size?: number;
+  strokeWidth?: number;
+};
+
+function StudySearchIcon({
+  size = 18,
+  strokeWidth = 2.6,
+  ...props
+}: StudySearchIconProps) {
+  return (
+    <svg
+      viewBox="0 0 24 24"
+      width={size}
+      height={size}
+      fill="none"
+      stroke="currentColor"
+      strokeWidth={strokeWidth}
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      focusable="false"
+      {...props}
+    >
+      <path d="M15.4 4.7A7.5 7.5 0 1 0 17 16.6" />
+      <path d="M16.7 16.7L21 21" />
+      <path d="M5.9 14.7L9.5 10.6C10 10 10.9 10 11.5 10.6L13.8 12.8C14.4 13.4 15.3 13.3 15.8 12.7L21 6.2" />
+    </svg>
+  );
+}
 
 const serviceLinks: Array<{
   label: string;
@@ -188,11 +218,12 @@ export function Header() {
             651 194 097
           </a>
           <Link
-            className="header-cta-heartbeat rounded-full bg-blue-900 px-3 py-2.5 text-xs font-semibold !text-white shadow-lg shadow-blue-900/15 transition hover:bg-blue-800 hover:!text-white min-[380px]:px-4 sm:px-5 sm:py-3 sm:text-sm"
+            className="header-cta-heartbeat inline-flex items-center justify-center gap-2 rounded-full bg-blue-900 px-3 py-2.5 text-xs font-semibold !text-white shadow-lg shadow-blue-900/15 transition hover:bg-blue-800 hover:!text-white min-[380px]:px-4 sm:px-5 sm:py-3 sm:text-sm"
             href="/#contacto"
             style={{ color: "#fff" }}
             onClick={closeMobileMenu}
           >
+            <StudySearchIcon size={17} strokeWidth={2.5} aria-hidden="true" />
             <span className="min-[420px]:hidden">Estudio</span>
             <span className="hidden min-[420px]:inline">Solicitar estudio</span>
           </Link>
@@ -281,10 +312,11 @@ export function Header() {
                   651 194 097
                 </a>
                 <Link
-                  className="inline-flex min-h-12 items-center justify-center rounded-full bg-blue-900 px-4 text-sm font-bold !text-white shadow-lg shadow-blue-900/15 transition hover:bg-blue-800"
+                  className="inline-flex min-h-12 items-center justify-center gap-2 rounded-full bg-blue-900 px-4 text-sm font-bold !text-white shadow-lg shadow-blue-900/15 transition hover:bg-blue-800"
                   href="/#contacto"
                   onClick={closeMobileMenu}
                 >
+                  <StudySearchIcon size={18} strokeWidth={2.5} aria-hidden="true" />
                   Solicitar estudio
                 </Link>
               </div>
