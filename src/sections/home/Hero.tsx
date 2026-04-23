@@ -81,7 +81,7 @@ export function Hero() {
       <Container className="relative">
         <div className="grid gap-10 sm:gap-14 lg:grid-cols-[minmax(0,1.08fr)_minmax(0,0.92fr)] lg:items-start lg:gap-16">
           <div className="relative z-10 max-w-2xl lg:pr-6">
-            <h1 className="max-w-[14.4ch] overflow-visible text-[2.3rem] font-extrabold leading-[0.97] tracking-[-0.05em] text-blue-950 min-[380px]:text-[2.55rem] sm:max-w-[13.2ch] sm:text-[4.2rem] sm:leading-[0.92] lg:max-w-[12.8ch] lg:text-[5rem]">
+            <h1 className="max-w-[14.4ch] overflow-visible text-[2.55rem] font-extrabold leading-[0.96] tracking-[-0.05em] text-blue-950 min-[380px]:text-[2.85rem] sm:max-w-[13.2ch] sm:text-[4.2rem] sm:leading-[0.92] lg:max-w-[12.8ch] lg:text-[5rem]">
               <span className="block">Convierte tu tejado en</span>
               <span className="mt-2 block text-[1.08em] leading-[0.9] sm:mt-2.5">
                 <HighlightWord>ingresos</HighlightWord>
