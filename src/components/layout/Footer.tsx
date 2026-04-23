@@ -7,7 +7,8 @@ import { Container } from "@/components/ui/Container";
 const navigationLinks = [
   { label: "Inicio", href: "/#inicio" },
   { label: "Servicios", href: "/#servicios" },
-  { label: "Proyectos", href: "/#proyectos" },
+  { label: "Proyectos", href: "/proyectos" },
+  { label: "Blog", href: "/blog" },
   { label: "Empleo", href: "/trabaja-con-nosotros" },
   { label: "Contacto", href: "/#contacto" },
 ];

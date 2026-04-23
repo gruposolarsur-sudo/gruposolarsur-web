@@ -24,7 +24,8 @@ import { Container } from "@/components/ui/Container";
 
 const navigation = [
   { label: "Inicio", href: "/#inicio" },
-  { label: "Proyectos", href: "/#proyectos" },
+  { label: "Proyectos", href: "/proyectos" },
+  { label: "Blog", href: "/blog" },
   { label: "Empleo", href: "/trabaja-con-nosotros" },
   { label: "Contacto", href: "/#contacto" },
 ];
