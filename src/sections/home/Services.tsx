@@ -1,4 +1,5 @@
 import type { ElementType } from "react";
+import Image from "next/image";
 import {
   ArrowRight,
   ChartNoAxesCombined,
@@ -22,6 +23,12 @@ const services: Array<{
   benefits: string[];
   href?: string;
   linkLabel?: string;
+  backgroundImage?: string;
+  backgroundPosition?: string;
+  logoImage?: {
+    src: string;
+    alt: string;
+  };
   innerIconSize?: number;
   tone: "solar" | "thermal" | "air" | "admin" | "study" | "support";
 }> = [
@@ -32,6 +39,8 @@ const services: Array<{
     benefits: ["Estudio previo", "Dimensionado profesional", "Ahorro real"],
     href: "/placas-solares-fotovoltaicas",
     linkLabel: "Ver servicio",
+    backgroundImage:
+      "/proyectos/fotovoltaica/sevilla/instalacion-placas-solares-sevilla-coplanar.webp",
     innerIconSize: 27,
     tone: "solar",
   },
@@ -42,6 +51,8 @@ const services: Array<{
     benefits: ["ACS eficiente", "Más ahorro", "Mayor eficiencia"],
     href: "/energia-solar-termica",
     linkLabel: "Ver servicio",
+    backgroundImage:
+      "/proyectos/fotovoltaica/sevilla/instalacion-solar-termica-sevilla.webp",
     tone: "thermal",
   },
   {
@@ -51,6 +62,8 @@ const services: Array<{
     benefits: ["Menor consumo", "Mayor confort", "Sistema eficiente"],
     href: "/aerotermia",
     linkLabel: "Ver servicio",
+    backgroundImage:
+      "/proyectos/fotovoltaica/sevilla/instalacion-aerotermia-sevilla.webp",
     tone: "air",
   },
   {
@@ -60,6 +73,10 @@ const services: Array<{
     benefits: ["Revisión documental", "Gestión guiada", "Menos fricción"],
     href: "/ayudas-y-subvenciones",
     linkLabel: "Ver servicio",
+    logoImage: {
+      src: "/logos/sello-agencia-andaluza-energia.webp",
+      alt: "Sello de la Agencia Andaluza de la Energía",
+    },
     tone: "admin",
   },
   {
@@ -69,6 +86,9 @@ const services: Array<{
     benefits: ["Estudio energético", "Ahorro energético", "Asesoramiento experto"],
     href: "/estudio-asesoramiento-energetico",
     linkLabel: "Ver servicio",
+    backgroundImage:
+      "/proyectos/fotovoltaica/sevilla/estudio-y-asesoramiento-energetico.jpg",
+    backgroundPosition: "right center",
     tone: "study",
   },
   {
@@ -78,6 +98,8 @@ const services: Array<{
     benefits: ["Revisión técnica", "Atención cercana", "Mayor rendimiento"],
     href: "/mantenimiento-soporte",
     linkLabel: "Ver servicio",
+    backgroundImage:
+      "/proyectos/fotovoltaica/sevilla/mantenimiento-soporte-sevilla.webp",
     tone: "support",
   },
 ];
@@ -181,6 +203,9 @@ export function Services() {
               benefits,
               href,
               linkLabel,
+              backgroundImage,
+              backgroundPosition,
+              logoImage,
               innerIconSize,
               tone,
             }) => (
@@ -188,11 +213,48 @@ export function Services() {
                 key={title}
                 className={`group relative flex h-full min-h-[19rem] flex-col overflow-hidden rounded-lg border p-5 shadow-[0_16px_34px_rgba(15,23,42,0.06)] transition duration-300 hover:-translate-y-1 hover:shadow-[0_22px_42px_rgba(15,23,42,0.11)] sm:min-h-[22rem] sm:p-6 ${toneStyles[tone].card}`}
               >
+                {backgroundImage ? (
+                  <>
+                    <div
+                      className="absolute inset-0 bg-cover opacity-45 mix-blend-multiply saturate-0"
+                      style={{
+                        backgroundImage: `url(${backgroundImage})`,
+                        backgroundPosition: backgroundPosition ?? "center",
+                      }}
+                    />
+                    <div
+                      className={`absolute inset-0 ${
+                        tone === "thermal"
+                          ? "bg-[linear-gradient(180deg,rgba(255,237,213,0.62)_0%,rgba(254,215,170,0.74)_100%)]"
+                          : tone === "air"
+                            ? "bg-[linear-gradient(180deg,rgba(207,250,254,0.62)_0%,rgba(165,243,252,0.74)_100%)]"
+                            : tone === "support"
+                              ? "bg-[linear-gradient(180deg,rgba(219,234,254,0.62)_0%,rgba(191,219,254,0.74)_100%)]"
+                              : tone === "study"
+                                ? "bg-[linear-gradient(180deg,rgba(209,250,229,0.62)_0%,rgba(167,243,208,0.74)_100%)]"
+                          : "bg-[linear-gradient(180deg,rgba(254,243,199,0.62)_0%,rgba(253,230,138,0.74)_100%)]"
+                      }`}
+                    />
+                  </>
+                ) : null}
+
                 <div className={`absolute -right-5 -top-5 ${toneStyles[tone].ghost}`}>
                   <Icon size={96} strokeWidth={1.25} aria-hidden="true" />
                 </div>
 
-                <div className="relative flex h-full flex-col">
+                {logoImage ? (
+                  <Image
+                    src={logoImage.src}
+                    alt=""
+                    width={430}
+                    height={241}
+                    sizes="26rem"
+                    aria-hidden="true"
+                    className="pointer-events-none absolute -bottom-16 -left-28 h-auto w-80 rotate-[30deg] select-none object-contain opacity-20 mix-blend-multiply sm:-bottom-20 sm:-left-36 sm:w-[26rem]"
+                  />
+                ) : null}
+
+                <div className="relative z-10 flex h-full flex-col">
                   <div
                     className={`inline-flex h-12 w-12 items-center justify-center rounded-lg shadow-[inset_0_1px_0_rgba(255,255,255,0.8)] ${toneStyles[tone].icon}`}
                   >
