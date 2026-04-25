@@ -269,6 +269,7 @@ const installationTypes = [
     copy: "Paneles integrados sobre la misma inclinación de la cubierta, una solución limpia y discreta para tejados inclinados.",
     tone: "text-amber-500",
     patternTone: "text-amber-300/30",
+    projectsHref: "/proyectos#solucion-coplanar",
   },
   {
     icon: PergolaMountIcon,
@@ -277,6 +278,7 @@ const installationTypes = [
     copy: "Estructuras que generan sombra y producción fotovoltaica en patios, aparcamientos, terrazas o zonas exteriores.",
     tone: "text-orange-500",
     patternTone: "text-orange-300/30",
+    projectsHref: "/proyectos#solucion-pergola",
   },
   {
     icon: TiltedStructureIcon,
@@ -285,6 +287,7 @@ const installationTypes = [
     copy: "Montajes sobre cubierta plana para orientar mejor los módulos y optimizar producción, seguridad y mantenimiento.",
     tone: "text-sky-600",
     patternTone: "text-sky-300/30",
+    projectsHref: "/proyectos#solucion-tilted",
   },
   {
     icon: IndustrialGroundMountIcon,
@@ -293,6 +296,7 @@ const installationTypes = [
     copy: "Soluciones para naves, negocios, comunidades o espacios técnicos donde hace falta una estructura específica.",
     tone: "text-emerald-600",
     patternTone: "text-emerald-300/30",
+    projectsHref: "/proyectos#solucion-industrial-ground",
   },
 ];
 
@@ -427,7 +431,15 @@ export default function PhotovoltaicSolarPanelsPage() {
 
               <div className="grid auto-rows-fr gap-4 sm:grid-cols-2">
                 {installationTypes.map(
-                  ({ icon: Icon, pattern: Pattern, title, copy, tone, patternTone }) => (
+                  ({
+                    icon: Icon,
+                    pattern: Pattern,
+                    title,
+                    copy,
+                    tone,
+                    patternTone,
+                    projectsHref,
+                  }) => (
                   <article
                     key={title}
                     className="relative flex h-full min-h-[18rem] flex-col overflow-hidden rounded-lg border border-slate-200 bg-white p-6 shadow-[0_16px_38px_rgba(15,23,42,0.05)]"
@@ -446,6 +458,13 @@ export default function PhotovoltaicSolarPanelsPage() {
                     <p className="relative z-10 mt-3 max-w-[23rem] text-[0.98rem] leading-7 text-slate-600">
                       {copy}
                     </p>
+                    <Link
+                      href={projectsHref}
+                      className="relative z-10 mt-auto inline-flex min-h-11 items-center gap-2 pt-6 text-sm font-bold text-blue-900 transition hover:text-blue-700"
+                    >
+                      Ver proyectos
+                      <ArrowRight size={16} aria-hidden="true" />
+                    </Link>
                   </article>
                   ),
                 )}

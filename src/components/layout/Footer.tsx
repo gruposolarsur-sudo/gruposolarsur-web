@@ -10,7 +10,7 @@ const navigationLinks = [
   { label: "Proyectos", href: "/proyectos" },
   { label: "Blog", href: "/blog" },
   { label: "Empleo", href: "/trabaja-con-nosotros" },
-  { label: "Contacto", href: "/#contacto" },
+  { label: "Contacto", href: "/contacto" },
 ];
 
 const serviceLinks = [

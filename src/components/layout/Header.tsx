@@ -27,7 +27,7 @@ const navigation = [
   { label: "Proyectos", href: "/proyectos" },
   { label: "Blog", href: "/blog" },
   { label: "Empleo", href: "/trabaja-con-nosotros" },
-  { label: "Contacto", href: "/#contacto" },
+  { label: "Contacto", href: "/contacto" },
 ];
 
 type StudySearchIconProps = SVGProps<SVGSVGElement> & {

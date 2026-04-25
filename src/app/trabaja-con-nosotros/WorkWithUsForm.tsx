@@ -2,10 +2,11 @@
 
 import { useState, type FormEvent } from "react";
 import Link from "next/link";
-import { ArrowRight } from "lucide-react";
+import { ArrowRight, Upload } from "lucide-react";
 
-const departments = ["Administrativo", "Comercial", "Técnico"];
-const textOnlyPattern = "[A-Za-zÁÉÍÓÚÜÑáéíóúüñ]+(?:[\\s'-][A-Za-zÁÉÍÓÚÜÑáéíóúüñ]+)*";
+const departments = ["Administrativo", "Comercial", "Tecnico"];
+const textOnlyPattern =
+  "[A-Za-zÁÉÍÓÚÜÑáéíóúüñ]+(?:[\\s'-][A-Za-zÁÉÍÓÚÜÑáéíóúüñ]+)*";
 const emailPattern = "^[^\\s@]+@[^\\s@]+\\.[^\\s@]{2,}$";
 const phonePattern = "^(?:\\+34\\s?)?(?:[6-9]\\d{2})(?:\\s?\\d{3}){2}$";
 const maxCvSizeBytes = 2 * 1024 * 1024;
@@ -53,6 +54,7 @@ function validateCvFile(file: File | undefined) {
 
 export function WorkWithUsForm() {
   const [status, setStatus] = useState<FormStatus | null>(null);
+  const [selectedCvName, setSelectedCvName] = useState("");
 
   function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
@@ -68,13 +70,9 @@ export function WorkWithUsForm() {
     const cvError = validateCvFile(cvFile);
 
     if (cvError) {
-      cvField?.setCustomValidity(cvError);
-      cvField?.reportValidity();
       setStatus({ kind: "error", message: cvError });
       return;
     }
-
-    cvField?.setCustomValidity("");
 
     const formData = new FormData(form);
     const candidateData = {
@@ -88,13 +86,14 @@ export function WorkWithUsForm() {
       aceptaComunicaciones: formData.get("acepta_comunicaciones") === "si",
     };
 
-    console.info("Candidatura preparada para envío", candidateData);
+    console.info("Candidatura preparada para envio", candidateData);
     setStatus({
       kind: "success",
       message:
         "Candidatura preparada correctamente. Gracias por contactar con Grupo SolarSur.",
     });
     form.reset();
+    setSelectedCvName("");
   }
 
   return (
@@ -108,7 +107,7 @@ export function WorkWithUsForm() {
             required
             minLength={2}
             pattern={textOnlyPattern}
-            title="Escribe solo letras y espacios. Mínimo 2 caracteres."
+            title="Escribe solo letras y espacios. Minimo 2 caracteres."
             autoComplete="given-name"
             placeholder="Tu nombre"
             className="h-14 w-full rounded-2xl border border-slate-200 bg-white px-4 text-base text-slate-900 outline-none transition placeholder:text-slate-400 focus:border-yellow-300 focus:ring-4 focus:ring-yellow-300/25"
@@ -123,7 +122,7 @@ export function WorkWithUsForm() {
             required
             minLength={2}
             pattern={textOnlyPattern}
-            title="Escribe solo letras y espacios. Mínimo 2 caracteres."
+            title="Escribe solo letras y espacios. Minimo 2 caracteres."
             autoComplete="family-name"
             placeholder="Tus apellidos"
             className="h-14 w-full rounded-2xl border border-slate-200 bg-white px-4 text-base text-slate-900 outline-none transition placeholder:text-slate-400 focus:border-yellow-300 focus:ring-4 focus:ring-yellow-300/25"
@@ -141,7 +140,7 @@ export function WorkWithUsForm() {
             className="h-14 w-full rounded-2xl border border-slate-200 bg-white px-4 text-base text-slate-900 outline-none transition focus:border-yellow-300 focus:ring-4 focus:ring-yellow-300/25"
           >
             <option value="" disabled>
-              Selecciona una opción
+              Selecciona una opcion
             </option>
             {departments.map((department) => (
               <option key={department} value={department}>
@@ -158,7 +157,7 @@ export function WorkWithUsForm() {
             name="email"
             required
             pattern={emailPattern}
-            title="Escribe un correo válido, por ejemplo nombre@email.com."
+            title="Escribe un correo valido, por ejemplo nombre@email.com."
             autoComplete="email"
             placeholder="nombre@email.com"
             className="h-14 w-full rounded-2xl border border-slate-200 bg-white px-4 text-base text-slate-900 outline-none transition placeholder:text-slate-400 focus:border-yellow-300 focus:ring-4 focus:ring-yellow-300/25"
@@ -166,15 +165,15 @@ export function WorkWithUsForm() {
         </label>
       </div>
 
-      <div className="grid gap-4 sm:grid-cols-2">
-        <label className="grid gap-2 text-sm font-semibold text-blue-950">
-          Teléfono
+      <div className="grid items-start gap-4 sm:grid-cols-2">
+        <label className="grid self-start gap-2 text-sm font-semibold text-blue-950">
+          Telefono
           <input
             type="tel"
             name="telefono"
             required
             pattern={phonePattern}
-            title="Escribe un teléfono válido. Ejemplo: 640 292 375 o +34 640 292 375."
+            title="Escribe un telefono valido. Ejemplo: 640 292 375 o +34 640 292 375."
             autoComplete="tel"
             inputMode="tel"
             placeholder="640 292 375"
@@ -182,25 +181,47 @@ export function WorkWithUsForm() {
           />
         </label>
 
-        <label className="grid gap-2 text-sm font-semibold text-blue-950">
-          Subir CV
-          <input
-            type="file"
-            name="cv"
-            required
-            accept={acceptedCvFormats}
-            onChange={(event) => {
-              const file = event.currentTarget.files?.[0];
-              const cvError = validateCvFile(file);
-              event.currentTarget.setCustomValidity(cvError);
-              setStatus(cvError ? { kind: "error", message: cvError } : null);
-            }}
-            className="flex min-h-14 w-full min-w-0 items-center rounded-2xl border border-slate-200 bg-white px-3 py-3 text-sm text-slate-700 outline-none transition file:mr-3 file:rounded-full file:border-0 file:bg-blue-900 file:px-3 file:py-2 file:text-sm file:font-bold file:text-white focus:border-yellow-300 focus:ring-4 focus:ring-yellow-300/25 sm:px-4 sm:file:mr-4 sm:file:px-4"
-          />
-          <span className="text-xs font-medium leading-5 text-slate-500">
-            Formatos permitidos: PDF, DOCX, ODT, TXT o RTF. Máximo 2 MB.
-          </span>
-        </label>
+        <div className="grid gap-2 text-sm font-semibold text-blue-950">
+          <span>Subir CV</span>
+          <label
+            htmlFor="cv-upload"
+            className="group cursor-pointer rounded-[1.6rem] border-2 border-dashed border-slate-300 bg-slate-50/65 p-4 transition hover:border-slate-400 hover:bg-slate-50 sm:p-5"
+          >
+            <input
+              id="cv-upload"
+              type="file"
+              name="cv"
+              accept={acceptedCvFormats}
+              className="sr-only"
+              onChange={(event) => {
+                const file = event.currentTarget.files?.[0];
+                const cvError = validateCvFile(file);
+                setSelectedCvName(file?.name || "");
+                setStatus(cvError ? { kind: "error", message: cvError } : null);
+              }}
+            />
+
+            <div className="flex min-h-[8.5rem] flex-col items-center justify-center gap-2.5 text-center">
+              <div className="inline-flex h-11 w-11 items-center justify-center rounded-2xl bg-white text-slate-400 shadow-[inset_0_0_0_1px_rgba(148,163,184,0.18)] transition group-hover:text-slate-500">
+                <Upload size={20} aria-hidden="true" />
+              </div>
+
+              <span className="text-lg font-semibold text-slate-700 transition group-hover:text-slate-800">
+                Subir archivo
+              </span>
+
+              {selectedCvName ? (
+                <span className="max-w-full break-words text-sm font-medium text-slate-600">
+                  {selectedCvName}
+                </span>
+              ) : null}
+
+              <p className="text-xs font-medium leading-6 text-slate-400">
+                Archivos admitidos: PDF, DOCX, ODT, TXT o RTF. Maximo 2 MB.
+              </p>
+            </div>
+          </label>
+        </div>
       </div>
 
       <div className="mt-2 grid gap-3 rounded-[1.35rem] border border-slate-200 bg-slate-50 p-4 text-sm leading-6 text-slate-600">
@@ -213,12 +234,12 @@ export function WorkWithUsForm() {
             className="mt-1 h-4 w-4 shrink-0 accent-blue-900"
           />
           <span>
-            He leído y acepto la{" "}
+            He leido y acepto la{" "}
             <Link
               href="/politica-privacidad"
               className="font-semibold text-blue-800 underline decoration-blue-200 underline-offset-4 transition hover:text-blue-950"
             >
-              Política de Privacidad
+              Politica de Privacidad
             </Link>
           </span>
         </label>

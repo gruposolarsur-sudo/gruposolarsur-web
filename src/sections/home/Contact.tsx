@@ -1,4 +1,3 @@
-import Link from "next/link";
 import type { LucideIcon } from "lucide-react";
 import {
   ArrowRight,
@@ -10,6 +9,7 @@ import {
   ShieldCheck,
 } from "lucide-react";
 
+import { ContactStudyForm } from "@/components/contact/ContactStudyForm";
 import { Container } from "@/components/ui/Container";
 
 const captureHighlights: Array<{
@@ -19,18 +19,18 @@ const captureHighlights: Array<{
 }> = [
   {
     icon: Clock3,
-    title: "Respuesta rápida",
+    title: "Respuesta rapida",
     copy: "Revisamos tus datos y te contactamos con una propuesta clara.",
   },
   {
     icon: ShieldCheck,
     title: "Sin compromiso",
-    copy: "Análisis preliminar gratuito y orientado a ahorro real.",
+    copy: "Analisis preliminar gratuito y orientado a ahorro real.",
   },
   {
     icon: BadgeCheck,
-    title: "Acompañamiento completo",
-    copy: "Te guiamos en financiación, ejecución y legalización.",
+    title: "Acompanamiento completo",
+    copy: "Te guiamos en financiacion, ejecucion y legalizacion.",
   },
 ];
 
@@ -50,7 +50,7 @@ const discoveryOptions = [
 
 const interestOptions = [
   "Placas solares fotovoltaicas",
-  "Energía solar térmica",
+  "Energia solar termica",
   "Aerotermia",
   "Mantenimiento y soporte",
 ];
@@ -75,13 +75,14 @@ export function Contact() {
                 </div>
 
                 <h2 className="mt-5 max-w-md text-3xl font-extrabold leading-tight tracking-tight text-blue-950 sm:text-[2.25rem]">
-                  Te preparamos un estudio gratuito para empezar a ahorrar cuanto antes
+                  Te preparamos un estudio gratuito para empezar a ahorrar cuanto
+                  antes
                 </h2>
 
                 <p className="mt-4 max-w-md text-base leading-7 text-slate-600">
-                  Déjanos tus datos y te orientamos con una solución solar
-                  profesional, rentable y adaptada al consumo real de tu vivienda
-                  o negocio.
+                  Dejanos tus datos y te orientamos con una solucion solar
+                  profesional, rentable y adaptada al consumo real de tu
+                  vivienda o negocio.
                 </p>
 
                 <div className="mt-8 space-y-4">
@@ -95,8 +96,12 @@ export function Contact() {
                           <Icon size={18} />
                         </div>
                         <div>
-                          <h3 className="text-sm font-semibold text-blue-950">{title}</h3>
-                          <p className="mt-1 text-sm leading-6 text-slate-500">{copy}</p>
+                          <h3 className="text-sm font-semibold text-blue-950">
+                            {title}
+                          </h3>
+                          <p className="mt-1 text-sm leading-6 text-slate-500">
+                            {copy}
+                          </p>
                         </div>
                       </div>
                     </div>
@@ -108,7 +113,7 @@ export function Contact() {
                   <div className="relative flex items-center justify-between gap-4">
                     <div>
                       <div className="text-[0.68rem] font-semibold uppercase tracking-[0.24em] text-amber-700/80">
-                        Prefieres llamarnos
+                        ¿Prefieres llamarnos?
                       </div>
                       <div className="mt-2 text-lg font-semibold text-blue-950">
                         Hablamos contigo directamente
@@ -131,7 +136,9 @@ export function Contact() {
                         <span className="block text-xs uppercase tracking-[0.18em] text-yellow-200">
                           Llamar ahora
                         </span>
-                        <span className="block text-xl leading-6">651 194 097</span>
+                        <span className="block text-xl leading-6">
+                          651 194 097
+                        </span>
                       </span>
                     </span>
                     <ArrowRight
@@ -164,173 +171,15 @@ export function Contact() {
                 </h3>
 
                 <p className="mt-3 max-w-2xl text-base leading-7 text-blue-50/78">
-                  Cuanto mejor entendamos tu situación, mejor podremos estimar el
-                  ahorro y plantearte una instalación bien dimensionada desde el
+                  Cuanto mejor entendamos tu situacion, mejor podremos estimar el
+                  ahorro y plantearte una instalacion bien dimensionada desde el
                   primer contacto.
                 </p>
 
-                <form
-                  action="mailto:info@gruposolarsur.com"
-                  method="post"
-                  encType="text/plain"
-                  className="mt-8 grid gap-4 sm:grid-cols-2"
-                >
-                  <div className="contents">
-                    <label className="grid gap-2 text-sm font-medium text-blue-50">
-                      Nombre
-                      <input
-                        type="text"
-                        name="nombre"
-                        placeholder="Nombre"
-                        required
-                        className="h-14 w-full rounded-2xl border border-white/15 bg-white/96 px-4 text-base text-slate-900 outline-none transition placeholder:text-slate-400 focus:border-yellow-300 focus:ring-4 focus:ring-yellow-300/25"
-                      />
-                    </label>
-
-                    <label className="grid gap-2 text-sm font-medium text-blue-50">
-                      Apellidos
-                      <input
-                        type="text"
-                        name="apellidos"
-                        placeholder="Apellidos"
-                        required
-                        className="h-14 w-full rounded-2xl border border-white/15 bg-white/96 px-4 text-base text-slate-900 outline-none transition placeholder:text-slate-400 focus:border-yellow-300 focus:ring-4 focus:ring-yellow-300/25"
-                      />
-                    </label>
-                  </div>
-
-                  <div className="contents">
-                    <label className="grid gap-2 text-sm font-medium text-blue-50">
-                      Teléfono de contacto
-                      <input
-                        type="tel"
-                        name="telefono"
-                        placeholder="651 194 097"
-                        required
-                        className="h-14 w-full rounded-2xl border border-white/15 bg-white/96 px-4 text-base text-slate-900 outline-none transition placeholder:text-slate-400 focus:border-yellow-300 focus:ring-4 focus:ring-yellow-300/25"
-                      />
-                    </label>
-
-                    <label className="grid gap-2 text-sm font-medium text-blue-50">
-                      Correo electrónico
-                      <input
-                        type="email"
-                        name="email"
-                        placeholder="tu@email.com"
-                        required
-                        className="h-14 w-full rounded-2xl border border-white/15 bg-white/96 px-4 text-base text-slate-900 outline-none transition placeholder:text-slate-400 focus:border-yellow-300 focus:ring-4 focus:ring-yellow-300/25"
-                      />
-                    </label>
-                  </div>
-
-                  <div className="contents">
-                    <label className="grid gap-2 text-sm font-medium text-blue-50">
-                      Población
-                      <input
-                        type="text"
-                        name="poblacion"
-                        placeholder="Población"
-                        required
-                        className="h-14 w-full rounded-2xl border border-white/15 bg-white/96 px-4 text-base text-slate-900 outline-none transition placeholder:text-slate-400 focus:border-yellow-300 focus:ring-4 focus:ring-yellow-300/25"
-                      />
-                    </label>
-
-                    <label className="grid gap-2 text-sm font-medium text-blue-50">
-                      Provincia
-                      <input
-                        type="text"
-                        name="provincia"
-                        placeholder="Provincia"
-                        required
-                        className="h-14 w-full rounded-2xl border border-white/15 bg-white/96 px-4 text-base text-slate-900 outline-none transition placeholder:text-slate-400 focus:border-yellow-300 focus:ring-4 focus:ring-yellow-300/25"
-                      />
-                    </label>
-                  </div>
-
-                  <label className="grid gap-2 text-sm font-medium text-blue-50 sm:col-span-2">
-                    ¿Cómo nos has conocido? <span className="text-yellow-300">*</span>
-                    <select
-                      name="como_nos_has_conocido"
-                      defaultValue=""
-                      required
-                      className="h-14 w-full rounded-2xl border border-white/15 bg-white/96 px-4 text-base text-slate-900 outline-none transition focus:border-yellow-300 focus:ring-4 focus:ring-yellow-300/25"
-                    >
-                      <option value="" disabled>
-                        Selecciona una opción
-                      </option>
-                      {discoveryOptions.map((option) => (
-                        <option key={option} value={option}>
-                          {option}
-                        </option>
-                      ))}
-                    </select>
-                  </label>
-
-                  <label className="grid gap-2 text-sm font-medium text-blue-50 sm:col-span-2">
-                    Estoy interesado/a <span className="text-yellow-300">*</span>
-                    <select
-                      name="interes"
-                      defaultValue=""
-                      required
-                      className="h-14 w-full rounded-2xl border border-white/15 bg-white/96 px-4 text-base text-slate-900 outline-none transition focus:border-yellow-300 focus:ring-4 focus:ring-yellow-300/25"
-                    >
-                      <option value="" disabled>
-                        Selecciona una opción
-                      </option>
-                      {interestOptions.map((option) => (
-                        <option key={option} value={option}>
-                          {option}
-                        </option>
-                      ))}
-                    </select>
-                  </label>
-
-                  <label className="grid gap-2 text-sm font-medium text-blue-50 sm:col-span-2">
-                    Comentarios
-                    <textarea
-                      name="comentarios"
-                      rows={4}
-                      placeholder="Cuéntanos si es para vivienda, negocio, si te interesa financiación o cualquier detalle útil."
-                      className="w-full rounded-[1.5rem] border border-white/15 bg-white/96 px-4 py-4 text-base text-slate-900 outline-none transition placeholder:text-slate-400 focus:border-yellow-300 focus:ring-4 focus:ring-yellow-300/25"
-                    />
-                  </label>
-
-                  <label className="flex items-start gap-3 rounded-[1.5rem] border border-white/15 bg-white/10 px-4 py-4 text-sm font-medium leading-6 text-blue-50 sm:col-span-2">
-                    <input
-                      type="checkbox"
-                      name="acepta_politica_privacidad"
-                      value="Si"
-                      required
-                      className="mt-1 h-4 w-4 shrink-0 accent-yellow-300"
-                    />
-                    <span>
-                      Acepto la{" "}
-                      <Link
-                        href="/politica-privacidad"
-                        className="font-semibold text-yellow-200 underline decoration-yellow-200/50 underline-offset-4 transition hover:text-yellow-100"
-                      >
-                        política de privacidad
-                      </Link>{" "}
-                      <span className="text-yellow-300">*</span>
-                    </span>
-                  </label>
-
-                  <div className="flex justify-start sm:col-span-2">
-                    <button
-                      type="submit"
-                      className="inline-flex h-14 w-full items-center justify-center gap-2 rounded-full border border-yellow-200/90 bg-yellow-300 px-7 py-4 text-base font-bold !text-blue-950 shadow-[0_18px_40px_rgba(250,204,21,0.28)] transition hover:bg-yellow-200 sm:w-auto"
-                    >
-                      Enviar solicitud
-                      <ArrowRight size={18} />
-                    </button>
-                  </div>
-                </form>
-
-                <div className="mt-5 rounded-[1.5rem] border border-white/15 bg-white/10 px-4 py-4 text-sm font-medium leading-6 text-blue-50/82">
-                  Al enviar el formulario se abrirá tu cliente de correo con los
-                  datos listos para compartir. Si prefieres, también puedes
-                  llamarnos directamente.
-                </div>
+                <ContactStudyForm
+                  discoveryOptions={discoveryOptions}
+                  interestOptions={interestOptions}
+                />
               </div>
             </div>
           </div>

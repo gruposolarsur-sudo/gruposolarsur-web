@@ -13,37 +13,38 @@ import {
   Zap,
 } from "lucide-react";
 
+import { BlogCommentsSection } from "@/components/blog/BlogCommentsSection";
 import { Footer } from "@/components/layout/Footer";
 import { Header } from "@/components/layout/Header";
 import { Container } from "@/components/ui/Container";
 import { projectStories } from "@/data/projectStories";
+import { getApprovedBlogCommentsThread } from "@/lib/blogComments";
 
 const featuredPost = {
   label: "Obra destacada",
-  title: "Instalaciones solares reales en viviendas y negocios de Andalucía",
-  copy: "Un espacio para enseñar trabajos terminados, explicar decisiones técnicas y compartir resultados de proyectos fotovoltaicos, térmicos, aerotermia y mantenimiento.",
+  title: "Instalaciones solares reales en viviendas y negocios de Andalucia",
+  copy: "Un espacio para ensenar trabajos terminados, explicar decisiones tecnicas y compartir resultados de proyectos fotovoltaicos, termicos, aerotermia y mantenimiento.",
   image: projectStories[0].image,
-  meta: "Obras de Grupo SolarSur",
 };
 
 const newsPosts = [
   {
     icon: FileText,
     category: "Ayudas",
-    title: "Subvenciones y deducciones para instalaciones energéticas",
-    copy: "Actualizaciones sobre ayudas disponibles, documentación necesaria y pasos habituales para proyectos solares.",
+    title: "Subvenciones y deducciones para instalaciones energeticas",
+    copy: "Actualizaciones sobre ayudas disponibles, documentacion necesaria y pasos habituales para proyectos solares.",
   },
   {
     icon: Zap,
     category: "Autoconsumo",
-    title: "Claves para dimensionar una instalación fotovoltaica",
-    copy: "Cómo influyen consumo, orientación, cubierta y hábitos de uso en el ahorro final de una vivienda o negocio.",
+    title: "Claves para dimensionar una instalacion fotovoltaica",
+    copy: "Como influyen consumo, orientacion, cubierta y habitos de uso en el ahorro final de una vivienda o negocio.",
   },
   {
     icon: Wrench,
     category: "Soporte",
-    title: "Por qué revisar una instalación antes de que baje su rendimiento",
-    copy: "Noticias y recomendaciones sobre mantenimiento preventivo, monitorización y resolución de incidencias.",
+    title: "Por que revisar una instalacion antes de que baje su rendimiento",
+    copy: "Noticias y recomendaciones sobre mantenimiento preventivo, monitorizacion y resolucion de incidencias.",
   },
 ];
 
@@ -55,12 +56,16 @@ const editorialAreas = [
 ];
 
 export const metadata: Metadata = {
-  title: "Blog | Obras y noticias de energía solar | Grupo Solar Sur",
+  title: "Blog | Obras y noticias de energia solar | Grupo Solar Sur",
   description:
-    "Obras, noticias relevantes y contenido informativo sobre energía solar, autoconsumo, aerotermia, ayudas y mantenimiento en Andalucía.",
+    "Obras, noticias relevantes y contenido informativo sobre energia solar, autoconsumo, aerotermia, ayudas y mantenimiento en Andalucia.",
 };
 
-export default function BlogPage() {
+export const dynamic = "force-dynamic";
+
+export default async function BlogPage() {
+  const approvedComments = await getApprovedBlogCommentsThread();
+
   return (
     <>
       <Header />
@@ -75,11 +80,12 @@ export default function BlogPage() {
                   Blog SolarSur
                 </p>
                 <h1 className="mt-5 max-w-[12ch] text-4xl font-extrabold leading-[0.98] tracking-tight text-blue-950 sm:text-6xl lg:text-[4.7rem]">
-                  Obras, noticias y energía solar útil
+                  Obras, noticias y energia solar útil
                 </h1>
                 <p className="mt-6 max-w-2xl text-lg font-medium leading-8 text-slate-600 sm:text-xl">
-                  Información clara sobre proyectos reales, novedades del sector,
-                  ayudas energéticas y mantenimiento de instalaciones en Andalucía.
+                  Informacion clara sobre proyectos reales, novedades del sector,
+                  ayudas energeticas y mantenimiento de instalaciones en
+                  Andalucia.
                 </p>
 
                 <div className="mt-8 flex flex-wrap gap-2">
@@ -128,7 +134,7 @@ export default function BlogPage() {
               {[
                 { icon: Sparkles, label: "Obras documentadas" },
                 { icon: Newspaper, label: "Noticias relevantes" },
-                { icon: CalendarDays, label: "Actualidad energética" },
+                { icon: CalendarDays, label: "Actualidad energetica" },
               ].map(({ icon: Icon, label }) => (
                 <div
                   key={label}
@@ -200,7 +206,7 @@ export default function BlogPage() {
                       href={`/proyectos#${post.slug}`}
                       className="mt-auto inline-flex items-center gap-2 pt-5 text-sm font-extrabold text-blue-900 transition hover:text-blue-700"
                     >
-                      Ver ficha técnica en el mapa
+                      Ver ficha tecnica en el mapa
                       <ArrowRight size={15} aria-hidden="true" />
                     </Link>
                   </div>
@@ -221,9 +227,9 @@ export default function BlogPage() {
                   Actualidad y contenido informativo
                 </h2>
                 <p className="mt-5 text-lg leading-8 text-slate-600">
-                  Una sección para publicar novedades importantes, cambios en
-                  ayudas, consejos técnicos y explicaciones sencillas sobre el
-                  sector energético.
+                  Una seccion para publicar novedades importantes, cambios en
+                  ayudas, consejos tecnicos y explicaciones sencillas sobre el
+                  sector energetico.
                 </p>
               </div>
 
@@ -262,10 +268,10 @@ export default function BlogPage() {
                   <BadgeCheck size={23} aria-hidden="true" />
                 </div>
                 <h2 className="mt-6 max-w-2xl text-3xl font-extrabold leading-tight tracking-tight text-blue-950 sm:text-[2.35rem]">
-                  ¿Tienes una obra o noticia que debería aparecer aquí?
+                  Tienes una obra o noticia que deberia aparecer aqui?
                 </h2>
                 <p className="mt-4 max-w-2xl text-lg leading-8 text-blue-950/72">
-                  Cuéntanos el caso y prepararemos la información con el enfoque
+                  Cuentanos el caso y prepararemos la informacion con el enfoque
                   adecuado para mostrar el trabajo, el contexto y el valor del
                   proyecto.
                 </p>
@@ -279,6 +285,15 @@ export default function BlogPage() {
                 <ArrowRight size={18} aria-hidden="true" />
               </Link>
             </div>
+          </Container>
+        </section>
+
+        <section className="border-t border-slate-200 bg-[linear-gradient(180deg,#ffffff_0%,#f8fbff_100%)] py-16 sm:py-20">
+          <Container>
+            <BlogCommentsSection
+              comments={approvedComments.comments}
+              totalCount={approvedComments.totalCount}
+            />
           </Container>
         </section>
       </main>
