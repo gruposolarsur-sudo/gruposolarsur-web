@@ -12,6 +12,8 @@ import Image from "next/image";
 import Link from "next/link";
 import { ArrowRight, ImagePlus, MessageSquareText, X } from "lucide-react";
 
+import { TurnstileWidget } from "@/components/security/TurnstileWidget";
+
 const LOCAL_STORAGE_KEY = "blog-comment-form";
 const COMMENT_MIN_LENGTH = 20;
 const MAX_IMAGE_COUNT = 4;
@@ -48,6 +50,8 @@ type ImagePreview = {
   url: string;
 };
 
+const isCaptchaRequired = Boolean(process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY);
+
 const initialState: CommentFormState = {
   comment: "",
   authorName: "",
@@ -75,6 +79,8 @@ export function BlogCommentForm({
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [images, setImages] = useState<File[]>([]);
   const [imagePreviews, setImagePreviews] = useState<ImagePreview[]>([]);
+  const [captchaToken, setCaptchaToken] = useState("");
+  const [captchaResetSignal, setCaptchaResetSignal] = useState(0);
   const fileInputRef = useRef<HTMLInputElement | null>(null);
 
   useEffect(() => {
@@ -208,6 +214,15 @@ export function BlogCommentForm({
       return;
     }
 
+    if (isCaptchaRequired && !captchaToken) {
+      setStatus({
+        kind: "error",
+        message:
+          "Completa la verificacion de seguridad antes de publicar el comentario.",
+      });
+      return;
+    }
+
     setIsSubmitting(true);
     setStatus(null);
 
@@ -220,6 +235,7 @@ export function BlogCommentForm({
       payload.set("company", formState.company);
       payload.set("startedAt", String(startedAt));
       payload.set("parentId", replyTo?.id ?? "");
+      payload.set("turnstileToken", captchaToken || "");
 
       images.forEach((image) => {
         payload.append("images", image);
@@ -281,6 +297,8 @@ export function BlogCommentForm({
         message: "No se ha podido conectar con el formulario de comentarios.",
       });
     } finally {
+      setCaptchaToken("");
+      setCaptchaResetSignal((current) => current + 1);
       setIsSubmitting(false);
     }
   }
@@ -475,6 +493,15 @@ export function BlogCommentForm({
           proxima vez que comente.
         </span>
       </label>
+
+      <TurnstileWidget
+        action="blog_comment"
+        variant="light"
+        theme="light"
+        resetSignal={captchaResetSignal}
+        onTokenChange={setCaptchaToken}
+        tokenValue={captchaToken}
+      />
 
       <div className="flex flex-col gap-4 lg:flex-row lg:items-center lg:justify-between">
         <p className="text-sm font-medium leading-6 text-slate-500">

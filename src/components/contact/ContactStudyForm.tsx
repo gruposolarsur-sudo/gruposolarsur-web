@@ -4,6 +4,8 @@ import { useState, type FormEvent } from "react";
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 
+import { TurnstileWidget } from "@/components/security/TurnstileWidget";
+
 type ContactStudyFormProps = {
   discoveryOptions: string[];
   interestOptions: string[];
@@ -14,6 +16,8 @@ type FormStatus =
   | { kind: "error"; message: string }
   | null;
 
+const isCaptchaRequired = Boolean(process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY);
+
 export function ContactStudyForm({
   discoveryOptions,
   interestOptions,
@@ -21,6 +25,8 @@ export function ContactStudyForm({
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [status, setStatus] = useState<FormStatus>(null);
   const [startedAt, setStartedAt] = useState(() => Date.now());
+  const [captchaToken, setCaptchaToken] = useState("");
+  const [captchaResetSignal, setCaptchaResetSignal] = useState(0);
 
   async function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
@@ -28,6 +34,15 @@ export function ContactStudyForm({
     const form = event.currentTarget;
     if (!form.checkValidity()) {
       form.reportValidity();
+      return;
+    }
+
+    if (isCaptchaRequired && !captchaToken) {
+      setStatus({
+        kind: "error",
+        message:
+          "Completa la verificacion de seguridad antes de enviar la solicitud.",
+      });
       return;
     }
 
@@ -45,6 +60,7 @@ export function ContactStudyForm({
         body: JSON.stringify({
           ...payload,
           startedAt,
+          turnstileToken: captchaToken || "",
         }),
       });
 
@@ -75,6 +91,8 @@ export function ContactStudyForm({
           "No se ha podido conectar con el formulario en este momento.",
       });
     } finally {
+      setCaptchaToken("");
+      setCaptchaResetSignal((current) => current + 1);
       setIsSubmitting(false);
     }
   }
@@ -231,6 +249,16 @@ export function ContactStudyForm({
             />
           </label>
         </div>
+
+        <TurnstileWidget
+          action="contact_request"
+          variant="dark"
+          theme="light"
+          resetSignal={captchaResetSignal}
+          onTokenChange={setCaptchaToken}
+          tokenValue={captchaToken}
+          className="sm:col-span-2"
+        />
 
         <label className="flex items-start gap-3 rounded-[1.5rem] border border-white/15 bg-white/10 px-4 py-4 text-sm font-medium leading-6 text-blue-50 sm:col-span-2">
           <input

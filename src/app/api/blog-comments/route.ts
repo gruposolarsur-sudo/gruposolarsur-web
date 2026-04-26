@@ -10,6 +10,7 @@ import {
   sanitizeComment,
   sanitizeText,
 } from "@/lib/blogComments";
+import { verifyTurnstileToken } from "@/lib/turnstile";
 
 export const runtime = "nodejs";
 
@@ -235,6 +236,7 @@ export async function POST(request: Request) {
   const authorEmail = sanitizeText(String(formData.get("authorEmail") ?? "")).toLowerCase();
   const authorWebsiteRaw = String(formData.get("authorWebsite") ?? "");
   const parentId = sanitizeText(String(formData.get("parentId") ?? ""));
+  const turnstileToken = sanitizeText(String(formData.get("turnstileToken") ?? ""));
   const files = formData
     .getAll("images")
     .filter((entry): entry is File => entry instanceof File && entry.size > 0);
@@ -291,6 +293,24 @@ export async function POST(request: Request) {
         { status: 400 },
       );
     }
+  }
+
+  const turnstileResult = await verifyTurnstileToken({
+    token: turnstileToken,
+    remoteIp: ip,
+    expectedAction: "blog_comment",
+  });
+
+  if (!turnstileResult.success) {
+    const turnstileMessage =
+      "message" in turnstileResult
+        ? turnstileResult.message
+        : "No se ha podido validar la verificacion de seguridad.";
+
+    return NextResponse.json(
+      { message: turnstileMessage },
+      { status: 400 },
+    );
   }
 
   let imageUrls: string[] = [];

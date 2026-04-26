@@ -1,6 +1,8 @@
 import nodemailer from "nodemailer";
 import { NextResponse } from "next/server";
 
+import { verifyTurnstileToken } from "@/lib/turnstile";
+
 const MIN_FILL_TIME_MS = 4000;
 const RATE_LIMIT_WINDOW_MS = 15 * 60 * 1000;
 const RATE_LIMIT_MAX_REQUESTS = 5;
@@ -196,6 +198,7 @@ export async function POST(request) {
   const interes = sanitizeText(payload.interes);
   const comentarios = sanitizeMultilineText(payload.comentarios);
   const privacidad = sanitizeText(payload.acepta_politica_privacidad);
+  const turnstileToken = sanitizeText(payload.turnstileToken);
 
   if (nombre.length < 2 || nombre.length > 80) {
     return NextResponse.json(
@@ -256,6 +259,19 @@ export async function POST(request) {
   if (comentarios.length > 3000) {
     return NextResponse.json(
       { message: "Los comentarios no pueden superar los 3000 caracteres." },
+      { status: 400 },
+    );
+  }
+
+  const turnstileResult = await verifyTurnstileToken({
+    token: turnstileToken,
+    remoteIp: ip,
+    expectedAction: "contact_request",
+  });
+
+  if (!turnstileResult.success) {
+    return NextResponse.json(
+      { message: turnstileResult.message },
       { status: 400 },
     );
   }
