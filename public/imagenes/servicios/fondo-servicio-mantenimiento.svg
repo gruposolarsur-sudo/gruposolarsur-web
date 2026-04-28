@@ -1,0 +1,26 @@
+<svg width="384" height="416" viewBox="0 0 384 416" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="support-screen-fill" x1="218" y1="92" x2="344" y2="202" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#F8FBFF" stop-opacity="0.62"/>
+      <stop offset="1" stop-color="#60A5FA" stop-opacity="0.2"/>
+    </linearGradient>
+    <linearGradient id="helmet-fill" x1="62" y1="274" x2="170" y2="344" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#EFF6FF" stop-opacity="0.5"/>
+      <stop offset="1" stop-color="#93C5FD" stop-opacity="0.18"/>
+    </linearGradient>
+  </defs>
+  <rect x="218" y="92" width="128" height="92" rx="18" fill="url(#support-screen-fill)" stroke="#93C5FD" stroke-width="3" stroke-opacity="0.54"/>
+  <path d="M238 120H326" stroke="#3B82F6" stroke-width="3" stroke-linecap="round" stroke-opacity="0.24"/>
+  <circle cx="242" cy="120" r="5" fill="#60A5FA" fill-opacity="0.42"/>
+  <circle cx="260" cy="120" r="5" fill="#60A5FA" fill-opacity="0.3"/>
+  <path d="M240 160L262 146L282 154L304 130L324 138" stroke="#2563EB" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" stroke-opacity="0.32"/>
+  <path d="M273 184V208M252 208H294" stroke="#60A5FA" stroke-width="4" stroke-linecap="round" stroke-opacity="0.3"/>
+  <path d="M228 228C244 218 260 216 276 228C292 240 308 240 324 228C340 216 354 218 366 228" stroke="#2563EB" stroke-width="4" stroke-linecap="round" stroke-opacity="0.24"/>
+  <path d="M284 262L300 246C304 242 304 235 300 231L294 225C290 221 283 221 279 225L263 241L255 233C250 228 242 228 237 233L231 239C226 244 226 252 231 257L239 265L223 281C216 288 216 299 223 306L228 311C235 318 246 318 253 311L269 295L277 303C282 308 290 308 295 303L301 297C306 292 306 284 301 279L293 271L309 255" stroke="#2563EB" stroke-width="5" stroke-linecap="round" stroke-linejoin="round" stroke-opacity="0.34"/>
+  <path d="M306 258L318 246C322 242 328 241 333 244L341 249C336 257 337 267 343 274L336 281C331 286 323 286 318 281L306 269" fill="#DBEAFE" fill-opacity="0.18" stroke="#60A5FA" stroke-width="4" stroke-linejoin="round" stroke-opacity="0.3"/>
+  <path d="M72 320C72 287 97 264 130 264C163 264 188 287 188 320H72Z" fill="url(#helmet-fill)" stroke="#93C5FD" stroke-width="3" stroke-opacity="0.5"/>
+  <path d="M82 320H178" stroke="#60A5FA" stroke-width="4" stroke-linecap="round" stroke-opacity="0.3"/>
+  <path d="M124 276V320" stroke="#60A5FA" stroke-width="3.6" stroke-linecap="round" stroke-opacity="0.24"/>
+  <path d="M104 292C112 286 120 284 130 284C140 284 148 286 156 292" stroke="#3B82F6" stroke-width="3.2" stroke-linecap="round" stroke-opacity="0.22"/>
+  <path d="M58 344H198" stroke="#93C5FD" stroke-width="4" stroke-linecap="round" stroke-opacity="0.18"/>
+</svg>

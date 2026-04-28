@@ -4,7 +4,7 @@ import { useState, type FormEvent } from "react";
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 
-import { TurnstileWidget } from "@/components/security/TurnstileWidget";
+import { RecaptchaCheckbox } from "@/components/security/RecaptchaCheckbox";
 
 type ContactStudyFormProps = {
   discoveryOptions: string[];
@@ -16,7 +16,7 @@ type FormStatus =
   | { kind: "error"; message: string }
   | null;
 
-const isCaptchaRequired = Boolean(process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY);
+const isCaptchaRequired = Boolean(process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY);
 
 export function ContactStudyForm({
   discoveryOptions,
@@ -41,7 +41,7 @@ export function ContactStudyForm({
       setStatus({
         kind: "error",
         message:
-          "Completa la verificacion de seguridad antes de enviar la solicitud.",
+          "Completa la verificación de seguridad antes de enviar la solicitud.",
       });
       return;
     }
@@ -60,7 +60,7 @@ export function ContactStudyForm({
         body: JSON.stringify({
           ...payload,
           startedAt,
-          turnstileToken: captchaToken || "",
+          recaptchaToken: captchaToken || "",
         }),
       });
 
@@ -132,11 +132,11 @@ export function ContactStudyForm({
 
         <div className="contents">
           <label className="grid gap-2 text-sm font-medium text-blue-50">
-            Telefono de contacto
+            Teléfono de contacto
             <input
               type="tel"
               name="telefono"
-              placeholder="651 194 097"
+              placeholder="955 515 708"
               required
               minLength={9}
               maxLength={25}
@@ -146,7 +146,7 @@ export function ContactStudyForm({
           </label>
 
           <label className="grid gap-2 text-sm font-medium text-blue-50">
-            Correo electronico
+            Correo electrónico
             <input
               type="email"
               name="email"
@@ -161,11 +161,11 @@ export function ContactStudyForm({
 
         <div className="contents">
           <label className="grid gap-2 text-sm font-medium text-blue-50">
-            Poblacion
+            Población
             <input
               type="text"
               name="poblacion"
-              placeholder="Poblacion"
+              placeholder="Población"
               required
               minLength={2}
               maxLength={100}
@@ -190,7 +190,7 @@ export function ContactStudyForm({
         </div>
 
         <label className="grid gap-2 text-sm font-medium text-blue-50 sm:col-span-2">
-          Como nos has conocido <span className="text-yellow-300">*</span>
+          Cómo nos has conocido <span className="text-yellow-300">*</span>
           <select
             name="como_nos_has_conocido"
             defaultValue=""
@@ -198,7 +198,7 @@ export function ContactStudyForm({
             className="h-14 w-full rounded-2xl border border-white/15 bg-white/96 px-4 text-base text-slate-900 outline-none transition focus:border-yellow-300 focus:ring-4 focus:ring-yellow-300/25"
           >
             <option value="" disabled>
-              Selecciona una opcion
+              Selecciona una opción
             </option>
             {discoveryOptions.map((option) => (
               <option key={option} value={option}>
@@ -217,7 +217,7 @@ export function ContactStudyForm({
             className="h-14 w-full rounded-2xl border border-white/15 bg-white/96 px-4 text-base text-slate-900 outline-none transition focus:border-yellow-300 focus:ring-4 focus:ring-yellow-300/25"
           >
             <option value="" disabled>
-              Selecciona una opcion
+              Selecciona una opción
             </option>
             {interestOptions.map((option) => (
               <option key={option} value={option}>
@@ -233,7 +233,7 @@ export function ContactStudyForm({
             name="comentarios"
             rows={4}
             maxLength={3000}
-            placeholder="Cuentanos si es para vivienda, negocio, si te interesa financiacion o cualquier detalle util."
+            placeholder="Cuéntanos si es para vivienda, negocio, si te interesa financiación o cualquier detalle útil."
             className="w-full rounded-[1.5rem] border border-white/15 bg-white/96 px-4 py-4 text-base text-slate-900 outline-none transition placeholder:text-slate-400 focus:border-yellow-300 focus:ring-4 focus:ring-yellow-300/25"
           />
         </label>
@@ -250,8 +250,7 @@ export function ContactStudyForm({
           </label>
         </div>
 
-        <TurnstileWidget
-          action="contact_request"
+        <RecaptchaCheckbox
           variant="dark"
           theme="light"
           resetSignal={captchaResetSignal}
@@ -274,7 +273,7 @@ export function ContactStudyForm({
               href="/politica-privacidad"
               className="font-semibold text-yellow-200 underline decoration-yellow-200/50 underline-offset-4 transition hover:text-yellow-100"
             >
-              politica de privacidad
+              política de privacidad
             </Link>{" "}
             <span className="text-yellow-300">*</span>
           </span>

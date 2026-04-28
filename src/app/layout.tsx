@@ -1,17 +1,7 @@
 import type { Metadata } from "next";
-import { Geist_Mono, Inter } from "next/font/google";
 import { CookieConsent } from "@/components/layout/CookieConsent";
+import { FloatingWhatsAppButton } from "@/components/layout/FloatingWhatsAppButton";
 import "./globals.css";
-
-const inter = Inter({
-  variable: "--font-inter",
-  subsets: ["latin"],
-});
-
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
-});
 
 export const metadata: Metadata = {
   title: "Grupo Solar Sur",
@@ -24,9 +14,10 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="es" className={`${inter.variable} ${geistMono.variable} h-full`}>
+    <html lang="es" className="h-full">
       <body className="min-h-full bg-white font-sans text-slate-900 antialiased">
         {children}
+        <FloatingWhatsAppButton />
         <CookieConsent />
       </body>
     </html>

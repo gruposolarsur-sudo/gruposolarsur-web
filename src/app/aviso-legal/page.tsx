@@ -104,8 +104,8 @@ export default function LegalNoticePage() {
                 <div>
                   <dt className="font-semibold text-blue-950">Teléfono</dt>
                   <dd>
-                    <a className="font-semibold text-blue-800" href="tel:651194097">
-                      651 19 40 97
+                    <a className="font-semibold text-blue-800" href="tel:955515708">
+                      955 515 708
                     </a>
                   </dd>
                 </div>

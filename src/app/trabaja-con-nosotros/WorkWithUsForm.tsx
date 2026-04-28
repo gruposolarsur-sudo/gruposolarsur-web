@@ -4,6 +4,8 @@ import { useState, type FormEvent } from "react";
 import Link from "next/link";
 import { ArrowRight, Upload } from "lucide-react";
 
+import { RecaptchaCheckbox } from "@/components/security/RecaptchaCheckbox";
+
 const departments = ["Administrativo", "Comercial", "Tecnico"];
 const textOnlyPattern =
   "[A-Za-zÁÉÍÓÚÜÑáéíóúüñ]+(?:[\\s'-][A-Za-zÁÉÍÓÚÜÑáéíóúüñ]+)*";
@@ -24,6 +26,7 @@ const acceptedCvFormats = [
   "application/rtf",
   "text/rtf",
 ].join(",");
+const isCaptchaRequired = Boolean(process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY);
 
 type FormStatus = {
   kind: "success" | "error";
@@ -53,10 +56,14 @@ function validateCvFile(file: File | undefined) {
 }
 
 export function WorkWithUsForm() {
+  const [isSubmitting, setIsSubmitting] = useState(false);
   const [status, setStatus] = useState<FormStatus | null>(null);
   const [selectedCvName, setSelectedCvName] = useState("");
+  const [startedAt, setStartedAt] = useState(() => Date.now());
+  const [captchaToken, setCaptchaToken] = useState("");
+  const [captchaResetSignal, setCaptchaResetSignal] = useState(0);
 
-  function handleSubmit(event: FormEvent<HTMLFormElement>) {
+  async function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
 
     const form = event.currentTarget;
@@ -74,26 +81,60 @@ export function WorkWithUsForm() {
       return;
     }
 
-    const formData = new FormData(form);
-    const candidateData = {
-      nombre: formData.get("nombre"),
-      apellidos: formData.get("apellidos"),
-      email: formData.get("email"),
-      telefono: formData.get("telefono"),
-      departamento: formData.get("departamento"),
-      cv: formData.get("cv"),
-      aceptaPrivacidad: formData.get("acepta_privacidad") === "si",
-      aceptaComunicaciones: formData.get("acepta_comunicaciones") === "si",
-    };
+    if (isCaptchaRequired && !captchaToken) {
+      setStatus({
+        kind: "error",
+        message:
+          "Completa la verificación de seguridad antes de enviar la candidatura.",
+      });
+      return;
+    }
 
-    console.info("Candidatura preparada para envio", candidateData);
-    setStatus({
-      kind: "success",
-      message:
-        "Candidatura preparada correctamente. Gracias por contactar con Grupo SolarSur.",
-    });
-    form.reset();
-    setSelectedCvName("");
+    setIsSubmitting(true);
+    setStatus(null);
+
+    try {
+      const payload = new FormData(form);
+      payload.set("startedAt", String(startedAt));
+      payload.set("recaptchaToken", captchaToken || "");
+
+      const response = await fetch("/api/work-with-us", {
+        method: "POST",
+        body: payload,
+      });
+
+      const data = (await response.json()) as { message?: string };
+
+      if (!response.ok) {
+        setStatus({
+          kind: "error",
+          message:
+            data.message ??
+            "No se ha podido enviar la candidatura. Inténtalo de nuevo.",
+        });
+        return;
+      }
+
+      setStatus({
+        kind: "success",
+        message:
+          data.message ??
+          "Candidatura enviada correctamente. Gracias por contactar con Grupo SolarSur.",
+      });
+      form.reset();
+      setSelectedCvName("");
+      setStartedAt(Date.now());
+    } catch {
+      setStatus({
+        kind: "error",
+        message:
+          "No se ha podido conectar con el formulario en este momento.",
+      });
+    } finally {
+      setCaptchaToken("");
+      setCaptchaResetSignal((current) => current + 1);
+      setIsSubmitting(false);
+    }
   }
 
   return (
@@ -107,7 +148,7 @@ export function WorkWithUsForm() {
             required
             minLength={2}
             pattern={textOnlyPattern}
-            title="Escribe solo letras y espacios. Minimo 2 caracteres."
+            title="Escribe solo letras y espacios. Mínimo 2 caracteres."
             autoComplete="given-name"
             placeholder="Tu nombre"
             className="h-14 w-full rounded-2xl border border-slate-200 bg-white px-4 text-base text-slate-900 outline-none transition placeholder:text-slate-400 focus:border-yellow-300 focus:ring-4 focus:ring-yellow-300/25"
@@ -122,7 +163,7 @@ export function WorkWithUsForm() {
             required
             minLength={2}
             pattern={textOnlyPattern}
-            title="Escribe solo letras y espacios. Minimo 2 caracteres."
+            title="Escribe solo letras y espacios. Mínimo 2 caracteres."
             autoComplete="family-name"
             placeholder="Tus apellidos"
             className="h-14 w-full rounded-2xl border border-slate-200 bg-white px-4 text-base text-slate-900 outline-none transition placeholder:text-slate-400 focus:border-yellow-300 focus:ring-4 focus:ring-yellow-300/25"
@@ -167,13 +208,13 @@ export function WorkWithUsForm() {
 
       <div className="grid items-start gap-4 sm:grid-cols-2">
         <label className="grid self-start gap-2 text-sm font-semibold text-blue-950">
-          Telefono
+          Teléfono
           <input
             type="tel"
             name="telefono"
             required
             pattern={phonePattern}
-            title="Escribe un telefono valido. Ejemplo: 640 292 375 o +34 640 292 375."
+            title="Escribe un teléfono válido. Ejemplo: 640 292 375 o +34 640 292 375."
             autoComplete="tel"
             inputMode="tel"
             placeholder="640 292 375"
@@ -224,6 +265,18 @@ export function WorkWithUsForm() {
         </div>
       </div>
 
+      <div className="absolute left-[-9999px] top-auto h-px w-px overflow-hidden">
+        <label>
+          Empresa
+          <input
+            type="text"
+            name="company"
+            tabIndex={-1}
+            autoComplete="off"
+          />
+        </label>
+      </div>
+
       <div className="mt-2 grid gap-3 rounded-[1.35rem] border border-slate-200 bg-slate-50 p-4 text-sm leading-6 text-slate-600">
         <label className="flex items-start gap-3">
           <input
@@ -239,7 +292,7 @@ export function WorkWithUsForm() {
               href="/politica-privacidad"
               className="font-semibold text-blue-800 underline decoration-blue-200 underline-offset-4 transition hover:text-blue-950"
             >
-              Politica de Privacidad
+              Política de Privacidad
             </Link>
           </span>
         </label>
@@ -255,12 +308,21 @@ export function WorkWithUsForm() {
         </label>
       </div>
 
+      <RecaptchaCheckbox
+        variant="light"
+        theme="light"
+        resetSignal={captchaResetSignal}
+        onTokenChange={setCaptchaToken}
+        tokenValue={captchaToken}
+      />
+
       <div className="mt-2 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
         <button
           type="submit"
-          className="inline-flex h-14 w-full items-center justify-center gap-2 rounded-full bg-blue-900 px-8 py-4 text-base font-extrabold !text-white shadow-[0_18px_40px_rgba(23,37,84,0.22)] transition hover:bg-blue-800 hover:!text-white sm:w-auto"
+          disabled={isSubmitting}
+          className="inline-flex h-14 w-full items-center justify-center gap-2 rounded-full bg-blue-900 px-8 py-4 text-base font-extrabold !text-white shadow-[0_18px_40px_rgba(23,37,84,0.22)] transition hover:bg-blue-800 hover:!text-white disabled:cursor-not-allowed disabled:opacity-70 sm:w-auto"
         >
-          Enviar candidatura
+          {isSubmitting ? "Enviando..." : "Enviar candidatura"}
           <ArrowRight size={18} aria-hidden="true" />
         </button>
 

@@ -83,7 +83,7 @@ async function fetchLegacyPlaceDetails(apiKey) {
     data: {
       place_id: GOOGLE_PLACE_ID,
       place_url: payload.result.url || GOOGLE_PLACE_URL,
-      name: payload.result.name ?? "Grupo Solarsur Energia Solar S.L.",
+      name: payload.result.name ?? "Grupo Solarsur Energía Solar S.L.",
       rating:
         typeof payload.result.rating === "number" ? payload.result.rating : 0,
       user_ratings_total:
@@ -135,7 +135,7 @@ async function fetchNewPlaceDetails(apiKey) {
     data: {
       place_id: GOOGLE_PLACE_ID,
       place_url: payload.googleMapsUri || GOOGLE_PLACE_URL,
-      name: payload.displayName?.text ?? "Grupo Solarsur Energia Solar S.L.",
+      name: payload.displayName?.text ?? "Grupo Solarsur Energía Solar S.L.",
       rating: typeof payload.rating === "number" ? payload.rating : 0,
       user_ratings_total:
         typeof payload.userRatingCount === "number" ? payload.userRatingCount : 0,

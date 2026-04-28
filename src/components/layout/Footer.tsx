@@ -38,8 +38,8 @@ const legalLinks = [
 const contactItems = [
   {
     icon: Phone,
-    label: "651 194 097",
-    href: "tel:651194097",
+    label: "955 515 708",
+    href: "tel:955515708",
   },
   {
     icon: Mail,
@@ -60,21 +60,21 @@ const contactItems = [
 const socialLogos = [
   {
     label: "Facebook",
-    src: "/logos/logo-facebook.webp",
+    src: "/assets/logos/logo-facebook.webp",
     href: "https://www.facebook.com/gruposolarsur",
   },
   {
     label: "Instagram",
-    src: "/logos/logo-instagram.webp",
+    src: "/assets/logos/logo-instagram.webp",
     href: "https://www.instagram.com/grupo_solarsur/",
   },
-  { label: "LinkedIn", src: "/logos/logo-linkedin.webp" },
-  { label: "TikTok", src: "/logos/logo-tiktok.webp" },
-  { label: "X", src: "/logos/logo-x.webp" },
-  { label: "YouTube", src: "/logos/logo-youtube.webp" },
+  { label: "LinkedIn", src: "/assets/logos/logo-linkedin.webp" },
+  { label: "TikTok", src: "/assets/logos/logo-tiktok.webp" },
+  { label: "X", src: "/assets/logos/logo-x.webp" },
+  { label: "YouTube", src: "/assets/logos/logo-youtube.webp" },
   {
     label: "WhatsApp",
-    src: "/logos/logo-whatsapp.webp",
+    src: "/assets/logos/logo-whatsapp.webp",
     href: "https://wa.me/+34640292375",
   },
 ];
@@ -87,7 +87,7 @@ export function Footer() {
           <div>
             <Link href="/#inicio" className="inline-flex">
               <Image
-                src="/logos/logo-solarsur-blanco.svg"
+                src="/assets/logos/logo-solarsur-blanco.svg"
                 alt="Logo de Grupo SolarSur"
                 width={205}
                 height={74}
@@ -113,7 +113,7 @@ export function Footer() {
                 className="flex min-w-0 justify-center transition hover:opacity-85"
               >
                 <Image
-                  src="/logos/sello-agencia-andaluza-energia.webp"
+                  src="/assets/logos/sello-agencia-andaluza-energia.webp"
                   alt="Sello de la Agencia Andaluza de la Energía"
                   width={430}
                   height={241}
@@ -122,14 +122,14 @@ export function Footer() {
                 />
               </a>
               <Image
-                src="/logos/sello-eco-vivienda.webp"
+                src="/assets/logos/sello-eco-vivienda.webp"
                 alt="Sello PLA Eco Vivienda"
                 width={144}
                 height={144}
                 className="mx-auto h-auto w-full max-w-[6.8rem] object-contain"
               />
               <Image
-                src="/logos/sello-next-generation-ue.webp"
+                src="/assets/logos/sello-next-generation-ue.webp"
                 alt="Sello Next Generation EU"
                 width={144}
                 height={144}

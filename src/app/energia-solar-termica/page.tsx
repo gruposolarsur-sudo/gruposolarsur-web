@@ -80,7 +80,7 @@ export default function SolarThermalPage() {
       <main className="bg-white">
         <section className="relative min-h-[620px] overflow-hidden bg-blue-950 py-20 text-white sm:py-24 lg:py-28">
           <Image
-            src="/hero-energia-solar-termica.svg"
+            src="/imagenes/hero/hero-energia-solar-termica.svg"
             alt=""
             fill
             priority
@@ -112,7 +112,7 @@ export default function SolarThermalPage() {
                   <ArrowRight size={18} aria-hidden="true" />
                 </Link>
                 <a
-                  href="tel:651194097"
+                  href="tel:955515708"
                   className="inline-flex min-h-14 items-center justify-center gap-2 rounded-full border border-white/25 bg-white/10 px-7 py-4 text-base font-bold text-white backdrop-blur transition hover:border-white/45 hover:bg-white/16"
                 >
                   <Phone size={18} aria-hidden="true" />
@@ -299,11 +299,11 @@ export default function SolarThermalPage() {
                   <ArrowRight size={18} aria-hidden="true" />
                 </Link>
                 <a
-                  href="tel:651194097"
+                  href="tel:955515708"
                   className="inline-flex min-h-14 items-center justify-center gap-2 rounded-full border border-white/18 px-7 py-4 text-base font-bold text-white transition hover:border-white/35 hover:bg-white/8"
                 >
                   <Phone size={18} aria-hidden="true" />
-                  651 194 097
+                  955 515 708
                 </a>
               </div>
             </div>

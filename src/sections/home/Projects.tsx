@@ -52,7 +52,7 @@ export function Projects() {
             <div className="relative min-h-[18rem] bg-blue-950">
               <Image
                 src={featuredProject.image}
-                alt=""
+                alt={featuredProject.imageAlt ?? featuredProject.title}
                 fill
                 className="object-cover opacity-88"
                 sizes="(min-width: 1024px) 48vw, 100vw"

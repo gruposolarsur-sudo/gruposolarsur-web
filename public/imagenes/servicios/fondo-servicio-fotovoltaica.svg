@@ -1,0 +1,22 @@
+<svg width="384" height="416" viewBox="0 0 384 416" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="solar-panel-fill" x1="126" y1="162" x2="316" y2="266" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#FFF7CC" stop-opacity="0.52"/>
+      <stop offset="1" stop-color="#F59E0B" stop-opacity="0.22"/>
+    </linearGradient>
+    <linearGradient id="solar-panel-stroke" x1="134" y1="168" x2="316" y2="276" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#F8B84E" stop-opacity="0.78"/>
+      <stop offset="1" stop-color="#D97706" stop-opacity="0.46"/>
+    </linearGradient>
+  </defs>
+  <circle cx="312" cy="60" r="18" stroke="#F8B84E" stroke-width="4" stroke-opacity="0.72"/>
+  <path d="M312 24V38M312 82V96M276 60H290M334 60H348M287 35L296 44M328 76L337 85M287 85L296 76M328 44L337 35" stroke="#F8B84E" stroke-width="4" stroke-linecap="round" stroke-opacity="0.52"/>
+  <path d="M236 94C266 106 290 128 307 160" stroke="#FCD34D" stroke-width="3" stroke-linecap="round" stroke-opacity="0.42"/>
+  <path d="M214 116C246 130 270 154 286 188" stroke="#FCD34D" stroke-width="2.5" stroke-linecap="round" stroke-opacity="0.32"/>
+  <path d="M103 278L224 198L341 265L219 344L103 278Z" fill="url(#solar-panel-fill)" stroke="url(#solar-panel-stroke)" stroke-width="2.6"/>
+  <path d="M136 299L256 220M169 319L289 240M203 338L323 260" stroke="#F59E0B" stroke-width="1.8" stroke-linecap="round" stroke-opacity="0.42"/>
+  <path d="M125 261L243 330M163 240L280 308M201 218L317 286" stroke="#F59E0B" stroke-width="1.8" stroke-linecap="round" stroke-opacity="0.34"/>
+  <path d="M72 322L225 244" stroke="#F8B84E" stroke-width="3.2" stroke-linecap="round" stroke-opacity="0.24"/>
+  <path d="M92 351L246 273" stroke="#F8B84E" stroke-width="3.2" stroke-linecap="round" stroke-opacity="0.18"/>
+  <path d="M245 189L352 244" stroke="#B45309" stroke-width="4" stroke-linecap="round" stroke-opacity="0.2"/>
+</svg>

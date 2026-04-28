@@ -6,11 +6,13 @@ import { useEffect, useRef, useState } from "react";
 
 type ProjectMediaCarouselProps = {
   images: string[];
+  imageAlts?: string[];
   title: string;
 };
 
 export function ProjectMediaCarousel({
   images,
+  imageAlts,
   title,
 }: ProjectMediaCarouselProps) {
   const railRef = useRef<HTMLDivElement>(null);
@@ -134,7 +136,7 @@ export function ProjectMediaCarousel({
           >
             <Image
               src={image}
-              alt={`${title} - imagen ${index + 1}`}
+              alt={imageAlts?.[index] ?? `${title} - imagen ${index + 1}`}
               fill
               priority={index === 0}
               className="object-cover"
@@ -202,7 +204,7 @@ export function ProjectMediaCarousel({
 
       {isLightboxOpen ? (
         <div
-          className="fixed inset-0 z-[90] bg-slate-950/94 p-4 sm:p-6"
+          className="fixed inset-0 z-[100] isolate bg-slate-950/94 p-4 sm:p-6"
           role="dialog"
           aria-modal="true"
           aria-label={`Vista ampliada de ${title}`}
@@ -212,14 +214,17 @@ export function ProjectMediaCarousel({
             className="relative mx-auto flex h-full w-full max-w-[96rem] items-center justify-center"
             onClick={(event) => event.stopPropagation()}
           >
-            <div className="absolute left-0 right-0 top-0 z-20 flex items-center justify-between gap-4">
-              <div className="inline-flex min-h-10 items-center rounded-full border border-white/18 bg-slate-900/74 px-4 py-2 text-sm font-extrabold text-white backdrop-blur">
+            <div className="pointer-events-none absolute left-0 right-0 top-0 z-30 flex items-center justify-between gap-4">
+              <div className="pointer-events-auto inline-flex min-h-10 items-center rounded-full border border-white/18 bg-slate-900/74 px-4 py-2 text-sm font-extrabold text-white backdrop-blur">
                 {lightboxIndex + 1}/{images.length}
               </div>
               <button
                 type="button"
-                onClick={() => setIsLightboxOpen(false)}
-                className="inline-flex h-11 w-11 items-center justify-center rounded-full border border-white/18 bg-slate-900/74 text-white backdrop-blur transition hover:bg-slate-800"
+                onClick={(event) => {
+                  event.stopPropagation();
+                  setIsLightboxOpen(false);
+                }}
+                className="pointer-events-auto inline-flex h-11 w-11 items-center justify-center rounded-full border border-white/18 bg-slate-900/74 text-white backdrop-blur transition hover:bg-slate-800"
                 aria-label="Cerrar imagen ampliada"
               >
                 <X size={18} aria-hidden="true" />
@@ -228,22 +233,28 @@ export function ProjectMediaCarousel({
 
             {images.length > 1 ? (
               <>
-                <div className="absolute inset-y-0 left-0 z-20 flex items-center">
+                <div className="pointer-events-none absolute inset-y-0 left-0 z-30 flex items-center">
                   <button
                     type="button"
-                    onClick={() => handleLightboxStep("prev")}
-                    className="inline-flex h-12 w-12 items-center justify-center rounded-full border border-white/18 bg-slate-900/74 text-white backdrop-blur transition hover:bg-slate-800"
+                    onClick={(event) => {
+                      event.stopPropagation();
+                      handleLightboxStep("prev");
+                    }}
+                    className="pointer-events-auto inline-flex h-12 w-12 items-center justify-center rounded-full border border-white/18 bg-slate-900/74 text-white backdrop-blur transition hover:bg-slate-800"
                     aria-label="Ver imagen anterior"
                   >
                     <ChevronLeft size={20} aria-hidden="true" />
                   </button>
                 </div>
 
-                <div className="absolute inset-y-0 right-0 z-20 flex items-center">
+                <div className="pointer-events-none absolute inset-y-0 right-0 z-30 flex items-center">
                   <button
                     type="button"
-                    onClick={() => handleLightboxStep("next")}
-                    className="inline-flex h-12 w-12 items-center justify-center rounded-full border border-white/18 bg-slate-900/74 text-white backdrop-blur transition hover:bg-slate-800"
+                    onClick={(event) => {
+                      event.stopPropagation();
+                      handleLightboxStep("next");
+                    }}
+                    className="pointer-events-auto inline-flex h-12 w-12 items-center justify-center rounded-full border border-white/18 bg-slate-900/74 text-white backdrop-blur transition hover:bg-slate-800"
                     aria-label="Ver imagen siguiente"
                   >
                     <ChevronRight size={20} aria-hidden="true" />
@@ -252,10 +263,13 @@ export function ProjectMediaCarousel({
               </>
             ) : null}
 
-            <div className="relative h-full max-h-[calc(100vh-5rem)] w-full">
+            <div className="relative z-10 h-full max-h-[calc(100vh-5rem)] w-full">
               <Image
                 src={images[lightboxIndex]}
-                alt={`${title} - vista completa ${lightboxIndex + 1}`}
+                alt={
+                  imageAlts?.[lightboxIndex] ??
+                  `${title} - vista completa ${lightboxIndex + 1}`
+                }
                 fill
                 className="object-contain"
                 sizes="100vw"

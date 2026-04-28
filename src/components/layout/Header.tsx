@@ -20,6 +20,10 @@ import {
   SolarThermalIcon,
   type ServiceIconProps,
 } from "@/components/icons/ServiceIcons";
+import {
+  projectServiceGroups,
+  type ProjectServiceKey,
+} from "@/data/projectServices";
 import { Container } from "@/components/ui/Container";
 
 const navigation = [
@@ -111,6 +115,36 @@ const serviceLinks: Array<{
   },
 ];
 
+const projectLinkStyles: Record<
+  ProjectServiceKey,
+  {
+    icon: ElementType<ServiceIconProps>;
+    iconClass: string;
+  }
+> = {
+  photovoltaic: {
+    icon: SunMedium,
+    iconClass: "bg-yellow-50 text-amber-600",
+  },
+  "solar-thermal": {
+    icon: SolarThermalIcon,
+    iconClass: "bg-amber-50 text-amber-600",
+  },
+  aerotermia: {
+    icon: AerotermiaIcon,
+    iconClass: "bg-cyan-50 text-cyan-700",
+  },
+  maintenance: {
+    icon: Wrench,
+    iconClass: "bg-sky-50 text-blue-800",
+  },
+};
+
+const projectLinks = projectServiceGroups.map((service) => ({
+  ...service,
+  ...projectLinkStyles[service.key],
+}));
+
 export function Header() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
@@ -127,7 +161,7 @@ export function Header() {
           onClick={closeMobileMenu}
         >
           <Image
-            src="/logos/logo-solarsur.svg"
+            src="/assets/logos/logo-solarsur.svg"
             alt="Logo de Grupo SolarSur"
             width={160}
             height={50}
@@ -197,7 +231,66 @@ export function Header() {
               </div>
             </li>
 
-            {navigation.slice(1).map((item) => (
+            <li className="group relative">
+              <Link
+                className="inline-flex items-center gap-1.5 whitespace-nowrap py-2 transition hover:text-blue-900 group-focus-within:text-blue-900"
+                href="/proyectos"
+                aria-haspopup="true"
+              >
+                Proyectos
+                <ChevronDown
+                  size={15}
+                  strokeWidth={2.3}
+                  className="transition duration-200 group-hover:rotate-180 group-focus-within:rotate-180"
+                  aria-hidden="true"
+                />
+              </Link>
+
+              <div className="invisible absolute left-1/2 top-full z-50 w-[44rem] max-w-[calc(100vw-3rem)] -translate-x-1/2 translate-y-2 pt-3 opacity-0 transition duration-200 group-hover:visible group-hover:translate-y-0 group-hover:opacity-100 group-focus-within:visible group-focus-within:translate-y-0 group-focus-within:opacity-100">
+                <div className="grid gap-2 rounded-[1.35rem] border border-slate-200 bg-white p-3 shadow-[0_24px_70px_rgba(15,23,42,0.16)] md:grid-cols-2">
+                  <Link
+                    href="/proyectos"
+                    className="md:col-span-2 rounded-2xl border border-blue-100 bg-[linear-gradient(180deg,#eff6ff_0%,#f8fbff_100%)] px-5 py-4 transition hover:border-blue-200 hover:bg-blue-50"
+                  >
+                    <span className="block text-sm font-bold text-blue-950">
+                      Ver todos los proyectos
+                    </span>
+                    <span className="mt-1 block text-xs leading-5 text-slate-500">
+                      Accede al mapa de obras, fichas técnicas y casos reales publicados.
+                    </span>
+                  </Link>
+
+                  {projectLinks.map((project) => {
+                    const Icon = project.icon;
+
+                    return (
+                      <Link
+                        key={project.key}
+                        href={project.href}
+                        className="flex gap-3 rounded-2xl border border-transparent px-4 py-3 transition hover:border-blue-100 hover:bg-blue-50/80 hover:text-blue-900"
+                      >
+                        <span
+                          className={`mt-0.5 flex h-9 w-9 shrink-0 items-center justify-center rounded-xl ${project.iconClass}`}
+                        >
+                          <Icon size={18} strokeWidth={2.2} aria-hidden="true" />
+                        </span>
+
+                        <span className="min-w-0">
+                          <span className="block text-sm font-bold text-blue-950">
+                            {project.label}
+                          </span>
+                          <span className="mt-1 block text-xs leading-5 text-slate-500">
+                            {project.description}
+                          </span>
+                        </span>
+                      </Link>
+                    );
+                  })}
+                </div>
+              </div>
+            </li>
+
+            {navigation.slice(2).map((item) => (
               <li key={item.label}>
                 <Link
                   className="whitespace-nowrap transition hover:text-blue-900"
@@ -213,10 +306,10 @@ export function Header() {
         <div className="flex items-center gap-2 sm:gap-3">
           <a
             className="hidden items-center gap-2 rounded-full border border-slate-200 px-4 py-2 text-sm font-semibold text-blue-700 transition hover:border-blue-200 hover:bg-blue-50 xl:flex"
-            href="tel:651194097"
+            href="tel:955515708"
           >
             <Phone size={16} className="text-blue-700" />
-            651 194 097
+            955 515 708
           </a>
           <Link
             className="header-cta-heartbeat inline-flex items-center justify-center gap-2 rounded-full bg-blue-900 px-3 py-2.5 text-xs font-semibold !text-white shadow-lg shadow-blue-900/15 transition hover:bg-blue-800 hover:!text-white min-[380px]:px-4 sm:px-5 sm:py-3 sm:text-sm"
@@ -303,14 +396,57 @@ export function Header() {
                 </div>
               </div>
 
+              <div className="rounded-2xl border border-slate-200 bg-white p-3 shadow-[0_12px_32px_rgba(15,23,42,0.06)]">
+                <div className="flex items-center justify-between gap-3 px-2">
+                  <p className="text-xs font-extrabold uppercase text-slate-500">
+                    Proyectos por servicio
+                  </p>
+                  <Link
+                    href="/proyectos"
+                    onClick={closeMobileMenu}
+                    className="text-xs font-bold text-blue-900 transition hover:text-blue-700"
+                  >
+                    Ver todos
+                  </Link>
+                </div>
+                <div className="mt-2 grid gap-1.5">
+                  {projectLinks.map((project) => {
+                    const Icon = project.icon;
+
+                    return (
+                      <Link
+                        key={project.key}
+                        href={project.href}
+                        onClick={closeMobileMenu}
+                        className="flex gap-3 rounded-xl px-2 py-2.5 text-blue-950 transition hover:bg-blue-50"
+                      >
+                        <span
+                          className={`mt-0.5 flex h-9 w-9 shrink-0 items-center justify-center rounded-xl ${project.iconClass}`}
+                        >
+                          <Icon size={18} strokeWidth={2.2} aria-hidden="true" />
+                        </span>
+                        <span className="min-w-0">
+                          <span className="block text-sm font-bold leading-5">
+                            {project.label}
+                          </span>
+                          <span className="mt-0.5 block text-xs leading-5 text-slate-500">
+                            {project.description}
+                          </span>
+                        </span>
+                      </Link>
+                    );
+                  })}
+                </div>
+              </div>
+
               <div className="grid gap-2 min-[420px]:grid-cols-2">
                 <a
                   className="inline-flex min-h-12 items-center justify-center gap-2 rounded-full border border-blue-100 bg-blue-50 px-4 text-sm font-bold text-blue-900 transition hover:border-blue-200 hover:bg-blue-100"
-                  href="tel:651194097"
+                  href="tel:955515708"
                   onClick={closeMobileMenu}
                 >
                   <Phone size={16} aria-hidden="true" />
-                  651 194 097
+                  955 515 708
                 </a>
                 <Link
                   className="inline-flex min-h-12 items-center justify-center gap-2 rounded-full bg-blue-900 px-4 text-sm font-bold !text-white shadow-lg shadow-blue-900/15 transition hover:bg-blue-800"

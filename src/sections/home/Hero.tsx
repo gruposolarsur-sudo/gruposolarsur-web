@@ -77,11 +77,15 @@ export function Hero() {
       <div className="absolute inset-x-0 top-0 h-32 bg-[radial-gradient(circle_at_center,rgba(250,204,21,0.34),transparent_68%)] blur-3xl" />
       <div className="absolute -left-24 top-24 h-64 w-64 rounded-full bg-yellow-200/35 blur-3xl" />
       <div className="absolute -right-20 top-32 h-72 w-72 rounded-full bg-blue-200/35 blur-3xl" />
+      <div
+        aria-hidden="true"
+        className="pointer-events-none absolute inset-0 opacity-[0.18] [background-image:linear-gradient(rgba(37,99,235,0.3)_1px,transparent_1px),linear-gradient(90deg,rgba(37,99,235,0.3)_1px,transparent_1px)] [background-size:52px_52px] [mask-image:linear-gradient(180deg,transparent_0%,rgba(0,0,0,0.82)_14%,rgba(0,0,0,0.62)_76%,transparent_100%)]"
+      />
 
       <Container className="relative">
         <div className="grid gap-10 sm:gap-14 lg:grid-cols-[minmax(0,1.08fr)_minmax(0,0.92fr)] lg:items-start lg:gap-16">
           <div className="relative z-10 max-w-2xl lg:pr-6">
-            <h1 className="max-w-[14.4ch] overflow-visible text-[2.55rem] font-extrabold leading-[0.96] tracking-[-0.05em] text-blue-950 min-[380px]:text-[2.85rem] sm:max-w-[13.2ch] sm:text-[4.2rem] sm:leading-[0.92] lg:max-w-[12.8ch] lg:text-[5rem]">
+            <h1 className="max-w-[14.4ch] overflow-visible text-[2.55rem] font-extrabold leading-[0.96] tracking-[-0.05em] text-blue-950 drop-shadow-[0_10px_26px_rgba(255,255,255,0.55)] min-[380px]:text-[2.85rem] sm:max-w-[13.2ch] sm:text-[4.2rem] sm:leading-[0.92] lg:max-w-[12.8ch] lg:text-[5rem]">
               <span className="block">Convierte tu tejado en</span>
               <span className="mt-2 block text-[1.08em] leading-[0.9] sm:mt-2.5">
                 <HighlightWord>ingresos</HighlightWord>
@@ -121,7 +125,7 @@ export function Hero() {
                 <ArrowRight size={18} />
               </a>
               <a
-                href="tel:651194097"
+                href="tel:955515708"
                 className="inline-flex min-h-14 items-center justify-center gap-2 rounded-full border border-yellow-300 bg-white px-7 py-4 text-base font-bold text-blue-700 shadow-sm transition hover:border-yellow-400 hover:bg-yellow-50"
               >
                 <Phone size={18} className="text-blue-700" />
@@ -160,7 +164,6 @@ export function Hero() {
             </article>
           ))}
         </div>
-
       </Container>
     </section>
   );

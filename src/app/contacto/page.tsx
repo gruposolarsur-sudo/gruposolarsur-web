@@ -17,9 +17,9 @@ const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://www.gruposolarsur.c
 const contactDetails = [
   {
     icon: Phone,
-    label: "Telefono",
-    value: "651 194 097",
-    href: "tel:651194097",
+    label: "Teléfono",
+    value: "955 515 708",
+    href: "tel:955515708",
   },
   {
     icon: Mail,
@@ -29,7 +29,7 @@ const contactDetails = [
   },
   {
     icon: MapPinned,
-    label: "Direccion",
+    label: "Dirección",
     value: "C. Progreso, 9, 41960 Gines, Sevilla",
     href: directionsUrl,
   },
@@ -57,8 +57,8 @@ export default async function ContactPage() {
     "@type": "LocalBusiness",
     name: "Grupo Solarsur Energ\u00eda Solar S.L.",
     url: `${siteUrl}/contacto`,
-    telephone: "+34 651 194 097",
-    image: `${siteUrl}/logos/logo-solarsur.svg`,
+    telephone: "+34 955 515 708",
+    image: `${siteUrl}/assets/logos/logo-solarsur.svg`,
     address: {
       "@type": "PostalAddress",
       streetAddress: "C. Progreso, 9",
@@ -105,8 +105,8 @@ export default async function ContactPage() {
                 </h1>
                 <p className="mt-6 max-w-2xl text-lg font-medium leading-8 text-slate-600 sm:text-xl">
                   Si quieres visitarnos, hablar con el equipo o pedir una ruta
-                  directa hasta la oficina, aqui tienes la ubicacion de Grupo
-                  Solarsur y un acceso rapido a Google Maps.
+                  directa hasta la oficina, aquí tienes la ubicación de Grupo
+                  Solarsur y un acceso rápido a Google Maps.
                 </p>
 
                 <div className="mt-8 grid gap-3 sm:grid-cols-2">
@@ -155,11 +155,11 @@ export default async function ContactPage() {
                     target="_blank"
                     className="inline-flex min-h-14 items-center justify-center gap-2 rounded-full bg-blue-900 px-7 py-4 text-base font-bold !text-white transition hover:bg-blue-800"
                   >
-                    Como llegar
+                    Cómo llegar
                     <ArrowRight size={18} aria-hidden="true" />
                   </a>
                   <a
-                    href="tel:651194097"
+                    href="tel:955515708"
                     className="inline-flex min-h-14 items-center justify-center gap-2 rounded-full border border-slate-200 bg-white px-7 py-4 text-base font-bold text-blue-900 transition hover:border-blue-200 hover:bg-blue-50"
                   >
                     <Phone size={18} aria-hidden="true" />
@@ -182,10 +182,10 @@ export default async function ContactPage() {
                 <div className="grid gap-4 border-t border-slate-200 p-6 sm:grid-cols-[1fr_auto] sm:items-center">
                   <div>
                     <p className="text-[0.72rem] font-extrabold uppercase tracking-[0.18em] text-blue-600">
-                      Oficina y punto de atencion
+                      Oficina y punto de atención
                     </p>
                     <p className="mt-2 text-base font-bold leading-7 text-blue-950">
-                      Grupo Solarsur Energia Solar S.L. · C. Progreso, 9, 41960
+                      Grupo Solarsur Energía Solar S.L. · C. Progreso, 9, 41960
                       Gines, Sevilla
                     </p>
                   </div>

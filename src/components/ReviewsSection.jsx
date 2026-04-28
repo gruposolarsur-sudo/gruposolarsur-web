@@ -285,7 +285,7 @@ export default function ReviewsSection({ initialData = null }) {
                 </p>
                 <p className="mt-2 text-lg font-semibold leading-8 text-slate-600">
                   {totalReviews} reseñas verificadas en Google sobre Grupo
-                  Solarsur Energia Solar S.L.
+                  Solarsur Energía Solar S.L.
                 </p>
               </div>
             </div>

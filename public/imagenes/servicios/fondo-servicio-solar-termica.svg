@@ -1,0 +1,22 @@
+<svg width="384" height="416" viewBox="0 0 384 416" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="thermal-plate-fill" x1="164" y1="150" x2="350" y2="292" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#FFF1E1" stop-opacity="0.56"/>
+      <stop offset="1" stop-color="#F97316" stop-opacity="0.2"/>
+    </linearGradient>
+    <linearGradient id="thermal-plate-stroke" x1="160" y1="148" x2="344" y2="294" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#FDBA74" stop-opacity="0.78"/>
+      <stop offset="1" stop-color="#EA580C" stop-opacity="0.48"/>
+    </linearGradient>
+  </defs>
+  <path d="M314 34C327 47 330 66 322 82C311 102 289 109 269 101C280 88 284 77 285 62C286 50 295 39 314 34Z" stroke="#FDBA74" stroke-width="4" stroke-linejoin="round" stroke-opacity="0.62"/>
+  <path d="M300 44C307 54 309 67 307 82" stroke="#FDBA74" stroke-width="3" stroke-linecap="round" stroke-opacity="0.48"/>
+  <path d="M96 304L192 248L340 334" stroke="#FDBA74" stroke-width="4" stroke-linecap="round" stroke-opacity="0.22"/>
+  <path d="M166 206L275 145L346 267L236 327L166 206Z" fill="url(#thermal-plate-fill)" stroke="url(#thermal-plate-stroke)" stroke-width="2.6"/>
+  <path d="M194 218L303 279M183 238L292 299M205 198L314 259" stroke="#FB923C" stroke-width="1.8" stroke-linecap="round" stroke-opacity="0.34"/>
+  <path d="M207 170C227 186 236 207 236 229C236 251 247 270 270 284" stroke="#EA580C" stroke-width="3" stroke-linecap="round" stroke-opacity="0.32"/>
+  <path d="M228 158C249 176 258 197 258 220C258 244 269 264 292 277" stroke="#EA580C" stroke-width="3" stroke-linecap="round" stroke-opacity="0.28"/>
+  <rect x="254" y="96" width="80" height="28" rx="14" stroke="#FDBA74" stroke-width="3.6" stroke-opacity="0.56"/>
+  <path d="M246 118H254M334 118H346" stroke="#FDBA74" stroke-width="3.6" stroke-linecap="round" stroke-opacity="0.56"/>
+  <path d="M312 124L330 156" stroke="#FDBA74" stroke-width="3.2" stroke-linecap="round" stroke-opacity="0.36"/>
+</svg>

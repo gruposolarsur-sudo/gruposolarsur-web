@@ -12,13 +12,14 @@ import Image from "next/image";
 import Link from "next/link";
 import { ArrowRight, ImagePlus, MessageSquareText, X } from "lucide-react";
 
-import { TurnstileWidget } from "@/components/security/TurnstileWidget";
+import { RecaptchaCheckbox } from "@/components/security/RecaptchaCheckbox";
 
 const LOCAL_STORAGE_KEY = "blog-comment-form";
 const COMMENT_MIN_LENGTH = 20;
 const MAX_IMAGE_COUNT = 4;
 const MAX_IMAGE_SIZE_BYTES = 4 * 1024 * 1024;
 const ALLOWED_IMAGE_TYPES = new Set(["image/jpeg", "image/png", "image/webp"]);
+const isCaptchaRequired = Boolean(process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY);
 
 type CommentFormState = {
   comment: string;
@@ -49,8 +50,6 @@ type ImagePreview = {
   sizeLabel: string;
   url: string;
 };
-
-const isCaptchaRequired = Boolean(process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY);
 
 const initialState: CommentFormState = {
   comment: "",
@@ -141,7 +140,7 @@ export function BlogCommentForm({
     if (availableSlots <= 0) {
       setStatus({
         kind: "error",
-        message: `Ya has adjuntado el maximo de ${MAX_IMAGE_COUNT} imagenes.`,
+        message: `Ya has adjuntado el máximo de ${MAX_IMAGE_COUNT} imágenes.`,
       });
       return;
     }
@@ -152,7 +151,7 @@ export function BlogCommentForm({
       if (!ALLOWED_IMAGE_TYPES.has(file.type)) {
         setStatus({
           kind: "error",
-          message: "Solo se admiten imagenes JPG, PNG o WEBP.",
+          message: "Solo se admiten imágenes JPG, PNG o WEBP.",
         });
         continue;
       }
@@ -160,7 +159,7 @@ export function BlogCommentForm({
       if (file.size > MAX_IMAGE_SIZE_BYTES) {
         setStatus({
           kind: "error",
-          message: "Cada imagen debe pesar como maximo 4 MB.",
+          message: "Cada imagen debe pesar como máximo 4 MB.",
         });
         continue;
       }
@@ -168,7 +167,7 @@ export function BlogCommentForm({
       if (acceptedFiles.length >= availableSlots) {
         setStatus({
           kind: "error",
-          message: `Puedes adjuntar hasta ${MAX_IMAGE_COUNT} imagenes por comentario.`,
+          message: `Puedes adjuntar hasta ${MAX_IMAGE_COUNT} imágenes por comentario.`,
         });
         break;
       }
@@ -218,7 +217,7 @@ export function BlogCommentForm({
       setStatus({
         kind: "error",
         message:
-          "Completa la verificacion de seguridad antes de publicar el comentario.",
+          "Completa la verificación de seguridad antes de publicar el comentario.",
       });
       return;
     }
@@ -235,7 +234,7 @@ export function BlogCommentForm({
       payload.set("company", formState.company);
       payload.set("startedAt", String(startedAt));
       payload.set("parentId", replyTo?.id ?? "");
-      payload.set("turnstileToken", captchaToken || "");
+      payload.set("recaptchaToken", captchaToken || "");
 
       images.forEach((image) => {
         payload.append("images", image);
@@ -253,7 +252,7 @@ export function BlogCommentForm({
           kind: "error",
           message:
             data.message ??
-            "No se ha podido enviar el comentario. Intentalo de nuevo.",
+            "No se ha podido enviar el comentario. Inténtalo de nuevo.",
         });
         return;
       }
@@ -356,19 +355,19 @@ export function BlogCommentForm({
       <div className="grid gap-3 rounded-lg border border-slate-200 bg-slate-50 p-4">
         <div className="flex flex-wrap items-center justify-between gap-3">
           <div>
-            <p className="text-sm font-extrabold text-blue-950">Imagenes adjuntas</p>
+            <p className="text-sm font-extrabold text-blue-950">Imágenes adjuntas</p>
             <p className="mt-1 text-sm leading-6 text-slate-500">
-              JPG, PNG o WEBP. Hasta {MAX_IMAGE_COUNT} imagenes de 4 MB por
+              JPG, PNG o WEBP. Hasta {MAX_IMAGE_COUNT} imágenes de 4 MB por
               comentario.
             </p>
             <p className="text-sm leading-6 text-slate-500">
-              Tambien puedes pegar imagenes directamente en la caja del comentario.
+              También puedes pegar imágenes directamente en la caja del comentario.
             </p>
           </div>
 
           <label className="inline-flex min-h-11 cursor-pointer items-center gap-2 rounded-full bg-white px-4 py-2 text-sm font-bold text-blue-900 shadow-sm ring-1 ring-slate-200 transition hover:bg-blue-50">
             <ImagePlus size={16} aria-hidden="true" />
-            Añadir imagenes
+            Añadir imágenes
             <input
               ref={fileInputRef}
               type="file"
@@ -437,7 +436,7 @@ export function BlogCommentForm({
         </label>
 
         <label className="grid gap-2 text-sm font-semibold text-blue-950">
-          Correo electronico
+          Correo electrónico
           <input
             type="email"
             name="authorEmail"
@@ -446,7 +445,7 @@ export function BlogCommentForm({
             required
             maxLength={120}
             autoComplete="email"
-            placeholder="Correo electronico (obligatorio)"
+            placeholder="Correo electrónico (obligatorio)"
             className="h-14 w-full rounded-lg border border-slate-200 bg-white px-4 text-base text-slate-900 outline-none transition placeholder:text-slate-400 focus:border-blue-300 focus:ring-4 focus:ring-blue-300/20"
           />
         </label>
@@ -489,13 +488,12 @@ export function BlogCommentForm({
           className="mt-1 h-4 w-4 shrink-0 accent-blue-900"
         />
         <span>
-          Guarda mi nombre, correo electronico y web en este navegador para la
-          proxima vez que comente.
+          Guarda mi nombre, correo electrónico y web en este navegador para la
+          próxima vez que comente.
         </span>
       </label>
 
-      <TurnstileWidget
-        action="blog_comment"
+      <RecaptchaCheckbox
         variant="light"
         theme="light"
         resetSignal={captchaResetSignal}
@@ -510,7 +508,7 @@ export function BlogCommentForm({
             href="/politica-privacidad"
             className="font-semibold text-blue-800 underline decoration-blue-200 underline-offset-4 transition hover:text-blue-950"
           >
-            Politica de Privacidad
+            Política de Privacidad
           </Link>
           .
         </p>

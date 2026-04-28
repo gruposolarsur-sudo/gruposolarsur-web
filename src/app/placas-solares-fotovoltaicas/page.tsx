@@ -269,7 +269,7 @@ const installationTypes = [
     copy: "Paneles integrados sobre la misma inclinación de la cubierta, una solución limpia y discreta para tejados inclinados.",
     tone: "text-amber-500",
     patternTone: "text-amber-300/30",
-    projectsHref: "/proyectos#solucion-coplanar",
+    projectsHref: "/proyectos/fotovoltaica",
   },
   {
     icon: PergolaMountIcon,
@@ -278,7 +278,7 @@ const installationTypes = [
     copy: "Estructuras que generan sombra y producción fotovoltaica en patios, aparcamientos, terrazas o zonas exteriores.",
     tone: "text-orange-500",
     patternTone: "text-orange-300/30",
-    projectsHref: "/proyectos#solucion-pergola",
+    projectsHref: "/proyectos/fotovoltaica",
   },
   {
     icon: TiltedStructureIcon,
@@ -287,7 +287,7 @@ const installationTypes = [
     copy: "Montajes sobre cubierta plana para orientar mejor los módulos y optimizar producción, seguridad y mantenimiento.",
     tone: "text-sky-600",
     patternTone: "text-sky-300/30",
-    projectsHref: "/proyectos#solucion-tilted",
+    projectsHref: "/proyectos/fotovoltaica",
   },
   {
     icon: IndustrialGroundMountIcon,
@@ -296,7 +296,7 @@ const installationTypes = [
     copy: "Soluciones para naves, negocios, comunidades o espacios técnicos donde hace falta una estructura específica.",
     tone: "text-emerald-600",
     patternTone: "text-emerald-300/30",
-    projectsHref: "/proyectos#solucion-industrial-ground",
+    projectsHref: "/proyectos/fotovoltaica",
   },
 ];
 
@@ -313,7 +313,7 @@ export default function PhotovoltaicSolarPanelsPage() {
       <main className="bg-white">
         <section className="relative min-h-[620px] overflow-hidden bg-blue-950 py-20 text-white sm:py-24 lg:py-28">
           <Image
-            src="/hero-placas-solares.svg"
+            src="/imagenes/hero/hero-placas-solares.svg"
             alt=""
             fill
             priority
@@ -345,7 +345,7 @@ export default function PhotovoltaicSolarPanelsPage() {
                   <ArrowRight size={18} aria-hidden="true" />
                 </Link>
                 <a
-                  href="tel:651194097"
+                  href="tel:955515708"
                   className="inline-flex min-h-14 items-center justify-center gap-2 rounded-full border border-white/25 bg-white/10 px-7 py-4 text-base font-bold text-white backdrop-blur transition hover:border-white/45 hover:bg-white/16"
                 >
                   <Phone size={18} aria-hidden="true" />
@@ -591,11 +591,11 @@ export default function PhotovoltaicSolarPanelsPage() {
                   <ArrowRight size={18} aria-hidden="true" />
                 </Link>
                 <a
-                  href="tel:651194097"
+                  href="tel:955515708"
                   className="inline-flex min-h-14 items-center justify-center gap-2 rounded-full border border-white/18 px-7 py-4 text-base font-bold text-white transition hover:border-white/35 hover:bg-white/8"
                 >
                   <Phone size={18} aria-hidden="true" />
-                  651 194 097
+                  955 515 708
                 </a>
               </div>
             </div>

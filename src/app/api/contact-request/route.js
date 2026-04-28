@@ -1,7 +1,7 @@
 import nodemailer from "nodemailer";
 import { NextResponse } from "next/server";
 
-import { verifyTurnstileToken } from "@/lib/turnstile";
+import { verifyRecaptchaToken } from "@/lib/recaptcha";
 
 const MIN_FILL_TIME_MS = 4000;
 const RATE_LIMIT_WINDOW_MS = 15 * 60 * 1000;
@@ -108,12 +108,12 @@ function buildEmailContent(data) {
     "Nueva solicitud de estudio desde la web de Grupo SolarSur",
     "",
     `Nombre: ${fullName}`,
-    `Telefono: ${data.telefono}`,
+    `Teléfono: ${data.telefono}`,
     `Correo: ${data.email}`,
-    `Poblacion: ${data.poblacion}`,
+    `Población: ${data.poblacion}`,
     `Provincia: ${data.provincia}`,
-    `Como nos ha conocido: ${data.comoNosHaConocido}`,
-    `Interes: ${data.interes}`,
+    `Cómo nos ha conocido: ${data.comoNosHaConocido}`,
+    `Interés: ${data.interes}`,
     "",
     "Comentarios:",
     data.comentarios || "Sin comentarios adicionales.",
@@ -125,12 +125,12 @@ function buildEmailContent(data) {
       <table style="border-collapse:collapse;width:100%;max-width:720px">
         <tbody>
           <tr><td style="padding:8px 0;font-weight:700">Nombre</td><td style="padding:8px 0">${fullName}</td></tr>
-          <tr><td style="padding:8px 0;font-weight:700">Telefono</td><td style="padding:8px 0">${data.telefono}</td></tr>
+          <tr><td style="padding:8px 0;font-weight:700">Teléfono</td><td style="padding:8px 0">${data.telefono}</td></tr>
           <tr><td style="padding:8px 0;font-weight:700">Correo</td><td style="padding:8px 0">${data.email}</td></tr>
-          <tr><td style="padding:8px 0;font-weight:700">Poblacion</td><td style="padding:8px 0">${data.poblacion}</td></tr>
+          <tr><td style="padding:8px 0;font-weight:700">Población</td><td style="padding:8px 0">${data.poblacion}</td></tr>
           <tr><td style="padding:8px 0;font-weight:700">Provincia</td><td style="padding:8px 0">${data.provincia}</td></tr>
-          <tr><td style="padding:8px 0;font-weight:700">Como nos ha conocido</td><td style="padding:8px 0">${data.comoNosHaConocido}</td></tr>
-          <tr><td style="padding:8px 0;font-weight:700">Interes</td><td style="padding:8px 0">${data.interes}</td></tr>
+          <tr><td style="padding:8px 0;font-weight:700">Cómo nos ha conocido</td><td style="padding:8px 0">${data.comoNosHaConocido}</td></tr>
+          <tr><td style="padding:8px 0;font-weight:700">Interés</td><td style="padding:8px 0">${data.interes}</td></tr>
         </tbody>
       </table>
       <div style="margin-top:20px;padding:16px;border:1px solid #dbeafe;border-radius:16px;background:#f8fbff">
@@ -198,7 +198,7 @@ export async function POST(request) {
   const interes = sanitizeText(payload.interes);
   const comentarios = sanitizeMultilineText(payload.comentarios);
   const privacidad = sanitizeText(payload.acepta_politica_privacidad);
-  const turnstileToken = sanitizeText(payload.turnstileToken);
+  const recaptchaToken = sanitizeText(payload.recaptchaToken);
 
   if (nombre.length < 2 || nombre.length > 80) {
     return NextResponse.json(
@@ -216,21 +216,21 @@ export async function POST(request) {
 
   if (telefono.length < 9 || telefono.length > 25) {
     return NextResponse.json(
-      { message: "Introduce un telefono de contacto valido." },
+      { message: "Introduce un teléfono de contacto válido." },
       { status: 400 },
     );
   }
 
   if (!isValidEmail(email) || email.length > 120) {
     return NextResponse.json(
-      { message: "Introduce un correo electronico valido." },
+      { message: "Introduce un correo electrónico válido." },
       { status: 400 },
     );
   }
 
   if (poblacion.length < 2 || poblacion.length > 100) {
     return NextResponse.json(
-      { message: "La poblacion debe tener entre 2 y 100 caracteres." },
+      { message: "La población debe tener entre 2 y 100 caracteres." },
       { status: 400 },
     );
   }
@@ -244,14 +244,14 @@ export async function POST(request) {
 
   if (!comoNosHaConocido || !interes) {
     return NextResponse.json(
-      { message: "Selecciona como nos has conocido y el servicio de interes." },
+      { message: "Selecciona cómo nos has conocido y el servicio de interés." },
       { status: 400 },
     );
   }
 
   if (!privacidad) {
     return NextResponse.json(
-      { message: "Debes aceptar la politica de privacidad." },
+      { message: "Debes aceptar la política de privacidad." },
       { status: 400 },
     );
   }
@@ -263,15 +263,15 @@ export async function POST(request) {
     );
   }
 
-  const turnstileResult = await verifyTurnstileToken({
-    token: turnstileToken,
+  const recaptchaResult = await verifyRecaptchaToken({
+    token: recaptchaToken,
     remoteIp: ip,
-    expectedAction: "contact_request",
+    expectedHostname: request.headers.get("host") || "",
   });
 
-  if (!turnstileResult.success) {
+  if (!recaptchaResult.success) {
     return NextResponse.json(
-      { message: turnstileResult.message },
+      { message: recaptchaResult.message },
       { status: 400 },
     );
   }

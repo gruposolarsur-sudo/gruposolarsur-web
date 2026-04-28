@@ -9,13 +9,25 @@
   --brand: #172554;
   --brand-strong: #1d4ed8;
   --accent: #facc15;
+  --font-sans-stack:
+    "Aptos",
+    "Segoe UI",
+    "Helvetica Neue",
+    Arial,
+    sans-serif;
+  --font-mono-stack:
+    "SFMono-Regular",
+    Consolas,
+    "Liberation Mono",
+    Menlo,
+    monospace;
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-inter);
-  --font-mono: var(--font-geist-mono);
+  --font-sans: var(--font-sans-stack);
+  --font-mono: var(--font-mono-stack);
 }
 
 * {
@@ -35,7 +47,7 @@ body {
   overflow-x: clip;
   background: var(--background);
   color: var(--foreground);
-  font-family: var(--font-inter), sans-serif;
+  font-family: var(--font-sans-stack);
   text-rendering: optimizeLegibility;
 }
 
@@ -312,6 +324,45 @@ a {
   }
 }
 
+@keyframes whatsapp-float-heartbeat {
+  0%,
+  100% {
+    box-shadow:
+      0 18px 38px rgba(23, 37, 84, 0.22),
+      0 0 0 0 rgba(37, 99, 235, 0);
+    transform: scale(1);
+  }
+
+  14% {
+    box-shadow:
+      0 24px 48px rgba(23, 37, 84, 0.3),
+      0 0 0 8px rgba(37, 99, 235, 0.18),
+      0 0 30px rgba(37, 99, 235, 0.24);
+    transform: scale(1.08);
+  }
+
+  28% {
+    box-shadow:
+      0 18px 38px rgba(23, 37, 84, 0.24),
+      0 0 0 2px rgba(37, 99, 235, 0.08);
+    transform: scale(1);
+  }
+
+  42% {
+    box-shadow:
+      0 24px 50px rgba(23, 37, 84, 0.32),
+      0 0 0 10px rgba(37, 99, 235, 0.14);
+    transform: scale(1.05);
+  }
+
+  70% {
+    box-shadow:
+      0 18px 38px rgba(23, 37, 84, 0.22),
+      0 0 0 0 rgba(37, 99, 235, 0);
+    transform: scale(1);
+  }
+}
+
 @keyframes hero-connector-glow {
   0%,
   100% {
@@ -472,6 +523,12 @@ a {
   will-change: transform, box-shadow;
 }
 
+.whatsapp-float-heartbeat {
+  animation: whatsapp-float-heartbeat 2.2s ease-in-out infinite;
+  transform-origin: center;
+  will-change: transform, box-shadow;
+}
+
 .process-flow::before {
   content: "";
   position: absolute;
@@ -528,6 +585,7 @@ a {
   .hero-grid-receive,
   .hero-inverter-icon,
   .header-cta-heartbeat,
+  .whatsapp-float-heartbeat,
   .process-card,
   .process-card-glow,
   .process-progress {

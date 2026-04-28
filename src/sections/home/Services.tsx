@@ -1,5 +1,4 @@
 import type { ElementType } from "react";
-import Image from "next/image";
 import {
   ArrowRight,
   ChartNoAxesCombined,
@@ -23,83 +22,88 @@ const services: Array<{
   benefits: string[];
   href?: string;
   linkLabel?: string;
-  backgroundImage?: string;
-  backgroundPosition?: string;
-  logoImage?: {
-    src: string;
-    alt: string;
-  };
+  backgroundImage: string;
   innerIconSize?: number;
   tone: "solar" | "thermal" | "air" | "admin" | "study" | "support";
 }> = [
   {
     icon: SunMedium,
     title: "Placas solares fotovoltaicas",
-    copy: "Instalaciones eficientes para reducir tu factura y aprovechar al máximo la energía solar.",
+    copy:
+      "Instalaciones eficientes para reducir tu factura y aprovechar al m\u00e1ximo la energ\u00eda solar.",
     benefits: ["Estudio previo", "Dimensionado profesional", "Ahorro real"],
     href: "/placas-solares-fotovoltaicas",
     linkLabel: "Ver servicio",
-    backgroundImage:
-      "/proyectos/fotovoltaica/sevilla/instalacion-placas-solares-sevilla-coplanar.webp",
+    backgroundImage: "/imagenes/servicios/fondo-servicio-fotovoltaica.svg",
     innerIconSize: 27,
     tone: "solar",
   },
   {
     icon: SolarThermalIcon,
-    title: "Energía solar térmica",
-    copy: "Producción de agua caliente sanitaria (ACS) con energía solar. Más ahorro y eficiencia.",
-    benefits: ["ACS eficiente", "Más ahorro", "Mayor eficiencia"],
+    title: "Energ\u00eda solar t\u00e9rmica",
+    copy:
+      "Producci\u00f3n de agua caliente sanitaria (ACS) con energ\u00eda solar. M\u00e1s ahorro y eficiencia.",
+    benefits: ["ACS eficiente", "M\u00e1s ahorro", "Mayor eficiencia"],
     href: "/energia-solar-termica",
     linkLabel: "Ver servicio",
-    backgroundImage:
-      "/proyectos/fotovoltaica/sevilla/instalacion-solar-termica-sevilla.webp",
+    backgroundImage: "/imagenes/servicios/fondo-servicio-solar-termica.svg",
     tone: "thermal",
   },
   {
     icon: AerotermiaIcon,
     title: "Aerotermia",
-    copy: "Climatización y agua caliente con alta eficiencia para viviendas y negocios.",
+    copy:
+      "Climatizaci\u00f3n y agua caliente con alta eficiencia para viviendas y negocios.",
     benefits: ["Menor consumo", "Mayor confort", "Sistema eficiente"],
     href: "/aerotermia",
     linkLabel: "Ver servicio",
-    backgroundImage:
-      "/proyectos/fotovoltaica/sevilla/instalacion-aerotermia-sevilla.webp",
+    backgroundImage: "/imagenes/servicios/fondo-servicio-aerotermia.svg",
     tone: "air",
   },
   {
     icon: FileText,
     title: "Ayudas y subvenciones",
-    copy: "Te orientamos en la documentación y en los trámites para facilitar tu proyecto.",
-    benefits: ["Revisión documental", "Gestión guiada", "Menos fricción"],
+    copy:
+      "Te orientamos en la documentaci\u00f3n y en los tr\u00e1mites para facilitar tu proyecto.",
+    benefits: [
+      "Revisi\u00f3n documental",
+      "Gesti\u00f3n guiada",
+      "Menos fricci\u00f3n",
+    ],
     href: "/ayudas-y-subvenciones",
     linkLabel: "Ver servicio",
-    logoImage: {
-      src: "/logos/sello-agencia-andaluza-energia.webp",
-      alt: "Sello de la Agencia Andaluza de la Energía",
-    },
+    backgroundImage: "/imagenes/servicios/fondo-servicio-ayudas.svg",
     tone: "admin",
   },
   {
     icon: ChartNoAxesCombined,
-    title: "Estudio y asesoramiento energético",
-    copy: "Analizamos tu consumo y diseñamos la mejor solución en energía solar para maximizar tu ahorro y eficiencia.",
-    benefits: ["Estudio energético", "Ahorro energético", "Asesoramiento experto"],
+    title: "Estudio y asesoramiento energ\u00e9tico",
+    copy:
+      "Analizamos tu consumo y dise\u00f1amos la mejor soluci\u00f3n en energ\u00eda solar para maximizar tu ahorro y eficiencia.",
+    benefits: [
+      "Estudio energ\u00e9tico",
+      "Ahorro energ\u00e9tico",
+      "Asesoramiento experto",
+    ],
     href: "/estudio-asesoramiento-energetico",
     linkLabel: "Ver servicio",
-    backgroundImage:
-      "/proyectos/fotovoltaica/sevilla/estudio-y-asesoramiento-energetico.jpg",
-    backgroundPosition: "right center",
+    backgroundImage: "/imagenes/servicios/fondo-servicio-estudio.svg",
     tone: "study",
   },
   {
     icon: Wrench,
     title: "Mantenimiento y soporte",
-    copy: "Seguimiento técnico y atención profesional para que tu instalación rinda al máximo.",
-    benefits: ["Revisión técnica", "Atención cercana", "Mayor rendimiento"],
+    copy:
+      "Seguimiento t\u00e9cnico y atenci\u00f3n profesional para que tu instalaci\u00f3n rinda al m\u00e1ximo.",
+    benefits: [
+      "Revisi\u00f3n t\u00e9cnica",
+      "Atenci\u00f3n cercana",
+      "Mayor rendimiento",
+    ],
     href: "/mantenimiento-soporte",
     linkLabel: "Ver servicio",
     backgroundImage:
-      "/proyectos/fotovoltaica/sevilla/mantenimiento-soporte-sevilla.webp",
+      "/imagenes/servicios/fondo-servicio-mantenimiento-control.svg",
     tone: "support",
   },
 ];
@@ -111,48 +115,47 @@ const toneStyles = {
     icon: "bg-white/90 text-amber-700",
     link: "text-blue-950 hover:text-amber-900",
     copy: "text-blue-950/78",
-    ghost: "text-amber-300/36",
-    benefit: "border-amber-300/55 bg-white/58 text-blue-950",
+    benefit: "border-amber-300/55 bg-white/62 text-blue-950",
   },
   thermal: {
-    card: "border-orange-200 bg-[linear-gradient(180deg,#ffedd5_0%,#fed7aa_100%)] shadow-[0_18px_42px_rgba(194,65,12,0.1)]",
+    card:
+      "border-orange-200 bg-[linear-gradient(180deg,#ffedd5_0%,#fed7aa_100%)] shadow-[0_18px_42px_rgba(194,65,12,0.1)]",
     icon: "bg-white/90 text-orange-700",
     link: "text-blue-950 hover:text-orange-900",
     copy: "text-blue-950/78",
-    ghost: "text-orange-300/34",
-    benefit: "border-orange-300/50 bg-white/58 text-blue-950",
+    benefit: "border-orange-300/52 bg-white/62 text-blue-950",
   },
   air: {
-    card: "border-cyan-200 bg-[linear-gradient(180deg,#cffafe_0%,#a5f3fc_100%)] shadow-[0_18px_42px_rgba(8,145,178,0.1)]",
+    card:
+      "border-cyan-200 bg-[linear-gradient(180deg,#cffafe_0%,#a5f3fc_100%)] shadow-[0_18px_42px_rgba(8,145,178,0.1)]",
     icon: "bg-white/90 text-cyan-800",
     link: "text-blue-950 hover:text-cyan-900",
     copy: "text-blue-950/78",
-    ghost: "text-cyan-400/32",
-    benefit: "border-cyan-400/42 bg-white/58 text-blue-950",
+    benefit: "border-cyan-400/42 bg-white/62 text-blue-950",
   },
   admin: {
-    card: "border-blue-200 bg-[linear-gradient(180deg,#eff6ff_0%,#dbeafe_100%)] shadow-[0_18px_42px_rgba(37,99,235,0.09)]",
+    card:
+      "border-blue-200 bg-[linear-gradient(180deg,#eff6ff_0%,#dbeafe_100%)] shadow-[0_18px_42px_rgba(37,99,235,0.09)]",
     icon: "bg-white/90 text-blue-800",
     link: "text-blue-950 hover:text-blue-800",
     copy: "text-blue-950/76",
-    ghost: "text-blue-300/30",
-    benefit: "border-blue-300/45 bg-white/58 text-blue-950",
+    benefit: "border-blue-300/45 bg-white/62 text-blue-950",
   },
   study: {
-    card: "border-emerald-200 bg-[linear-gradient(180deg,#d1fae5_0%,#a7f3d0_100%)] shadow-[0_18px_42px_rgba(5,150,105,0.1)]",
+    card:
+      "border-emerald-200 bg-[linear-gradient(180deg,#d1fae5_0%,#a7f3d0_100%)] shadow-[0_18px_42px_rgba(5,150,105,0.1)]",
     icon: "bg-white/90 text-emerald-800",
     link: "text-blue-950 hover:text-emerald-900",
     copy: "text-blue-950/78",
-    ghost: "text-emerald-400/32",
-    benefit: "border-emerald-400/42 bg-white/58 text-blue-950",
+    benefit: "border-emerald-400/42 bg-white/62 text-blue-950",
   },
   support: {
-    card: "border-sky-200 bg-[linear-gradient(180deg,#dbeafe_0%,#bfdbfe_100%)] shadow-[0_18px_42px_rgba(29,78,216,0.1)]",
+    card:
+      "border-sky-200 bg-[linear-gradient(180deg,#dbeafe_0%,#bfdbfe_100%)] shadow-[0_18px_42px_rgba(29,78,216,0.1)]",
     icon: "bg-white/90 text-blue-900",
     link: "text-blue-950 hover:text-blue-800",
     copy: "text-blue-950/78",
-    ghost: "text-blue-400/28",
-    benefit: "border-blue-400/42 bg-white/58 text-blue-950",
+    benefit: "border-blue-400/42 bg-white/62 text-blue-950",
   },
 };
 
@@ -173,14 +176,14 @@ export function Services() {
             </p>
 
             <h2 className="mt-4 max-w-[18ch] text-4xl font-extrabold leading-[0.98] tracking-tight text-blue-900 sm:text-[3.45rem] lg:text-[3.9rem]">
-              Soluciones energéticas pensadas para ahorrar de verdad
+              Soluciones energ\u00e9ticas pensadas para ahorrar de verdad
             </h2>
           </div>
 
           <div className="max-w-2xl lg:justify-self-end">
             <p className="text-lg leading-8 text-slate-600">
-              Diseñamos proyectos orientados a reducir consumo, optimizar la
-              inversión y acompañarte en todo el proceso.
+              Dise\u00f1amos proyectos orientados a reducir consumo, optimizar
+              la inversi\u00f3n y acompa\u00f1arte en todo el proceso.
             </p>
 
             <a
@@ -204,8 +207,6 @@ export function Services() {
               href,
               linkLabel,
               backgroundImage,
-              backgroundPosition,
-              logoImage,
               innerIconSize,
               tone,
             }) => (
@@ -213,46 +214,27 @@ export function Services() {
                 key={title}
                 className={`group relative flex h-full min-h-[19rem] flex-col overflow-hidden rounded-lg border p-5 shadow-[0_16px_34px_rgba(15,23,42,0.06)] transition duration-300 hover:-translate-y-1 hover:shadow-[0_22px_42px_rgba(15,23,42,0.11)] sm:min-h-[22rem] sm:p-6 ${toneStyles[tone].card}`}
               >
-                {backgroundImage ? (
-                  <>
-                    <div
-                      className="absolute inset-0 bg-cover opacity-45 mix-blend-multiply saturate-0"
-                      style={{
-                        backgroundImage: `url(${backgroundImage})`,
-                        backgroundPosition: backgroundPosition ?? "center",
-                      }}
-                    />
-                    <div
-                      className={`absolute inset-0 ${
-                        tone === "thermal"
-                          ? "bg-[linear-gradient(180deg,rgba(255,237,213,0.62)_0%,rgba(254,215,170,0.74)_100%)]"
-                          : tone === "air"
-                            ? "bg-[linear-gradient(180deg,rgba(207,250,254,0.62)_0%,rgba(165,243,252,0.74)_100%)]"
-                            : tone === "support"
-                              ? "bg-[linear-gradient(180deg,rgba(219,234,254,0.62)_0%,rgba(191,219,254,0.74)_100%)]"
-                              : tone === "study"
-                                ? "bg-[linear-gradient(180deg,rgba(209,250,229,0.62)_0%,rgba(167,243,208,0.74)_100%)]"
-                          : "bg-[linear-gradient(180deg,rgba(254,243,199,0.62)_0%,rgba(253,230,138,0.74)_100%)]"
-                      }`}
-                    />
-                  </>
-                ) : null}
-
-                <div className={`absolute -right-5 -top-5 ${toneStyles[tone].ghost}`}>
-                  <Icon size={96} strokeWidth={1.25} aria-hidden="true" />
-                </div>
-
-                {logoImage ? (
-                  <Image
-                    src={logoImage.src}
-                    alt=""
-                    width={430}
-                    height={241}
-                    sizes="26rem"
-                    aria-hidden="true"
-                    className="pointer-events-none absolute -bottom-16 -left-28 h-auto w-80 rotate-[30deg] select-none object-contain opacity-20 mix-blend-multiply sm:-bottom-20 sm:-left-36 sm:w-[26rem]"
-                  />
-                ) : null}
+                <div
+                  className="absolute inset-0 bg-cover bg-center bg-no-repeat opacity-[0.94]"
+                  style={{ backgroundImage: `url(${backgroundImage})` }}
+                />
+                <div className="absolute inset-0 bg-[linear-gradient(96deg,rgba(255,255,255,0.42)_0%,rgba(255,255,255,0.2)_34%,rgba(255,255,255,0.08)_58%,rgba(255,255,255,0.02)_78%)]" />
+                <div
+                  className={`absolute inset-0 ${
+                    tone === "thermal"
+                      ? "bg-[linear-gradient(180deg,rgba(255,237,213,0.24)_0%,rgba(254,215,170,0.4)_100%)]"
+                      : tone === "air"
+                        ? "bg-[linear-gradient(180deg,rgba(207,250,254,0.24)_0%,rgba(165,243,252,0.38)_100%)]"
+                        : tone === "support"
+                          ? "bg-[linear-gradient(180deg,rgba(219,234,254,0.24)_0%,rgba(191,219,254,0.38)_100%)]"
+                          : tone === "study"
+                            ? "bg-[linear-gradient(180deg,rgba(209,250,229,0.24)_0%,rgba(167,243,208,0.38)_100%)]"
+                            : tone === "admin"
+                              ? "bg-[linear-gradient(180deg,rgba(239,246,255,0.24)_0%,rgba(219,234,254,0.38)_100%)]"
+                              : "bg-[linear-gradient(180deg,rgba(254,243,199,0.24)_0%,rgba(253,230,138,0.38)_100%)]"
+                  }`}
+                />
+                <div className="absolute inset-0 bg-[radial-gradient(circle_at_82%_18%,rgba(255,255,255,0.22),transparent_38%)]" />
 
                 <div className="relative z-10 flex h-full flex-col">
                   <div
@@ -265,9 +247,7 @@ export function Services() {
                     />
                   </div>
 
-                  <h3
-                    className="mt-5 max-w-[18ch] text-[1.34rem] font-bold leading-[1.15] tracking-tight text-blue-950 sm:text-[1.46rem]"
-                  >
+                  <h3 className="mt-5 max-w-[18ch] text-[1.34rem] font-bold leading-[1.15] tracking-tight text-blue-950 sm:text-[1.46rem]">
                     {title}
                   </h3>
 
@@ -293,7 +273,7 @@ export function Services() {
                     href={href ?? "#contacto"}
                     className={`mt-6 inline-flex items-center gap-2 text-[0.95rem] font-semibold transition ${toneStyles[tone].link}`}
                   >
-                    {linkLabel ?? "Solicitar información"}
+                    {linkLabel ?? "Solicitar informaci\u00f3n"}
                     <ArrowRight
                       size={15}
                       className="transition duration-300 group-hover:translate-x-1"

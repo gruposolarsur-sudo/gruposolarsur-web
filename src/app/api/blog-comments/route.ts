@@ -10,7 +10,7 @@ import {
   sanitizeComment,
   sanitizeText,
 } from "@/lib/blogComments";
-import { verifyTurnstileToken } from "@/lib/turnstile";
+import { verifyRecaptchaToken } from "@/lib/recaptcha";
 
 export const runtime = "nodejs";
 
@@ -148,7 +148,7 @@ async function saveUploadedImages(files: File[]) {
       }
 
       if (file.size > MAX_IMAGE_SIZE_BYTES) {
-        throw new Error("Cada imagen debe pesar como maximo 4 MB.");
+        throw new Error("Cada imagen debe pesar como máximo 4 MB.");
       }
 
       const arrayBuffer = await file.arrayBuffer();
@@ -236,7 +236,7 @@ export async function POST(request: Request) {
   const authorEmail = sanitizeText(String(formData.get("authorEmail") ?? "")).toLowerCase();
   const authorWebsiteRaw = String(formData.get("authorWebsite") ?? "");
   const parentId = sanitizeText(String(formData.get("parentId") ?? ""));
-  const turnstileToken = sanitizeText(String(formData.get("turnstileToken") ?? ""));
+  const recaptchaToken = sanitizeText(String(formData.get("recaptchaToken") ?? ""));
   const files = formData
     .getAll("images")
     .filter((entry): entry is File => entry instanceof File && entry.size > 0);
@@ -264,7 +264,7 @@ export async function POST(request: Request) {
 
   if (authorEmail.length === 0 || authorEmail.length > EMAIL_MAX_LENGTH || !isValidEmail(authorEmail)) {
     return NextResponse.json(
-      { message: "Introduce un correo electronico valido." },
+      { message: "Introduce un correo electrónico válido." },
       { status: 400 },
     );
   }
@@ -295,20 +295,20 @@ export async function POST(request: Request) {
     }
   }
 
-  const turnstileResult = await verifyTurnstileToken({
-    token: turnstileToken,
+  const recaptchaResult = await verifyRecaptchaToken({
+    token: recaptchaToken,
     remoteIp: ip,
-    expectedAction: "blog_comment",
+    expectedHostname: request.headers.get("host") || "",
   });
 
-  if (!turnstileResult.success) {
-    const turnstileMessage =
-      "message" in turnstileResult
-        ? turnstileResult.message
-        : "No se ha podido validar la verificacion de seguridad.";
-
+  if (!recaptchaResult.success) {
     return NextResponse.json(
-      { message: turnstileMessage },
+      {
+        message:
+          "message" in recaptchaResult
+            ? recaptchaResult.message
+            : "No se ha podido validar la verificación de seguridad.",
+      },
       { status: 400 },
     );
   }

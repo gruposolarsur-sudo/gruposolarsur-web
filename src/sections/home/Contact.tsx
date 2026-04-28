@@ -19,18 +19,18 @@ const captureHighlights: Array<{
 }> = [
   {
     icon: Clock3,
-    title: "Respuesta rapida",
+    title: "Respuesta rápida",
     copy: "Revisamos tus datos y te contactamos con una propuesta clara.",
   },
   {
     icon: ShieldCheck,
     title: "Sin compromiso",
-    copy: "Analisis preliminar gratuito y orientado a ahorro real.",
+    copy: "Análisis preliminar gratuito y orientado a ahorro real.",
   },
   {
     icon: BadgeCheck,
-    title: "Acompanamiento completo",
-    copy: "Te guiamos en financiacion, ejecucion y legalizacion.",
+    title: "Acompañamiento completo",
+    copy: "Te guiamos en financiación, ejecución y legalización.",
   },
 ];
 
@@ -50,7 +50,7 @@ const discoveryOptions = [
 
 const interestOptions = [
   "Placas solares fotovoltaicas",
-  "Energia solar termica",
+  "Energía solar térmica",
   "Aerotermia",
   "Mantenimiento y soporte",
 ];
@@ -80,7 +80,7 @@ export function Contact() {
                 </h2>
 
                 <p className="mt-4 max-w-md text-base leading-7 text-slate-600">
-                  Dejanos tus datos y te orientamos con una solucion solar
+                  Déjanos tus datos y te orientamos con una solución solar
                   profesional, rentable y adaptada al consumo real de tu
                   vivienda o negocio.
                 </p>
@@ -124,9 +124,9 @@ export function Contact() {
                     </div>
                   </div>
                   <a
-                    href="tel:651194097"
+                    href="tel:955515708"
                     className="group relative mt-5 inline-flex min-h-14 w-full items-center justify-between gap-4 overflow-hidden rounded-full bg-blue-900 px-4 py-3 text-left font-bold !text-white shadow-[0_18px_38px_rgba(23,37,84,0.28)] ring-2 ring-yellow-300/70 transition hover:-translate-y-0.5 hover:bg-blue-800 hover:shadow-[0_22px_44px_rgba(23,37,84,0.34)] hover:!text-white"
-                    aria-label="Llamar a Grupo Solarsur al 651 194 097"
+                    aria-label="Llamar a Grupo Solarsur al 955 515 708"
                   >
                     <span className="flex items-center gap-3">
                       <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-yellow-300 text-blue-950 shadow-[inset_0_-2px_0_rgba(15,23,42,0.12)]">
@@ -137,7 +137,7 @@ export function Contact() {
                           Llamar ahora
                         </span>
                         <span className="block text-xl leading-6">
-                          651 194 097
+                          955 515 708
                         </span>
                       </span>
                     </span>
@@ -171,8 +171,8 @@ export function Contact() {
                 </h3>
 
                 <p className="mt-3 max-w-2xl text-base leading-7 text-blue-50/78">
-                  Cuanto mejor entendamos tu situacion, mejor podremos estimar el
-                  ahorro y plantearte una instalacion bien dimensionada desde el
+                  Cuanto mejor entendamos tu situación, mejor podremos estimar el
+                  ahorro y plantearte una instalación bien dimensionada desde el
                   primer contacto.
                 </p>
 

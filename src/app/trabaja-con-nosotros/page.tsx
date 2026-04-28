@@ -199,7 +199,7 @@ export default function WorkWithUsPage() {
             <div className="grid overflow-hidden rounded-[1.75rem] border border-white/10 bg-white/8 shadow-[0_24px_64px_rgba(15,23,42,0.22)] lg:grid-cols-[0.95fr_1.05fr]">
               <div className="relative min-h-[260px] bg-blue-950">
                 <Image
-                  src="/hero-casa-solar-collage.svg"
+                  src="/imagenes/hero/hero-casa-solar-collage.svg"
                   alt="Instalación solar de Grupo SolarSur"
                   fill
                   className="object-cover"

@@ -449,6 +449,9 @@ export function HeroVisual() {
       <div className="rounded-[1.55rem] border border-white/80 bg-white/62 p-3 shadow-[0_40px_110px_rgba(37,99,235,0.14)] backdrop-blur sm:rounded-[2.2rem] sm:p-6">
         <div className="relative min-h-[760px] overflow-hidden rounded-[1.35rem] border border-white/80 bg-[radial-gradient(circle_at_22%_16%,rgba(250,204,21,0.11),transparent_18%),radial-gradient(circle_at_84%_22%,rgba(96,165,250,0.14),transparent_26%),linear-gradient(180deg,#fdfeff_0%,#eff6ff_54%,#e9f2ff_100%)] px-3 py-5 shadow-[inset_0_1px_0_rgba(255,255,255,0.78)] min-[420px]:min-h-[820px] sm:min-h-[900px] sm:rounded-[1.95rem] sm:px-6 sm:py-7">
           <div className="absolute inset-x-0 top-0 h-28 bg-[radial-gradient(circle_at_center,rgba(255,255,255,0.44),transparent_68%)]" />
+          <p className="absolute left-4 top-4 z-30 text-[0.68rem] font-medium uppercase tracking-[0.22em] text-slate-400 sm:left-6 sm:top-5">
+            INFOGRAFÍA SIMULACIÓN
+          </p>
 
           <div className="hero-sun-enter absolute left-1/2 top-[8.2%] z-20 -translate-x-1/2">
             <div className="relative h-[4.8rem] w-[4.8rem] rounded-full bg-[radial-gradient(circle,#fff8d6_0%,#facc15_54%,rgba(250,204,21,0.08)_72%,transparent_73%)] shadow-[0_0_48px_rgba(250,204,21,0.28)] sm:h-[5.5rem] sm:w-[5.5rem]">

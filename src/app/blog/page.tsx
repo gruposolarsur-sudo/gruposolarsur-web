@@ -6,7 +6,6 @@ import {
   BadgeCheck,
   CalendarDays,
   FileText,
-  MapPin,
   Newspaper,
   Sparkles,
   Wrench,
@@ -14,6 +13,7 @@ import {
 } from "lucide-react";
 
 import { BlogCommentsSection } from "@/components/blog/BlogCommentsSection";
+import { BlogProjectStoriesPager } from "@/components/blog/BlogProjectStoriesPager";
 import { Footer } from "@/components/layout/Footer";
 import { Header } from "@/components/layout/Header";
 import { Container } from "@/components/ui/Container";
@@ -22,29 +22,30 @@ import { getApprovedBlogCommentsThread } from "@/lib/blogComments";
 
 const featuredPost = {
   label: "Obra destacada",
-  title: "Instalaciones solares reales en viviendas y negocios de Andalucia",
-  copy: "Un espacio para ensenar trabajos terminados, explicar decisiones tecnicas y compartir resultados de proyectos fotovoltaicos, termicos, aerotermia y mantenimiento.",
+  title: "Instalaciones solares reales en viviendas y negocios de Andalucía",
+  copy: "Un espacio para enseñar trabajos terminados, explicar decisiones técnicas y compartir resultados de proyectos fotovoltaicos, térmicos, aerotermia y mantenimiento.",
   image: projectStories[0].image,
+  imageAlt: projectStories[0].imageAlt ?? projectStories[0].title,
 };
 
 const newsPosts = [
   {
     icon: FileText,
     category: "Ayudas",
-    title: "Subvenciones y deducciones para instalaciones energeticas",
-    copy: "Actualizaciones sobre ayudas disponibles, documentacion necesaria y pasos habituales para proyectos solares.",
+    title: "Subvenciones y deducciones para instalaciones energéticas",
+    copy: "Actualizaciones sobre ayudas disponibles, documentación necesaria y pasos habituales para proyectos solares.",
   },
   {
     icon: Zap,
     category: "Autoconsumo",
-    title: "Claves para dimensionar una instalacion fotovoltaica",
-    copy: "Como influyen consumo, orientacion, cubierta y habitos de uso en el ahorro final de una vivienda o negocio.",
+    title: "Claves para dimensionar una instalación fotovoltaica",
+    copy: "Cómo influyen el consumo, la orientación, la cubierta y los hábitos de uso en el ahorro final de una vivienda o negocio.",
   },
   {
     icon: Wrench,
     category: "Soporte",
-    title: "Por que revisar una instalacion antes de que baje su rendimiento",
-    copy: "Noticias y recomendaciones sobre mantenimiento preventivo, monitorizacion y resolucion de incidencias.",
+    title: "Por qué revisar una instalación antes de que baje su rendimiento",
+    copy: "Noticias y recomendaciones sobre mantenimiento preventivo, monitorización y resolución de incidencias.",
   },
 ];
 
@@ -56,9 +57,9 @@ const editorialAreas = [
 ];
 
 export const metadata: Metadata = {
-  title: "Blog | Obras y noticias de energia solar | Grupo Solar Sur",
+  title: "Blog | Obras y noticias de energía solar | Grupo Solar Sur",
   description:
-    "Obras, noticias relevantes y contenido informativo sobre energia solar, autoconsumo, aerotermia, ayudas y mantenimiento en Andalucia.",
+    "Obras, noticias relevantes y contenido informativo sobre energía solar, autoconsumo, aerotermia, ayudas y mantenimiento en Andalucía.",
 };
 
 export const dynamic = "force-dynamic";
@@ -80,12 +81,12 @@ export default async function BlogPage() {
                   Blog SolarSur
                 </p>
                 <h1 className="mt-5 max-w-[12ch] text-4xl font-extrabold leading-[0.98] tracking-tight text-blue-950 sm:text-6xl lg:text-[4.7rem]">
-                  Obras, noticias y energia solar útil
+                  Obras, noticias y energía solar útil
                 </h1>
                 <p className="mt-6 max-w-2xl text-lg font-medium leading-8 text-slate-600 sm:text-xl">
-                  Informacion clara sobre proyectos reales, novedades del sector,
-                  ayudas energeticas y mantenimiento de instalaciones en
-                  Andalucia.
+                  Información clara sobre proyectos reales, novedades del sector,
+                  ayudas energéticas y mantenimiento de instalaciones en
+                  Andalucía.
                 </p>
 
                 <div className="mt-8 flex flex-wrap gap-2">
@@ -104,7 +105,7 @@ export default async function BlogPage() {
                 <div className="relative min-h-[24rem]">
                   <Image
                     src={featuredPost.image}
-                    alt=""
+                    alt={featuredPost.imageAlt}
                     fill
                     priority
                     className="object-cover opacity-74"
@@ -134,7 +135,7 @@ export default async function BlogPage() {
               {[
                 { icon: Sparkles, label: "Obras documentadas" },
                 { icon: Newspaper, label: "Noticias relevantes" },
-                { icon: CalendarDays, label: "Actualidad energetica" },
+                { icon: CalendarDays, label: "Actualidad energética" },
               ].map(({ icon: Icon, label }) => (
                 <div
                   key={label}
@@ -170,49 +171,7 @@ export default async function BlogPage() {
               </Link>
             </div>
 
-            <div className="mt-10 grid auto-rows-fr gap-5 md:grid-cols-3">
-              {projectStories.map((post) => (
-                <article
-                  id={post.slug}
-                  key={post.slug}
-                  className="group flex h-full scroll-mt-28 flex-col overflow-hidden rounded-lg border border-slate-200 bg-white shadow-[0_18px_42px_rgba(15,23,42,0.06)] transition hover:-translate-y-1 hover:shadow-[0_22px_48px_rgba(15,23,42,0.1)]"
-                >
-                  <div className="relative aspect-[1.22] overflow-hidden bg-blue-950">
-                    <Image
-                      src={post.image}
-                      alt=""
-                      fill
-                      className="object-cover opacity-92 transition duration-500 group-hover:scale-105"
-                      sizes="(min-width: 768px) 33vw, 100vw"
-                    />
-                  </div>
-                  <div className="flex flex-1 flex-col p-5 sm:p-6">
-                    <div className="flex flex-wrap items-center gap-2 text-xs font-extrabold">
-                      <span className="rounded-full bg-blue-50 px-3 py-1 text-blue-900">
-                        {post.category}
-                      </span>
-                      <span className="inline-flex items-center gap-1.5 rounded-full bg-slate-100 px-3 py-1 text-slate-600">
-                        <MapPin size={13} aria-hidden="true" />
-                        {post.zone}
-                      </span>
-                    </div>
-                    <h3 className="mt-5 text-xl font-extrabold leading-tight tracking-tight text-blue-950">
-                      {post.title}
-                    </h3>
-                    <p className="mt-3 text-[0.98rem] leading-7 text-slate-600">
-                      {post.blogSummary}
-                    </p>
-                    <Link
-                      href={`/proyectos#${post.slug}`}
-                      className="mt-auto inline-flex items-center gap-2 pt-5 text-sm font-extrabold text-blue-900 transition hover:text-blue-700"
-                    >
-                      Ver ficha tecnica en el mapa
-                      <ArrowRight size={15} aria-hidden="true" />
-                    </Link>
-                  </div>
-                </article>
-              ))}
-            </div>
+            <BlogProjectStoriesPager posts={projectStories} />
           </Container>
         </section>
 
@@ -227,9 +186,9 @@ export default async function BlogPage() {
                   Actualidad y contenido informativo
                 </h2>
                 <p className="mt-5 text-lg leading-8 text-slate-600">
-                  Una seccion para publicar novedades importantes, cambios en
-                  ayudas, consejos tecnicos y explicaciones sencillas sobre el
-                  sector energetico.
+                  Una sección para publicar novedades importantes, cambios en
+                  ayudas, consejos técnicos y explicaciones sencillas sobre el
+                  sector energético.
                 </p>
               </div>
 
@@ -268,10 +227,10 @@ export default async function BlogPage() {
                   <BadgeCheck size={23} aria-hidden="true" />
                 </div>
                 <h2 className="mt-6 max-w-2xl text-3xl font-extrabold leading-tight tracking-tight text-blue-950 sm:text-[2.35rem]">
-                  Tienes una obra o noticia que deberia aparecer aqui?
+                  ¿Tienes una obra o noticia que debería aparecer aquí?
                 </h2>
                 <p className="mt-4 max-w-2xl text-lg leading-8 text-blue-950/72">
-                  Cuentanos el caso y prepararemos la informacion con el enfoque
+                  Cuéntanos el caso y prepararemos la información con el enfoque
                   adecuado para mostrar el trabajo, el contexto y el valor del
                   proyecto.
                 </p>

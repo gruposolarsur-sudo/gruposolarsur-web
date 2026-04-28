@@ -207,7 +207,7 @@ export default function GrantsAndSubsidiesPage() {
                     <ArrowRight size={18} aria-hidden="true" />
                   </Link>
                   <a
-                    href="tel:651194097"
+                    href="tel:955515708"
                     className="inline-flex min-h-14 items-center justify-center gap-2 rounded-full border border-white/25 bg-white/10 px-7 py-4 text-base font-bold text-white backdrop-blur transition hover:border-white/45 hover:bg-white/16"
                   >
                     <Phone size={18} aria-hidden="true" />
@@ -254,21 +254,21 @@ export default function GrantsAndSubsidiesPage() {
                   </p>
                   <div className="mt-5 grid grid-cols-3 items-center gap-4">
                     <Image
-                      src="/logos/sello-agencia-andaluza-energia.webp"
+                      src="/assets/logos/sello-agencia-andaluza-energia.webp"
                       alt="Sello de la Agencia Andaluza de la Energía"
                       width={430}
                       height={241}
                       className="h-auto w-full object-contain"
                     />
                     <Image
-                      src="/logos/sello-next-generation-ue.webp"
+                      src="/assets/logos/sello-next-generation-ue.webp"
                       alt="Sello Next Generation EU"
                       width={144}
                       height={144}
                       className="mx-auto h-auto w-full max-w-24 object-contain"
                     />
                     <Image
-                      src="/logos/sello-eco-vivienda.webp"
+                      src="/assets/logos/sello-eco-vivienda.webp"
                       alt="Sello PLA Eco Vivienda"
                       width={144}
                       height={144}
@@ -277,14 +277,14 @@ export default function GrantsAndSubsidiesPage() {
                   </div>
                   <div className="mt-5 grid gap-3 sm:grid-cols-2">
                     <Image
-                      src="/logos/banner-autoconsumo.png"
+                      src="/assets/logos/banner-autoconsumo.png"
                       alt="Banner oficial de autoconsumo"
                       width={520}
                       height={180}
                       className="h-auto rounded-xl border border-slate-200 object-contain"
                     />
                     <Image
-                      src="/logos/banner-termicas.png"
+                      src="/assets/logos/banner-termicas.png"
                       alt="Banner oficial de energías renovables térmicas"
                       width={520}
                       height={180}
@@ -517,11 +517,11 @@ export default function GrantsAndSubsidiesPage() {
                     <ArrowRight size={18} aria-hidden="true" />
                   </Link>
                   <a
-                    href="tel:651194097"
+                    href="tel:955515708"
                     className="inline-flex min-h-14 items-center justify-center gap-2 rounded-full border border-white/18 px-7 py-4 text-base font-bold text-white transition hover:border-white/35 hover:bg-white/8"
                   >
                     <Phone size={18} aria-hidden="true" />
-                    651 194 097
+                    955 515 708
                   </a>
                 </div>
               </div>
