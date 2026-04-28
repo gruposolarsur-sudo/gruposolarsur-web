@@ -43,31 +43,37 @@ const detailIcons: Record<ProjectDetailIcon, LucideIcon> = {
 
 const sectionToneStyles = {
   default: {
-    card: "border-slate-200 bg-white",
-    eyebrow: "text-slate-400",
+    card: "border-blue-200 bg-[linear-gradient(180deg,#ffffff_0%,#edf5ff_100%)]",
+    eyebrow: "text-blue-600",
     title: "text-blue-950",
-    copy: "text-slate-600",
-    itemIcon: "text-emerald-600",
+    copy: "text-slate-700",
+    itemIcon: "text-blue-700",
     itemText: "text-slate-700",
     footnote: "text-slate-500",
+    itemCard: "border-blue-100/80 bg-white/88",
+    titleMarker: "bg-blue-600",
   },
   accent: {
-    card: "border-amber-200 bg-amber-50",
+    card: "border-amber-300 bg-[linear-gradient(180deg,#fffdf2_0%,#fff1b8_100%)]",
     eyebrow: "text-amber-600",
     title: "text-blue-950",
     copy: "text-slate-700",
     itemIcon: "text-amber-600",
     itemText: "text-slate-700",
     footnote: "text-slate-500",
+    itemCard: "border-amber-200 bg-white/84",
+    titleMarker: "bg-amber-500",
   },
   neutral: {
-    card: "border-slate-200 bg-slate-100",
-    eyebrow: "text-slate-500",
+    card: "border-blue-200 bg-[linear-gradient(180deg,#f6faff_0%,#e3efff_100%)]",
+    eyebrow: "text-blue-700",
     title: "text-blue-950",
     copy: "text-slate-700",
     itemIcon: "text-blue-700",
     itemText: "text-slate-700",
     footnote: "text-slate-500",
+    itemCard: "border-blue-100/80 bg-white/76",
+    titleMarker: "bg-blue-500",
   },
 } as const;
 
@@ -75,6 +81,20 @@ export function ProjectStoryArticle({ project }: { project: ProjectStory }) {
   const visibleTechnicalSheet = project.technicalSheet.filter(
     (item) => item.label !== "Tipo",
   );
+  const orderedContentSections = project.contentSections
+    ? [...project.contentSections].sort((left, right) => {
+        const leftIsResults =
+          left.title.trim().toLowerCase() === "resultados del proyecto";
+        const rightIsResults =
+          right.title.trim().toLowerCase() === "resultados del proyecto";
+
+        if (leftIsResults === rightIsResults) {
+          return 0;
+        }
+
+        return leftIsResults ? 1 : -1;
+      })
+    : undefined;
 
   return (
     <article
@@ -241,61 +261,93 @@ export function ProjectStoryArticle({ project }: { project: ProjectStory }) {
           </div>
         </div>
 
-        {project.contentSections?.length ? (
-          <div className="relative mt-8 grid gap-4">
-            {project.contentSections.map((section) => {
-              const tone = sectionToneStyles[section.tone ?? "default"];
+        {orderedContentSections?.length ? (
+          <div className="relative mt-8">
+            <div className="relative mb-4 overflow-hidden rounded-lg border border-blue-300 bg-[linear-gradient(135deg,#14346b_0%,#1d4ed8_82%,#2859c5_100%)] px-5 py-5 text-white shadow-[0_18px_46px_rgba(29,78,216,0.22)] sm:px-6">
+              <div
+                aria-hidden="true"
+                className="pointer-events-none absolute right-0 top-0 h-28 w-28 rounded-full bg-yellow-300/20 blur-2xl"
+              />
+              <div className="relative">
+                <p className="text-[0.68rem] font-extrabold uppercase tracking-[0.24em] text-yellow-300">
+                  Caso real
+                </p>
+                <h4 className="mt-2 text-xl font-extrabold tracking-tight text-white sm:text-2xl">
+                  Desarrollo del proyecto
+                </h4>
+                <p className="mt-2 max-w-3xl text-sm leading-6 text-blue-50/84 sm:text-[0.98rem]">
+                  Reunimos la información principal del caso para que puedas ver
+                  de forma rápida el sistema instalado, sus puntos clave y el
+                  resultado final.
+                </p>
+              </div>
+            </div>
 
-              return (
-                <section
-                  key={`${project.slug}-${section.title}`}
-                  className={`rounded-lg border px-5 py-5 shadow-[0_16px_38px_rgba(15,23,42,0.05)] sm:px-6 sm:py-6 ${tone.card}`}
-                >
-                  <p
-                    className={`text-[0.68rem] font-extrabold uppercase tracking-[0.22em] ${tone.eyebrow}`}
+            <div className="grid gap-4">
+              {orderedContentSections.map((section) => {
+                const tone = sectionToneStyles[section.tone ?? "default"];
+
+                return (
+                  <section
+                    key={`${project.slug}-${section.title}`}
+                    className={`rounded-lg border px-5 py-5 shadow-[0_16px_38px_rgba(15,23,42,0.05)] sm:px-6 sm:py-6 ${tone.card}`}
                   >
-                    Caso real
-                  </p>
-                  <h4
-                    className={`mt-3 text-2xl font-extrabold leading-tight tracking-tight ${tone.title}`}
-                  >
-                    {section.title}
-                  </h4>
-
-                  {section.copy ? (
-                    <p className={`mt-4 text-[0.98rem] leading-7 ${tone.copy}`}>
-                      {section.copy}
-                    </p>
-                  ) : null}
-
-                  {section.items?.length ? (
-                    <ul className="mt-5 grid gap-3">
-                      {section.items.map((item) => (
-                        <li
-                          key={`${project.slug}-${section.title}-${item}`}
-                          className="flex items-start gap-3"
+                    <div className="min-w-0">
+                      <div className="flex items-center gap-3">
+                        <span
+                          aria-hidden="true"
+                          className={`h-3.5 w-3.5 rounded-full shadow-[0_0_0_6px_rgba(255,255,255,0.38)] ${tone.titleMarker}`}
+                        />
+                        <p
+                          className={`text-[0.68rem] font-extrabold uppercase tracking-[0.22em] ${tone.eyebrow}`}
                         >
-                          <CheckCircle2
-                            size={18}
-                            className={`mt-1 shrink-0 ${tone.itemIcon}`}
-                            aria-hidden="true"
-                          />
-                          <span className={`text-[0.98rem] leading-7 ${tone.itemText}`}>
-                            {item}
-                          </span>
-                        </li>
-                      ))}
-                    </ul>
-                  ) : null}
+                          {section.items?.length ? "Puntos clave" : "Resumen"}
+                        </p>
+                      </div>
+                      <h4
+                        className={`mt-3 text-2xl font-extrabold leading-tight tracking-tight ${tone.title}`}
+                      >
+                        {section.title}
+                      </h4>
 
-                  {section.footnote ? (
-                    <p className={`mt-5 text-sm leading-6 ${tone.footnote}`}>
-                      {section.footnote}
-                    </p>
-                  ) : null}
-                </section>
-              );
-            })}
+                      {section.copy ? (
+                        <p className={`mt-4 text-[0.98rem] leading-7 ${tone.copy}`}>
+                          {section.copy}
+                        </p>
+                      ) : null}
+
+                      {section.items?.length ? (
+                        <ul className="mt-5 grid gap-3">
+                          {section.items.map((item) => (
+                            <li
+                              key={`${project.slug}-${section.title}-${item}`}
+                              className={`flex items-start gap-3 rounded-md border px-3 py-3 shadow-[0_10px_24px_rgba(15,23,42,0.04)] ${tone.itemCard}`}
+                            >
+                              <CheckCircle2
+                                size={18}
+                                className={`mt-1 shrink-0 ${tone.itemIcon}`}
+                                aria-hidden="true"
+                              />
+                              <span
+                                className={`text-[0.98rem] leading-7 ${tone.itemText}`}
+                              >
+                                {item}
+                              </span>
+                            </li>
+                          ))}
+                        </ul>
+                      ) : null}
+
+                      {section.footnote ? (
+                        <p className={`mt-5 text-sm leading-6 ${tone.footnote}`}>
+                          {section.footnote}
+                        </p>
+                      ) : null}
+                    </div>
+                  </section>
+                );
+              })}
+            </div>
           </div>
         ) : null}
 

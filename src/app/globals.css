@@ -103,9 +103,21 @@ a {
 }
 
 @media (max-width: 639px) {
-  .home-page :where(h1, h2, h3) {
+  .home-page :where(h1, h2) {
     font-synthesis: weight;
     font-weight: 900;
+    -webkit-text-stroke: 0.25px rgba(15, 23, 42, 0.14);
+  }
+
+  .home-page :where(h3) {
+    font-synthesis: weight;
+    font-weight: 900;
+  }
+}
+
+@media (min-width: 640px) {
+  .home-page :where(h1, h2) {
+    font-weight: 700;
   }
 }
 

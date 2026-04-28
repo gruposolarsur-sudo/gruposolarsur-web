@@ -1,36 +1,65 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Grupo SolarSur Web
 
-## Getting Started
+Web corporativa en Next.js para Grupo SolarSur.
 
-First, run the development server:
+## Desarrollo
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+La web se abre en `http://localhost:3000`.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Variables de entorno
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+Parte de la web necesita variables en `.env.local`. Tienes la plantilla en `.env.example`.
 
-## Learn More
+Variables principales:
 
-To learn more about Next.js, take a look at the following resources:
+```env
+NEXT_PUBLIC_SITE_URL=http://localhost:3000
+GOOGLE_API_KEY=your_google_api_key
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+NEXT_PUBLIC_RECAPTCHA_SITE_KEY=your_recaptcha_site_key
+RECAPTCHA_SECRET_KEY=your_recaptcha_secret_key
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+SMTP_HOST=smtp.example.com
+SMTP_PORT=587
+SMTP_SECURE=false
+SMTP_USER=usuario@example.com
+SMTP_PASS=replace_with_real_password
+SMTP_FROM=Grupo Solarsur <no-reply@gruposolarsur.com>
+CONTACT_TO_EMAIL=calidad@gruposolarsur.com
+WORK_WITH_US_TO_EMAIL=rrhh@gruposolarsur.com
+```
 
-## Deploy on Vercel
+## reCAPTCHA
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+El checkbox de Google reCAPTCHA v2 ya está integrado en:
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- Formulario de contacto / estudio
+- Formulario de trabaja con nosotros
+- Formulario de comentarios del blog
+
+Archivos clave:
+
+- `src/components/security/RecaptchaCheckbox.tsx`
+- `src/lib/recaptcha.js`
+- `src/app/api/contact-request/route.js`
+- `src/app/api/work-with-us/route.js`
+- `src/app/api/blog-comments/route.ts`
+
+### Para activarlo en local
+
+1. Copia `.env.example` a `.env.local`.
+2. Añade `NEXT_PUBLIC_RECAPTCHA_SITE_KEY`.
+3. Añade `RECAPTCHA_SECRET_KEY`.
+4. Reinicia `npm run dev`.
+
+### Para activarlo en Vercel
+
+Añade esas mismas variables en `Project Settings > Environment Variables` y vuelve a desplegar.
+
+### Nota importante
+
+Sin esas claves, el widget no se activa de verdad. En desarrollo local el backend permite continuar sin secreto para no bloquear pruebas, pero en producción necesitas las claves reales del dominio.

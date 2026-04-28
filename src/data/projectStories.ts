@@ -307,7 +307,7 @@ export const projectStories: ProjectStory[] = [
   },
   {
     slug: "instalacion-hibrida-sanlucar-la-mayor-sevilla",
-    title: "Instalación fotovoltaica híbrida + solar térmica en Sanlúcar la Mayor",
+    title: "Instalación fotovoltaica híbrida + solar térmica en Sanlúcar la Mayor (Sevilla)",
     category: "Obra híbrida FV + ACS",
     installationType: "Fotovoltaica residencial híbrida + solar térmica",
     zone: "Sanlúcar la Mayor, Sevilla",
@@ -383,7 +383,7 @@ export const projectStories: ProjectStory[] = [
   },
   {
     slug: "instalacion-fotovoltaica-hibrida-la-luisiana-sevilla",
-    title: "Instalación fotovoltaica híbrida en La Luisiana",
+    title: "Instalación fotovoltaica híbrida en La Luisiana (Sevilla)",
     category: "Obra fotovoltaica híbrida",
     installationType: "Autoconsumo residencial monofásico híbrido",
     zone: "La Luisiana, Sevilla",
@@ -536,7 +536,7 @@ export const projectStories: ProjectStory[] = [
   },
   {
     slug: "instalacion-solar-termica-mairena-del-aljarafe-sevilla",
-    title: "Instalaci\u00f3n solar t\u00e9rmica en vivienda en Mairena del Aljarafe",
+    title: "Instalaci\u00f3n solar t\u00e9rmica en vivienda en Mairena del Aljarafe (Sevilla)",
     category: "Obra de solar t\u00e9rmica",
     installationType: "Solar t\u00e9rmica para ACS por termosif\u00f3n",
     zone: "Mairena del Aljarafe, Sevilla",
@@ -609,6 +609,79 @@ export const projectStories: ProjectStory[] = [
     ],
     technicalNote:
       "Proyecto de solar t\u00e9rmica para vivienda unifamiliar en Sevilla con equipo termosif\u00f3n de 200 L, captaci\u00f3n Tinox de alta eficiencia y funcionamiento aut\u00f3nomo por circulaci\u00f3n natural.",
+  },
+  {
+    slug: "subvencion-solar-termica-dos-hermanas-sevilla",
+    title: "Instalación solar térmica en Dos Hermanas (Sevilla)",
+    category: "Obra de solar térmica",
+    installationType: "Solar térmica para ACS por termosifón",
+    zone: "Dos Hermanas, Sevilla",
+    province: "Sevilla",
+    image:
+      "/proyectos/solar-termica/sevilla/dos-hermanas/instalacion-solar-termica-dos-hermanas.webp.webp",
+    imageAlt:
+      "Instalación solar térmica por termosifón en vivienda de Dos Hermanas",
+    galleryImages: [
+      "/proyectos/solar-termica/sevilla/dos-hermanas/instalacion-solar-termica-dos-hermanas.webp.webp",
+      "/proyectos/solar-termica/sevilla/dos-hermanas/instalacion-placa-solar-termica-dos-hermanas.webp.webp",
+      "/proyectos/solar-termica/sevilla/dos-hermanas/placas-solares-termicas-dos-hermanas.webp",
+    ],
+    galleryImageAlts: [
+      "Vista general del equipo solar térmico instalado sobre cubierta en Dos Hermanas",
+      "Detalle del captador solar térmico instalado en vivienda de Dos Hermanas",
+      "Vista de los captadores solares térmicos sobre tejado residencial en Sevilla",
+    ],
+    summary:
+      "Instalación de energía solar térmica para agua caliente sanitaria en vivienda de Dos Hermanas, con sistema termosifón de 200 litros y reducción superior al 70% en el consumo de ACS.",
+    blogSummary:
+      "Mostramos un proyecto real de solar térmica en Dos Hermanas con sistema termosifón de 200 litros, captadores de alta eficiencia y apoyo eléctrico inteligente para agua caliente sanitaria.",
+    publishedAt: "Obra publicada",
+    mapPosition: { x: 29, y: 50 },
+    serviceKeys: ["solar-thermal"],
+    technicalSheet: [
+      {
+        label: "Tipo",
+        value: "Solar térmica para agua caliente sanitaria",
+        icon: "type",
+      },
+      {
+        label: "Sistema",
+        value: "Equipo termosifón de alta eficiencia sin bombeo",
+        icon: "service",
+      },
+      {
+        label: "Acumulación",
+        value: "Depósito acumulador de 200 litros en acero vitrificado",
+        icon: "unit",
+      },
+      {
+        label: "Captadores",
+        value: "Captación solar de última generación para ACS",
+        icon: "module",
+      },
+      {
+        label: "Montaje",
+        value: "Instalación sobre cubierta inclinada en vivienda",
+        icon: "mount",
+      },
+      {
+        label: "Apoyo",
+        value: "Centralita, resistencia y control inteligente de temperatura",
+        icon: "control",
+      },
+      {
+        label: "Funcionamiento",
+        value: "Circulación natural por termosifón",
+        icon: "status",
+      },
+      {
+        label: "Cobertura ACS",
+        value: "Reducción superior al 70% del consumo de agua caliente",
+        icon: "target",
+      },
+    ],
+    technicalNote:
+      "Proyecto residencial de solar térmica en Dos Hermanas planteado para reducir el consumo de ACS con funcionamiento autónomo por termosifón, apoyo eléctrico inteligente y mantenimiento muy bajo.",
   },
   {
     slug: "aerotermia-climatizacion-andalucia",
