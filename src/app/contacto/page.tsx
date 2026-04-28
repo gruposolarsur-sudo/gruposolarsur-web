@@ -55,7 +55,7 @@ export default async function ContactPage() {
   const structuredData = {
     "@context": "https://schema.org",
     "@type": "LocalBusiness",
-    name: "Grupo Solarsur Energ\u00eda Solar S.L.",
+    name: "Grupo Solarsur Energía Solar S.L.",
     url: `${siteUrl}/contacto`,
     telephone: "+34 955 515 708",
     image: `${siteUrl}/assets/logos/logo-solarsur.svg`,

@@ -85,7 +85,11 @@ export function Hero() {
       <Container className="relative">
         <div className="grid gap-10 sm:gap-14 lg:grid-cols-[minmax(0,1.08fr)_minmax(0,0.92fr)] lg:items-start lg:gap-16">
           <div className="relative z-10 max-w-2xl lg:pr-6">
-            <h1 className="max-w-[14.4ch] overflow-visible text-[2.55rem] font-extrabold leading-[0.96] tracking-[-0.05em] text-blue-950 drop-shadow-[0_10px_26px_rgba(255,255,255,0.55)] min-[380px]:text-[2.85rem] sm:max-w-[13.2ch] sm:text-[4.2rem] sm:leading-[0.92] lg:max-w-[12.8ch] lg:text-[5rem]">
+            <div
+              aria-hidden="true"
+              className="absolute -inset-x-4 -inset-y-5 rounded-[2rem] bg-[linear-gradient(180deg,rgba(255,255,255,0.5)_0%,rgba(255,255,255,0.24)_52%,rgba(255,255,255,0)_100%)] blur-2xl sm:hidden"
+            />
+            <h1 className="relative max-w-[14.4ch] overflow-visible text-[2.72rem] font-black leading-[0.93] tracking-[-0.05em] text-blue-950 drop-shadow-[0_14px_30px_rgba(255,255,255,0.72)] min-[380px]:text-[3rem] sm:max-w-[13.2ch] sm:text-[4.2rem] sm:font-extrabold sm:leading-[0.92] sm:drop-shadow-[0_10px_26px_rgba(255,255,255,0.55)] lg:max-w-[12.8ch] lg:text-[5rem]">
               <span className="block">Convierte tu tejado en</span>
               <span className="mt-2 block text-[1.08em] leading-[0.9] sm:mt-2.5">
                 <HighlightWord>ingresos</HighlightWord>
@@ -95,7 +99,7 @@ export function Hero() {
               </span>
             </h1>
 
-            <p className="mt-8 max-w-[38rem] text-base leading-7 text-slate-600 sm:text-lg sm:leading-8 lg:text-[1.15rem]">
+            <p className="relative mt-8 max-w-[38rem] text-[1.03rem] font-medium leading-8 text-slate-700 sm:text-lg sm:font-normal sm:leading-8 lg:text-[1.15rem]">
               Instalación solar profesional para viviendas y negocios. Estudio
               gratuito, financiación disponible y acompañamiento completo para
               que empieces a ahorrar con una solución real.
@@ -105,12 +109,12 @@ export function Hero() {
               {quickStats.map((stat) => (
                 <div
                   key={stat.label}
-                  className="rounded-[1.25rem] border border-white/70 bg-white/85 px-4 py-4 shadow-[0_18px_40px_rgba(15,23,42,0.08)] backdrop-blur sm:rounded-[1.6rem] sm:px-5 sm:py-5"
+                  className="rounded-[1.25rem] border border-white/80 bg-white/92 px-4 py-4 shadow-[0_22px_44px_rgba(15,23,42,0.1)] backdrop-blur sm:rounded-[1.6rem] sm:px-5 sm:py-5"
                 >
-                  <div className="text-2xl font-bold tracking-tight text-blue-950">
+                  <div className="text-[2.08rem] font-black tracking-tight text-blue-950 sm:text-2xl sm:font-bold">
                     {stat.value}
                   </div>
-                  <p className="mt-2 text-sm leading-6 text-slate-500">{stat.label}</p>
+                  <p className="mt-2 text-sm leading-6 text-slate-600">{stat.label}</p>
                 </div>
               ))}
             </div>

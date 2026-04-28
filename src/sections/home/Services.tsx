@@ -30,7 +30,7 @@ const services: Array<{
     icon: SunMedium,
     title: "Placas solares fotovoltaicas",
     copy:
-      "Instalaciones eficientes para reducir tu factura y aprovechar al m\u00e1ximo la energ\u00eda solar.",
+      "Instalaciones eficientes para reducir tu factura y aprovechar al máximo la energía solar.",
     benefits: ["Estudio previo", "Dimensionado profesional", "Ahorro real"],
     href: "/placas-solares-fotovoltaicas",
     linkLabel: "Ver servicio",
@@ -40,10 +40,10 @@ const services: Array<{
   },
   {
     icon: SolarThermalIcon,
-    title: "Energ\u00eda solar t\u00e9rmica",
+    title: "Energía solar térmica",
     copy:
-      "Producci\u00f3n de agua caliente sanitaria (ACS) con energ\u00eda solar. M\u00e1s ahorro y eficiencia.",
-    benefits: ["ACS eficiente", "M\u00e1s ahorro", "Mayor eficiencia"],
+      "Producción de agua caliente sanitaria (ACS) con energía solar. Más ahorro y eficiencia.",
+    benefits: ["ACS eficiente", "Más ahorro", "Mayor eficiencia"],
     href: "/energia-solar-termica",
     linkLabel: "Ver servicio",
     backgroundImage: "/imagenes/servicios/fondo-servicio-solar-termica.svg",
@@ -53,7 +53,7 @@ const services: Array<{
     icon: AerotermiaIcon,
     title: "Aerotermia",
     copy:
-      "Climatizaci\u00f3n y agua caliente con alta eficiencia para viviendas y negocios.",
+      "Climatización y agua caliente con alta eficiencia para viviendas y negocios.",
     benefits: ["Menor consumo", "Mayor confort", "Sistema eficiente"],
     href: "/aerotermia",
     linkLabel: "Ver servicio",
@@ -64,11 +64,11 @@ const services: Array<{
     icon: FileText,
     title: "Ayudas y subvenciones",
     copy:
-      "Te orientamos en la documentaci\u00f3n y en los tr\u00e1mites para facilitar tu proyecto.",
+      "Te orientamos en la documentación y en los trámites para facilitar tu proyecto.",
     benefits: [
-      "Revisi\u00f3n documental",
-      "Gesti\u00f3n guiada",
-      "Menos fricci\u00f3n",
+      "Revisión documental",
+      "Gestión guiada",
+      "Menos fricción",
     ],
     href: "/ayudas-y-subvenciones",
     linkLabel: "Ver servicio",
@@ -77,12 +77,12 @@ const services: Array<{
   },
   {
     icon: ChartNoAxesCombined,
-    title: "Estudio y asesoramiento energ\u00e9tico",
+    title: "Estudio y asesoramiento energético",
     copy:
-      "Analizamos tu consumo y dise\u00f1amos la mejor soluci\u00f3n en energ\u00eda solar para maximizar tu ahorro y eficiencia.",
+      "Analizamos tu consumo y diseñamos la mejor solución en energía solar para maximizar tu ahorro y eficiencia.",
     benefits: [
-      "Estudio energ\u00e9tico",
-      "Ahorro energ\u00e9tico",
+      "Estudio energético",
+      "Ahorro energético",
       "Asesoramiento experto",
     ],
     href: "/estudio-asesoramiento-energetico",
@@ -94,10 +94,10 @@ const services: Array<{
     icon: Wrench,
     title: "Mantenimiento y soporte",
     copy:
-      "Seguimiento t\u00e9cnico y atenci\u00f3n profesional para que tu instalaci\u00f3n rinda al m\u00e1ximo.",
+      "Seguimiento técnico y atención profesional para que tu instalación rinda al máximo.",
     benefits: [
-      "Revisi\u00f3n t\u00e9cnica",
-      "Atenci\u00f3n cercana",
+      "Revisión técnica",
+      "Atención cercana",
       "Mayor rendimiento",
     ],
     href: "/mantenimiento-soporte",
@@ -176,14 +176,14 @@ export function Services() {
             </p>
 
             <h2 className="mt-4 max-w-[18ch] text-4xl font-extrabold leading-[0.98] tracking-tight text-blue-900 sm:text-[3.45rem] lg:text-[3.9rem]">
-              Soluciones energ\u00e9ticas pensadas para ahorrar de verdad
+              Soluciones energéticas pensadas para ahorrar de verdad
             </h2>
           </div>
 
           <div className="max-w-2xl lg:justify-self-end">
             <p className="text-lg leading-8 text-slate-600">
-              Dise\u00f1amos proyectos orientados a reducir consumo, optimizar
-              la inversi\u00f3n y acompa\u00f1arte en todo el proceso.
+              Diseñamos proyectos orientados a reducir consumo, optimizar
+              la inversión y acompañarte en todo el proceso.
             </p>
 
             <a
@@ -273,7 +273,7 @@ export function Services() {
                     href={href ?? "#contacto"}
                     className={`mt-6 inline-flex items-center gap-2 text-[0.95rem] font-semibold transition ${toneStyles[tone].link}`}
                   >
-                    {linkLabel ?? "Solicitar informaci\u00f3n"}
+                    {linkLabel ?? "Solicitar información"}
                     <ArrowRight
                       size={15}
                       className="transition duration-300 group-hover:translate-x-1"
