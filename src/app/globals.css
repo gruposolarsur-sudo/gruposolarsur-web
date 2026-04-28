@@ -102,6 +102,13 @@ a {
   text-decoration: none;
 }
 
+@media (max-width: 639px) {
+  .home-page :where(h1, h2, h3) {
+    font-synthesis: weight;
+    font-weight: 900;
+  }
+}
+
 @keyframes hero-sun-halo {
   0%,
   100% {

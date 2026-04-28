@@ -1,8 +1,10 @@
 import Link from "next/link";
 import {
   Activity,
+  ArrowRight,
   BatteryCharging,
   BadgeCheck,
+  CheckCircle2,
   Fan,
   FileText,
   Gauge,
@@ -38,6 +40,36 @@ const detailIcons: Record<ProjectDetailIcon, LucideIcon> = {
   target: Gauge,
   battery: BatteryCharging,
 };
+
+const sectionToneStyles = {
+  default: {
+    card: "border-slate-200 bg-white",
+    eyebrow: "text-slate-400",
+    title: "text-blue-950",
+    copy: "text-slate-600",
+    itemIcon: "text-emerald-600",
+    itemText: "text-slate-700",
+    footnote: "text-slate-500",
+  },
+  accent: {
+    card: "border-amber-200 bg-amber-50",
+    eyebrow: "text-amber-600",
+    title: "text-blue-950",
+    copy: "text-slate-700",
+    itemIcon: "text-amber-600",
+    itemText: "text-slate-700",
+    footnote: "text-slate-500",
+  },
+  neutral: {
+    card: "border-slate-200 bg-slate-100",
+    eyebrow: "text-slate-500",
+    title: "text-blue-950",
+    copy: "text-slate-700",
+    itemIcon: "text-blue-700",
+    itemText: "text-slate-700",
+    footnote: "text-slate-500",
+  },
+} as const;
 
 export function ProjectStoryArticle({ project }: { project: ProjectStory }) {
   const visibleTechnicalSheet = project.technicalSheet.filter(
@@ -208,6 +240,88 @@ export function ProjectStoryArticle({ project }: { project: ProjectStory }) {
             </p>
           </div>
         </div>
+
+        {project.contentSections?.length ? (
+          <div className="relative mt-8 grid gap-4">
+            {project.contentSections.map((section) => {
+              const tone = sectionToneStyles[section.tone ?? "default"];
+
+              return (
+                <section
+                  key={`${project.slug}-${section.title}`}
+                  className={`rounded-lg border px-5 py-5 shadow-[0_16px_38px_rgba(15,23,42,0.05)] sm:px-6 sm:py-6 ${tone.card}`}
+                >
+                  <p
+                    className={`text-[0.68rem] font-extrabold uppercase tracking-[0.22em] ${tone.eyebrow}`}
+                  >
+                    Caso real
+                  </p>
+                  <h4
+                    className={`mt-3 text-2xl font-extrabold leading-tight tracking-tight ${tone.title}`}
+                  >
+                    {section.title}
+                  </h4>
+
+                  {section.copy ? (
+                    <p className={`mt-4 text-[0.98rem] leading-7 ${tone.copy}`}>
+                      {section.copy}
+                    </p>
+                  ) : null}
+
+                  {section.items?.length ? (
+                    <ul className="mt-5 grid gap-3">
+                      {section.items.map((item) => (
+                        <li
+                          key={`${project.slug}-${section.title}-${item}`}
+                          className="flex items-start gap-3"
+                        >
+                          <CheckCircle2
+                            size={18}
+                            className={`mt-1 shrink-0 ${tone.itemIcon}`}
+                            aria-hidden="true"
+                          />
+                          <span className={`text-[0.98rem] leading-7 ${tone.itemText}`}>
+                            {item}
+                          </span>
+                        </li>
+                      ))}
+                    </ul>
+                  ) : null}
+
+                  {section.footnote ? (
+                    <p className={`mt-5 text-sm leading-6 ${tone.footnote}`}>
+                      {section.footnote}
+                    </p>
+                  ) : null}
+                </section>
+              );
+            })}
+          </div>
+        ) : null}
+
+        {project.cta ? (
+          <div className="relative mt-4 overflow-hidden rounded-lg bg-[linear-gradient(135deg,#020617_0%,#0f172a_48%,#1e3a8a_100%)] px-6 py-7 text-white shadow-[0_22px_54px_rgba(15,23,42,0.18)] sm:px-8">
+            <div className="pointer-events-none absolute right-0 top-0 h-32 w-32 rounded-full bg-yellow-300/12 blur-2xl" />
+            <div className="relative">
+              <p className="text-[0.68rem] font-extrabold uppercase tracking-[0.22em] text-yellow-300">
+                TramitaciÃ³n y estudio
+              </p>
+              <h4 className="mt-3 max-w-3xl text-2xl font-extrabold leading-tight tracking-tight sm:text-[2rem]">
+                {project.cta.title}
+              </h4>
+              <p className="mt-4 max-w-3xl text-[1rem] leading-7 text-blue-50/78">
+                {project.cta.copy}
+              </p>
+              <Link
+                href={project.cta.href}
+                className="mt-6 inline-flex min-h-12 items-center justify-center gap-2 rounded-full bg-yellow-300 px-6 py-3 text-sm font-extrabold !text-blue-950 transition hover:bg-yellow-200"
+              >
+                {project.cta.label}
+                <ArrowRight size={16} aria-hidden="true" />
+              </Link>
+            </div>
+          </div>
+        ) : null}
       </div>
     </article>
   );

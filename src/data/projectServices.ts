@@ -2,6 +2,7 @@ export type ProjectServiceKey =
   | "photovoltaic"
   | "solar-thermal"
   | "aerotermia"
+  | "subsidies"
   | "maintenance";
 
 export const projectServiceGroups: Array<{
@@ -31,6 +32,13 @@ export const projectServiceGroups: Array<{
     label: "Aerotermia",
     description: "Casos orientados a climatización eficiente y agua caliente sanitaria.",
     href: "/proyectos/aerotermia",
+  },
+  {
+    key: "subsidies",
+    slug: "ayudas-y-subvenciones",
+    label: "Ayudas y subvenciones",
+    description: "Expedientes reales con ahorro acreditado, documentaciÃ³n y programas de ayuda.",
+    href: "/proyectos/ayudas-y-subvenciones",
   },
   {
     key: "maintenance",

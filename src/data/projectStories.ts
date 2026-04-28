@@ -21,6 +21,23 @@ export type PhotovoltaicSolutionKey =
   | "tilted"
   | "industrial-ground";
 
+export type ProjectStorySectionTone = "default" | "accent" | "neutral";
+
+export type ProjectStorySection = {
+  title: string;
+  copy?: string;
+  items?: string[];
+  footnote?: string;
+  tone?: ProjectStorySectionTone;
+};
+
+export type ProjectStoryCta = {
+  title: string;
+  copy: string;
+  href: string;
+  label: string;
+};
+
 export const photovoltaicSolutions: Array<{
   key: PhotovoltaicSolutionKey;
   title: string;
@@ -74,6 +91,8 @@ export type ProjectStory = {
     icon: ProjectDetailIcon;
   }>;
   technicalNote: string;
+  contentSections?: ProjectStorySection[];
+  cta?: ProjectStoryCta;
 };
 
 export const projectStories: ProjectStory[] = [
@@ -149,6 +168,142 @@ export const projectStories: ProjectStory[] = [
     ],
     technicalNote:
       "Proyecto con tramitación incluida: memoria técnica, licencia de obra, legalización en industria y apoyo para la subvención Plan Ecovivienda Línea 4.",
+  },
+  {
+    slug: "subvencion-energia-solar-benacazon-sevilla",
+    title: "Subvención energética solar en Benacazón (Sevilla)",
+    category: "Ayudas y subvenciones",
+    installationType: "Rehabilitación energética subvencionada",
+    zone: "Benacazón, Sevilla",
+    province: "Sevilla",
+    image:
+      "/proyectos/ayudas-y-subvenciones/sevilla/benacazon/placas-solares-tejado.webp",
+    imageAlt:
+      "Instalación energética subvencionada en Benacazón con paneles solares sobre cubierta",
+    galleryImages: [
+      "/proyectos/ayudas-y-subvenciones/sevilla/benacazon/placas-solares-tejado.webp",
+      "/proyectos/ayudas-y-subvenciones/sevilla/benacazon/inversor-bateria-instalacion.webp",
+    ],
+    galleryImageAlts: [
+      "Paneles solares instalados sobre cubierta inclinada en vivienda de Benacazón",
+      "Detalle del equipo inversor de la instalación subvencionada en Benacazón",
+    ],
+    summary:
+      "Instalación energética subvencionada dentro del Plan Ecovivienda, con reducción del consumo energético de hasta el 98,87% y ayudas de hasta el 80% en una vivienda de Benacazón.",
+    blogSummary:
+      "Documentamos un proyecto real en Benacazón con fotovoltaica de 4,20 kWp, solar térmica por termosifón de 200 litros y expediente Plan Ecovivienda, con ahorro energético de hasta el 98,87% y una ayuda superior a 10.000 €.",
+    publishedAt: "Obra subvencionada",
+    mapPosition: { x: 24, y: 48 },
+    serviceKeys: ["subsidies", "solar-thermal", "photovoltaic"],
+    technicalSheet: [
+      {
+        label: "Tipo",
+        value: "Rehabilitación energética subvencionada",
+        icon: "type",
+      },
+      {
+        label: "Programa",
+        value: "Plan Ecovivienda",
+        icon: "status",
+      },
+      {
+        label: "Ahorro energético",
+        value: "Hasta el 98,87%",
+        icon: "target",
+      },
+      {
+        label: "Subvención",
+        value: "Hasta el 80% y más de 10.000 € de ayuda",
+        icon: "control",
+      },
+      {
+        label: "Fotovoltaica",
+        value: "4,20 kWp con compensación de excedentes",
+        icon: "module",
+      },
+      {
+        label: "Inversor",
+        value: "Inversor monofásico de 4,6 kW",
+        icon: "inverter",
+      },
+      {
+        label: "Solar térmica",
+        value: "Sistema termosifón con acumulador de 200 litros",
+        icon: "service",
+      },
+      {
+        label: "Cobertura ACS",
+        value: "Superior al 70% del consumo de agua caliente",
+        icon: "unit",
+      },
+      {
+        label: "Montaje",
+        value: "Instalación sobre cubierta inclinada",
+        icon: "mount",
+      },
+      {
+        label: "Justificación",
+        value: "Reducción superior al 60% e integración de renovables",
+        icon: "shield",
+      },
+    ],
+    technicalNote:
+      "Proyecto residencial en Benacazón orientado a rehabilitación energética, combinando autoconsumo fotovoltaico y solar térmica para ACS con gestión documental integral del expediente subvencionable.",
+    contentSections: [
+      {
+        title: "Resultados del proyecto",
+        tone: "accent",
+        items: [
+          "Ahorro energético estimado de hasta el 98,87%.",
+          "Subvención obtenida de hasta el 80% del coste elegible.",
+          "Ayuda económica superior a 10.000 €.",
+          "Mejora de la eficiencia y revalorización de la vivienda.",
+        ],
+      },
+      {
+        title: "Instalación solar térmica (ACS)",
+        copy:
+          "Sistema solar térmico diseñado para producir agua caliente sanitaria mediante energía solar, con funcionamiento autónomo y sin consumo eléctrico en la circulación.",
+        items: [
+          "Sistema termosifón sin bombeo.",
+          "Depósito acumulador de 200 litros.",
+          "Cobertura superior al 70% del consumo de ACS.",
+          "Funcionamiento por circulación natural.",
+          "Mantenimiento mínimo.",
+        ],
+      },
+      {
+        title: "Instalación fotovoltaica",
+        items: [
+          "Potencia instalada de 4,20 kWp.",
+          "Inversor monofásico de 4,6 kW.",
+          "Sistema con compensación de excedentes.",
+          "Instalación sobre cubierta inclinada.",
+          "Producción optimizada para autoconsumo.",
+        ],
+      },
+      {
+        title: "Por qué obtiene subvención",
+        tone: "neutral",
+        copy:
+          "Este proyecto cumple los criterios habituales de rehabilitación energética por reducción de demanda e integración de energías renovables.",
+        items: [
+          "Reducción del consumo energético superior al 60%.",
+          "Integración de energías renovables en la vivienda.",
+          "Mejora de la eficiencia energética del edificio.",
+          "Cumplimiento del CTE HE4 para contribución solar mínima.",
+        ],
+        footnote:
+          "En este tipo de expedientes del Plan Ecovivienda, la cobertura de la ayuda podía situarse entre el 40% y el 80% según la mejora energética acreditada.",
+      },
+    ],
+    cta: {
+      title: "¿Quieres conseguir una subvención como esta?",
+      copy:
+        "En Grupo SolarSur gestionamos el proceso completo: estudio energético, instalación, documentación, legalización y tramitación de ayudas.",
+      href: "/#contacto",
+      label: "Solicitar estudio gratuito",
+    },
   },
   {
     slug: "instalacion-hibrida-sanlucar-la-mayor-sevilla",

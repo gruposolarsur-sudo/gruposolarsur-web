@@ -40,6 +40,11 @@ const projectServiceStyles: Record<
     iconClass: "bg-cyan-50 text-cyan-700",
     eyebrow: "Climatización eficiente",
   },
+  subsidies: {
+    icon: FileText,
+    iconClass: "bg-blue-50 text-blue-700",
+    eyebrow: "Expedientes y ayudas",
+  },
   maintenance: {
     icon: Wrench,
     iconClass: "bg-sky-50 text-blue-800",
@@ -55,7 +60,7 @@ const categorizedProjectGroups = getProjectCategoryGroups().map((service) => ({
 export const metadata: Metadata = {
   title: "Proyectos por categorías | Grupo Solar Sur",
   description:
-    "Accede a las páginas independientes de proyectos de fotovoltaica, solar térmica, aerotermia y mantenimiento con fichas técnicas e imágenes reales.",
+    "Accede a las páginas independientes de proyectos de fotovoltaica, solar térmica, aerotermia, ayudas y subvenciones, y mantenimiento con fichas técnicas e imágenes reales.",
 };
 
 export default function ProjectsPage() {
@@ -77,11 +82,12 @@ export default function ProjectsPage() {
               <p className="max-w-3xl text-lg leading-8 text-slate-600">
                 Hemos separado los proyectos en páginas independientes por
                 categoría para que cada servicio tenga su propio escaparate:
-                fotovoltaica, solar térmica, aerotermia y mantenimiento.
+                fotovoltaica, solar térmica, aerotermia, ayudas y subvenciones,
+                y mantenimiento.
               </p>
             </div>
 
-            <div className="mt-10 grid gap-4 md:grid-cols-2 xl:grid-cols-4">
+            <div className="mt-10 grid gap-4 md:grid-cols-2 xl:grid-cols-5">
               {categorizedProjectGroups.map((service) => {
                 const Icon = service.icon;
 

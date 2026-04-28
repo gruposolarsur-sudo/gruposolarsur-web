@@ -46,6 +46,11 @@ const projectServiceStyles: Record<
     iconClass: "bg-cyan-50 text-cyan-700",
     eyebrow: "Climatización eficiente",
   },
+  subsidies: {
+    icon: FileText,
+    iconClass: "bg-blue-50 text-blue-700",
+    eyebrow: "Expedientes y ayudas",
+  },
   maintenance: {
     icon: Wrench,
     iconClass: "bg-sky-50 text-blue-800",
@@ -131,7 +136,9 @@ export default async function ProjectCategoryPage({
               <div className="flex flex-wrap items-center gap-3">
                 <span className="inline-flex min-h-10 items-center rounded-full bg-blue-900 px-4 py-2 text-sm font-extrabold text-white">
                   {categoryGroup.projects.length}{" "}
-                  {categoryGroup.projects.length === 1 ? "ficha publicada" : "fichas publicadas"}
+                  {categoryGroup.projects.length === 1
+                    ? "ficha publicada"
+                    : "fichas publicadas"}
                 </span>
                 <Link
                   href="/proyectos"
@@ -142,7 +149,7 @@ export default async function ProjectCategoryPage({
               </div>
             </div>
 
-            <div className="mt-10 grid gap-4 md:grid-cols-2 xl:grid-cols-4">
+            <div className="mt-10 grid gap-4 md:grid-cols-2 xl:grid-cols-5">
               {projectServiceGroups.map((item) => {
                 const itemStyles = projectServiceStyles[item.key];
                 const ItemIcon = itemStyles.icon;

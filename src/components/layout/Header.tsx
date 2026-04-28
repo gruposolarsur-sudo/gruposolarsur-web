@@ -134,6 +134,10 @@ const projectLinkStyles: Record<
     icon: AerotermiaIcon,
     iconClass: "bg-cyan-50 text-cyan-700",
   },
+  subsidies: {
+    icon: FileText,
+    iconClass: "bg-blue-50 text-blue-700",
+  },
   maintenance: {
     icon: Wrench,
     iconClass: "bg-sky-50 text-blue-800",
@@ -147,9 +151,22 @@ const projectLinks = projectServiceGroups.map((service) => ({
 
 export function Header() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [isMobileServicesOpen, setIsMobileServicesOpen] = useState(false);
+  const [isMobileProjectsOpen, setIsMobileProjectsOpen] = useState(false);
 
   function closeMobileMenu() {
     setIsMobileMenuOpen(false);
+    setIsMobileServicesOpen(false);
+    setIsMobileProjectsOpen(false);
+  }
+
+  function toggleMobileMenu() {
+    if (isMobileMenuOpen) {
+      closeMobileMenu();
+      return;
+    }
+
+    setIsMobileMenuOpen(true);
   }
 
   return (
@@ -323,7 +340,7 @@ export function Header() {
           </Link>
           <button
             type="button"
-            onClick={() => setIsMobileMenuOpen((current) => !current)}
+            onClick={toggleMobileMenu}
             className="inline-flex h-11 w-11 shrink-0 items-center justify-center rounded-full border border-slate-200 bg-white text-blue-950 shadow-sm transition hover:border-blue-200 hover:bg-blue-50 lg:hidden"
             aria-label={
               isMobileMenuOpen
@@ -350,7 +367,155 @@ export function Header() {
           <Container className="py-4">
             <nav aria-label="Principal móvil" className="grid gap-4">
               <div className="grid gap-2">
-                {navigation.map((item) => (
+                <Link
+                  href="/#inicio"
+                  onClick={closeMobileMenu}
+                  className="flex min-h-12 items-center rounded-2xl border border-slate-200 bg-slate-50 px-4 text-sm font-bold text-blue-950 transition hover:border-blue-200 hover:bg-blue-50"
+                >
+                  Inicio
+                </Link>
+
+                <div className="rounded-2xl border border-slate-200 bg-white shadow-[0_12px_32px_rgba(15,23,42,0.06)]">
+                  <button
+                    type="button"
+                    onClick={() =>
+                      setIsMobileServicesOpen((current) => !current)
+                    }
+                    className="flex min-h-12 w-full items-center justify-between gap-3 px-4 text-left text-sm font-bold text-blue-950"
+                    aria-expanded={isMobileServicesOpen}
+                    aria-controls="mobile-services-navigation"
+                  >
+                    <span>Servicios</span>
+                    <ChevronDown
+                      size={18}
+                      strokeWidth={2.3}
+                      className={`shrink-0 transition duration-200 ${
+                        isMobileServicesOpen ? "rotate-180" : ""
+                      }`}
+                      aria-hidden="true"
+                    />
+                  </button>
+
+                  {isMobileServicesOpen ? (
+                    <div
+                      id="mobile-services-navigation"
+                      className="border-t border-slate-200 px-3 pb-3 pt-2"
+                    >
+                      <Link
+                        href="/#servicios"
+                        onClick={closeMobileMenu}
+                        className="flex min-h-11 items-center rounded-xl px-2 py-2.5 text-sm font-bold text-blue-900 transition hover:bg-blue-50"
+                      >
+                        Ver todos los servicios
+                      </Link>
+
+                      <div className="grid gap-1.5">
+                        {serviceLinks.map((service) => {
+                          const Icon = service.icon;
+
+                          return (
+                            <Link
+                              key={service.label}
+                              href={service.href}
+                              onClick={closeMobileMenu}
+                              className="flex gap-3 rounded-xl px-2 py-2.5 text-blue-950 transition hover:bg-blue-50"
+                            >
+                              <span
+                                className={`mt-0.5 flex h-9 w-9 shrink-0 items-center justify-center rounded-xl ${service.iconClass}`}
+                              >
+                                <Icon
+                                  size={18}
+                                  strokeWidth={2.2}
+                                  aria-hidden="true"
+                                />
+                              </span>
+                              <span className="min-w-0">
+                                <span className="block text-sm font-bold leading-5">
+                                  {service.label}
+                                </span>
+                                <span className="mt-0.5 block text-xs leading-5 text-slate-500">
+                                  {service.description}
+                                </span>
+                              </span>
+                            </Link>
+                          );
+                        })}
+                      </div>
+                    </div>
+                  ) : null}
+                </div>
+
+                <div className="rounded-2xl border border-slate-200 bg-white shadow-[0_12px_32px_rgba(15,23,42,0.06)]">
+                  <button
+                    type="button"
+                    onClick={() =>
+                      setIsMobileProjectsOpen((current) => !current)
+                    }
+                    className="flex min-h-12 w-full items-center justify-between gap-3 px-4 text-left text-sm font-bold text-blue-950"
+                    aria-expanded={isMobileProjectsOpen}
+                    aria-controls="mobile-projects-navigation"
+                  >
+                    <span>Proyectos</span>
+                    <ChevronDown
+                      size={18}
+                      strokeWidth={2.3}
+                      className={`shrink-0 transition duration-200 ${
+                        isMobileProjectsOpen ? "rotate-180" : ""
+                      }`}
+                      aria-hidden="true"
+                    />
+                  </button>
+
+                  {isMobileProjectsOpen ? (
+                    <div
+                      id="mobile-projects-navigation"
+                      className="border-t border-slate-200 px-3 pb-3 pt-2"
+                    >
+                      <Link
+                        href="/proyectos"
+                        onClick={closeMobileMenu}
+                        className="flex min-h-11 items-center rounded-xl px-2 py-2.5 text-sm font-bold text-blue-900 transition hover:bg-blue-50"
+                      >
+                        Ver todos los proyectos
+                      </Link>
+
+                      <div className="grid gap-1.5">
+                        {projectLinks.map((project) => {
+                          const Icon = project.icon;
+
+                          return (
+                            <Link
+                              key={project.key}
+                              href={project.href}
+                              onClick={closeMobileMenu}
+                              className="flex gap-3 rounded-xl px-2 py-2.5 text-blue-950 transition hover:bg-blue-50"
+                            >
+                              <span
+                                className={`mt-0.5 flex h-9 w-9 shrink-0 items-center justify-center rounded-xl ${project.iconClass}`}
+                              >
+                                <Icon
+                                  size={18}
+                                  strokeWidth={2.2}
+                                  aria-hidden="true"
+                                />
+                              </span>
+                              <span className="min-w-0">
+                                <span className="block text-sm font-bold leading-5">
+                                  {project.label}
+                                </span>
+                                <span className="mt-0.5 block text-xs leading-5 text-slate-500">
+                                  {project.description}
+                                </span>
+                              </span>
+                            </Link>
+                          );
+                        })}
+                      </div>
+                    </div>
+                  ) : null}
+                </div>
+
+                {navigation.slice(2).map((item) => (
                   <Link
                     key={item.label}
                     href={item.href}
@@ -360,83 +525,6 @@ export function Header() {
                     {item.label}
                   </Link>
                 ))}
-              </div>
-
-              <div className="rounded-2xl border border-slate-200 bg-white p-3 shadow-[0_12px_32px_rgba(15,23,42,0.06)]">
-                <p className="px-2 text-xs font-extrabold uppercase text-slate-500">
-                  Servicios
-                </p>
-                <div className="mt-2 grid gap-1.5">
-                  {serviceLinks.map((service) => {
-                    const Icon = service.icon;
-
-                    return (
-                      <Link
-                        key={service.label}
-                        href={service.href}
-                        onClick={closeMobileMenu}
-                        className="flex gap-3 rounded-xl px-2 py-2.5 text-blue-950 transition hover:bg-blue-50"
-                      >
-                        <span
-                          className={`mt-0.5 flex h-9 w-9 shrink-0 items-center justify-center rounded-xl ${service.iconClass}`}
-                        >
-                          <Icon size={18} strokeWidth={2.2} aria-hidden="true" />
-                        </span>
-                        <span className="min-w-0">
-                          <span className="block text-sm font-bold leading-5">
-                            {service.label}
-                          </span>
-                          <span className="mt-0.5 block text-xs leading-5 text-slate-500">
-                            {service.description}
-                          </span>
-                        </span>
-                      </Link>
-                    );
-                  })}
-                </div>
-              </div>
-
-              <div className="rounded-2xl border border-slate-200 bg-white p-3 shadow-[0_12px_32px_rgba(15,23,42,0.06)]">
-                <div className="flex items-center justify-between gap-3 px-2">
-                  <p className="text-xs font-extrabold uppercase text-slate-500">
-                    Proyectos por servicio
-                  </p>
-                  <Link
-                    href="/proyectos"
-                    onClick={closeMobileMenu}
-                    className="text-xs font-bold text-blue-900 transition hover:text-blue-700"
-                  >
-                    Ver todos
-                  </Link>
-                </div>
-                <div className="mt-2 grid gap-1.5">
-                  {projectLinks.map((project) => {
-                    const Icon = project.icon;
-
-                    return (
-                      <Link
-                        key={project.key}
-                        href={project.href}
-                        onClick={closeMobileMenu}
-                        className="flex gap-3 rounded-xl px-2 py-2.5 text-blue-950 transition hover:bg-blue-50"
-                      >
-                        <span
-                          className={`mt-0.5 flex h-9 w-9 shrink-0 items-center justify-center rounded-xl ${project.iconClass}`}
-                        >
-                          <Icon size={18} strokeWidth={2.2} aria-hidden="true" />
-                        </span>
-                        <span className="min-w-0">
-                          <span className="block text-sm font-bold leading-5">
-                            {project.label}
-                          </span>
-                          <span className="mt-0.5 block text-xs leading-5 text-slate-500">
-                            {project.description}
-                          </span>
-                        </span>
-                      </Link>
-                    );
-                  })}
-                </div>
               </div>
 
               <div className="grid gap-2 min-[420px]:grid-cols-2">
