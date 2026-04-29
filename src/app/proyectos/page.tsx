@@ -1,7 +1,13 @@
 import type { ElementType } from "react";
 import type { Metadata } from "next";
 import Link from "next/link";
-import { ArrowRight, FileText, SunMedium, Wrench } from "lucide-react";
+import {
+  ArrowRight,
+  ChartNoAxesCombined,
+  FileText,
+  SunMedium,
+  Wrench,
+} from "lucide-react";
 
 import {
   AerotermiaIcon,
@@ -10,12 +16,13 @@ import {
 } from "@/components/icons/ServiceIcons";
 import { Footer } from "@/components/layout/Footer";
 import { Header } from "@/components/layout/Header";
+import { ProjectCategoryCarousel } from "@/components/projects/ProjectCategoryCarousel";
 import { Container } from "@/components/ui/Container";
 import {
   projectServiceGroups,
   type ProjectServiceKey,
 } from "@/data/projectServices";
-import { getProjectCategoryGroups, getProjectHref } from "@/lib/projectCatalog";
+import { getProjectCategoryGroups } from "@/lib/projectCatalog";
 
 const projectServiceStyles: Record<
   ProjectServiceKey,
@@ -23,32 +30,77 @@ const projectServiceStyles: Record<
     icon: ElementType<ServiceIconProps>;
     iconClass: string;
     eyebrow: string;
+    backgroundImage: string;
+    cardClass: string;
+    overlayClass: string;
+    copyClass: string;
   }
 > = {
   photovoltaic: {
     icon: SunMedium,
     iconClass: "bg-yellow-50 text-amber-600",
     eyebrow: "Autoconsumo y baterías",
+    backgroundImage: "/imagenes/servicios/fondo-servicio-fotovoltaica.svg",
+    cardClass:
+      "border-amber-200 bg-[linear-gradient(180deg,#fef3c7_0%,#fde68a_100%)] shadow-[0_18px_42px_rgba(180,83,9,0.1)]",
+    overlayClass:
+      "bg-[linear-gradient(180deg,rgba(254,243,199,0.26)_0%,rgba(253,230,138,0.42)_100%)]",
+    copyClass: "text-blue-950/78",
   },
   "solar-thermal": {
     icon: SolarThermalIcon,
     iconClass: "bg-amber-50 text-amber-600",
     eyebrow: "ACS y soluciones híbridas",
+    backgroundImage: "/imagenes/servicios/fondo-servicio-solar-termica.svg",
+    cardClass:
+      "border-orange-200 bg-[linear-gradient(180deg,#ffedd5_0%,#fed7aa_100%)] shadow-[0_18px_42px_rgba(194,65,12,0.1)]",
+    overlayClass:
+      "bg-[linear-gradient(180deg,rgba(255,237,213,0.26)_0%,rgba(254,215,170,0.42)_100%)]",
+    copyClass: "text-blue-950/78",
   },
   aerotermia: {
     icon: AerotermiaIcon,
     iconClass: "bg-cyan-50 text-cyan-700",
     eyebrow: "Climatización eficiente",
+    backgroundImage: "/imagenes/servicios/fondo-servicio-aerotermia.svg",
+    cardClass:
+      "border-cyan-200 bg-[linear-gradient(180deg,#cffafe_0%,#a5f3fc_100%)] shadow-[0_18px_42px_rgba(8,145,178,0.1)]",
+    overlayClass:
+      "bg-[linear-gradient(180deg,rgba(207,250,254,0.26)_0%,rgba(165,243,252,0.4)_100%)]",
+    copyClass: "text-blue-950/78",
   },
   subsidies: {
     icon: FileText,
     iconClass: "bg-blue-50 text-blue-700",
     eyebrow: "Expedientes y ayudas",
+    backgroundImage: "/imagenes/servicios/fondo-servicio-ayudas.svg",
+    cardClass:
+      "border-blue-200 bg-[linear-gradient(180deg,#eff6ff_0%,#dbeafe_100%)] shadow-[0_18px_42px_rgba(37,99,235,0.09)]",
+    overlayClass:
+      "bg-[linear-gradient(180deg,rgba(239,246,255,0.26)_0%,rgba(219,234,254,0.4)_100%)]",
+    copyClass: "text-blue-950/76",
+  },
+  study: {
+    icon: ChartNoAxesCombined,
+    iconClass: "bg-emerald-50 text-emerald-700",
+    eyebrow: "Análisis y consultoría",
+    backgroundImage: "/imagenes/servicios/fondo-servicio-estudio.svg",
+    cardClass:
+      "border-emerald-200 bg-[linear-gradient(180deg,#d1fae5_0%,#a7f3d0_100%)] shadow-[0_18px_42px_rgba(5,150,105,0.1)]",
+    overlayClass:
+      "bg-[linear-gradient(180deg,rgba(209,250,229,0.26)_0%,rgba(167,243,208,0.4)_100%)]",
+    copyClass: "text-blue-950/78",
   },
   maintenance: {
     icon: Wrench,
     iconClass: "bg-sky-50 text-blue-800",
     eyebrow: "Seguimiento técnico",
+    backgroundImage: "/imagenes/servicios/fondo-servicio-mantenimiento-control.svg",
+    cardClass:
+      "border-sky-200 bg-[linear-gradient(180deg,#dbeafe_0%,#bfdbfe_100%)] shadow-[0_18px_42px_rgba(29,78,216,0.1)]",
+    overlayClass:
+      "bg-[linear-gradient(180deg,rgba(219,234,254,0.26)_0%,rgba(191,219,254,0.4)_100%)]",
+    copyClass: "text-blue-950/78",
   },
 };
 
@@ -60,7 +112,7 @@ const categorizedProjectGroups = getProjectCategoryGroups().map((service) => ({
 export const metadata: Metadata = {
   title: "Proyectos por categorías | Grupo Solar Sur",
   description:
-    "Accede a las páginas independientes de proyectos de fotovoltaica, solar térmica, aerotermia, ayudas y subvenciones, y mantenimiento con fichas técnicas e imágenes reales.",
+    "Accede a las páginas independientes de proyectos de fotovoltaica, solar térmica, aerotermia, ayudas y subvenciones, estudio y asesoramiento energético, y mantenimiento con fichas técnicas e imágenes reales.",
 };
 
 export default function ProjectsPage() {
@@ -75,7 +127,7 @@ export default function ProjectsPage() {
                 <p className="text-[0.78rem] font-semibold uppercase tracking-[0.32em] text-amber-500">
                   Proyectos por categorías
                 </p>
-                <h1 className="mt-4 max-w-[14ch] text-4xl font-extrabold leading-tight tracking-tight text-blue-950 sm:text-[3.2rem]">
+                <h1 className="mt-4 max-w-[14ch] text-4xl font-extrabold leading-tight tracking-tight text-blue-900 sm:text-[3.2rem]">
                   Resumen de proyectos
                 </h1>
               </div>
@@ -83,60 +135,67 @@ export default function ProjectsPage() {
                 Hemos separado los proyectos en páginas independientes por
                 categoría para que cada servicio tenga su propio escaparate:
                 fotovoltaica, solar térmica, aerotermia, ayudas y subvenciones,
-                y mantenimiento.
+                estudio y asesoramiento energético, y mantenimiento.
               </p>
             </div>
 
-            <div className="mt-10 grid gap-4 md:grid-cols-2 xl:grid-cols-5">
+            <div className="mt-10 grid auto-rows-fr gap-4 md:grid-cols-2 lg:grid-cols-3">
               {categorizedProjectGroups.map((service) => {
                 const Icon = service.icon;
 
                 return (
                   <article
                     key={service.key}
-                    className="rounded-lg border border-blue-200/70 bg-white p-5 shadow-[0_18px_48px_rgba(15,23,42,0.06)]"
+                    className={`relative flex h-full flex-col overflow-hidden rounded-lg border p-5 ${service.cardClass}`}
                   >
-                    <div className="flex items-start justify-between gap-3">
-                      <span
-                        className={`flex h-11 w-11 shrink-0 items-center justify-center rounded-2xl ${service.iconClass}`}
-                      >
-                        <Icon size={20} strokeWidth={2.2} aria-hidden="true" />
-                      </span>
-                      <span className="inline-flex min-h-8 items-center rounded-full bg-blue-50 px-3 py-1 text-xs font-extrabold text-blue-900">
-                        {service.projects.length}{" "}
-                        {service.projects.length === 1 ? "proyecto" : "proyectos"}
-                      </span>
-                    </div>
+                    <div
+                      className="absolute inset-0 bg-cover bg-center bg-no-repeat opacity-[0.94]"
+                      style={{ backgroundImage: `url(${service.backgroundImage})` }}
+                    />
+                    <div className="absolute inset-0 bg-[linear-gradient(96deg,rgba(255,255,255,0.44)_0%,rgba(255,255,255,0.22)_34%,rgba(255,255,255,0.08)_58%,rgba(255,255,255,0.02)_78%)]" />
+                    <div className={`absolute inset-0 ${service.overlayClass}`} />
+                    <div className="absolute inset-0 bg-[radial-gradient(circle_at_82%_18%,rgba(255,255,255,0.22),transparent_38%)]" />
 
-                    <p className="mt-4 text-[0.68rem] font-extrabold uppercase tracking-[0.18em] text-slate-400">
-                      {service.eyebrow}
-                    </p>
-                    <h2 className="mt-2 text-xl font-extrabold leading-tight tracking-tight text-blue-950">
-                      {service.label}
-                    </h2>
-                    <p className="mt-3 text-sm leading-6 text-slate-600">
-                      {service.description}
-                    </p>
-
-                    <div className="mt-5 space-y-2">
-                      {service.projects.slice(0, 2).map((project) => (
-                        <Link
-                          key={`${service.key}-${project.slug}`}
-                          href={getProjectHref(project)}
-                          className="block rounded-lg border border-slate-200 bg-slate-50 px-3 py-3 text-sm font-bold text-blue-950 transition hover:border-blue-200 hover:bg-blue-50"
+                    <div className="relative z-10 flex h-full flex-col">
+                      <div className="flex items-start justify-between gap-3">
+                        <span
+                          className={`flex h-11 w-11 shrink-0 items-center justify-center rounded-2xl shadow-[inset_0_1px_0_rgba(255,255,255,0.8)] ${service.iconClass}`}
                         >
-                          {project.title}
-                        </Link>
-                      ))}
-                    </div>
+                          <Icon size={20} strokeWidth={2.2} aria-hidden="true" />
+                        </span>
+                        <span className="inline-flex min-h-8 items-center rounded-full bg-white/75 px-3 py-1 text-xs font-extrabold text-blue-900 shadow-[inset_0_1px_0_rgba(255,255,255,0.85)] backdrop-blur-sm">
+                          {service.projects.length}{" "}
+                          {service.projects.length === 1 ? "proyecto" : "proyectos"}
+                        </span>
+                      </div>
 
-                    <Link
-                      href={service.href}
-                      className="mt-5 inline-flex items-center gap-2 text-sm font-extrabold text-blue-900 transition hover:text-blue-700"
-                    >
-                      Ver página de categoría
-                      <ArrowRight size={15} aria-hidden="true" />
-                    </Link>
+                      <p className="mt-4 text-[0.68rem] font-extrabold uppercase tracking-[0.18em] text-blue-900/42">
+                        {service.eyebrow}
+                      </p>
+                      <h2 className="mt-2 text-xl font-extrabold leading-tight tracking-tight text-blue-900">
+                        {service.label}
+                      </h2>
+                      <p className={`mt-3 text-sm leading-6 ${service.copyClass}`}>
+                        {service.description}
+                      </p>
+
+                      {service.projects.length > 0 ? (
+                        <ProjectCategoryCarousel projects={service.projects} />
+                      ) : (
+                        <div className="mt-5 rounded-xl border border-white/65 bg-white/72 px-4 py-4 text-sm leading-6 text-blue-900/68 shadow-[0_12px_28px_rgba(15,23,42,0.08)] backdrop-blur-sm">
+                          Estamos preparando las primeras fichas documentadas para
+                          esta categoría.
+                        </div>
+                      )}
+
+                      <Link
+                        href={service.href}
+                        className="mt-auto inline-flex items-center gap-2 pt-5 text-sm font-extrabold text-blue-900 transition hover:text-blue-700"
+                      >
+                        Ver página de categoría
+                        <ArrowRight size={15} aria-hidden="true" />
+                      </Link>
+                    </div>
                   </article>
                 );
               })}

@@ -2,7 +2,13 @@ import type { ElementType } from "react";
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { ArrowRight, FileText, SunMedium, Wrench } from "lucide-react";
+import {
+  ArrowRight,
+  ChartNoAxesCombined,
+  FileText,
+  SunMedium,
+  Wrench,
+} from "lucide-react";
 
 import {
   AerotermiaIcon,
@@ -19,8 +25,8 @@ import {
 } from "@/data/projectServices";
 import {
   getProjectCategoryGroups,
-  getProjectServiceBySlug,
   getProjectHref,
+  getProjectServiceBySlug,
 } from "@/lib/projectCatalog";
 
 const projectServiceStyles: Record<
@@ -50,6 +56,11 @@ const projectServiceStyles: Record<
     icon: FileText,
     iconClass: "bg-blue-50 text-blue-700",
     eyebrow: "Expedientes y ayudas",
+  },
+  study: {
+    icon: ChartNoAxesCombined,
+    iconClass: "bg-emerald-50 text-emerald-700",
+    eyebrow: "Análisis y consultoría",
   },
   maintenance: {
     icon: Wrench,
@@ -149,7 +160,7 @@ export default async function ProjectCategoryPage({
               </div>
             </div>
 
-            <div className="mt-10 grid gap-4 md:grid-cols-2 xl:grid-cols-5">
+            <div className="mt-10 grid gap-4 md:grid-cols-2 lg:grid-cols-3">
               {projectServiceGroups.map((item) => {
                 const itemStyles = projectServiceStyles[item.key];
                 const ItemIcon = itemStyles.icon;

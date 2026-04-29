@@ -3,6 +3,7 @@ export type ProjectServiceKey =
   | "solar-thermal"
   | "aerotermia"
   | "subsidies"
+  | "study"
   | "maintenance";
 
 export const projectServiceGroups: Array<{
@@ -43,6 +44,14 @@ export const projectServiceGroups: Array<{
     description:
       "Expedientes reales con ahorro acreditado, documentación y programas de ayuda.",
     href: "/proyectos/ayudas-y-subvenciones",
+  },
+  {
+    key: "study",
+    slug: "estudio-asesoramiento-energetico",
+    label: "Estudio y asesoramiento energético",
+    description:
+      "Casos de análisis energético, diagnóstico previo y orientación técnica para decidir mejor.",
+    href: "/proyectos/estudio-asesoramiento-energetico",
   },
   {
     key: "maintenance",

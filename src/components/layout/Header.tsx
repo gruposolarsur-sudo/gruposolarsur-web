@@ -138,6 +138,10 @@ const projectLinkStyles: Record<
     icon: FileText,
     iconClass: "bg-blue-50 text-blue-700",
   },
+  study: {
+    icon: ChartNoAxesCombined,
+    iconClass: "bg-emerald-50 text-emerald-700",
+  },
   maintenance: {
     icon: Wrench,
     iconClass: "bg-sky-50 text-blue-800",

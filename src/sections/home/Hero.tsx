@@ -48,10 +48,10 @@ const quickStats = [
 function HighlightWord({ children }: { children: ReactNode }) {
   return (
     <span className="relative inline-block overflow-visible px-1 pr-4 pb-6 pt-1 sm:px-2 sm:pr-5 sm:pb-7">
-      <span className="relative z-10 inline-block leading-[1.02] bg-gradient-to-r from-blue-700 via-blue-600 to-blue-900 bg-clip-text text-transparent drop-shadow-[0_6px_14px_rgba(37,99,235,0.12)]">
+      <span className="relative z-10 inline-block font-black leading-[1.02] bg-gradient-to-r from-blue-700 via-blue-600 to-blue-900 bg-clip-text text-transparent drop-shadow-[0_6px_14px_rgba(37,99,235,0.12)]">
         {children}
       </span>
-      <span className="pointer-events-none absolute inset-x-0 bottom-[0.05rem] z-0 h-3.5 -rotate-[1.5deg] text-yellow-300/90 sm:bottom-[0.08rem] sm:h-4.5">
+      <span className="pointer-events-none absolute inset-x-0 bottom-[0.16rem] z-0 h-5.5 -rotate-[1.5deg] text-yellow-300/90 sm:bottom-[0.2rem] sm:h-6.5">
         <svg
           viewBox="0 0 240 28"
           preserveAspectRatio="none"
@@ -85,12 +85,12 @@ export function Hero() {
       <Container className="relative">
         <div className="grid gap-10 sm:gap-14 lg:grid-cols-[minmax(0,1.08fr)_minmax(0,0.92fr)] lg:items-start lg:gap-16">
           <div className="relative z-10 max-w-2xl lg:pr-6">
-            <h1 className="max-w-[14.4ch] overflow-visible text-[2.55rem] font-extrabold leading-[0.96] tracking-[-0.05em] text-blue-950 drop-shadow-[0_10px_26px_rgba(255,255,255,0.55)] min-[380px]:text-[2.85rem] sm:max-w-[13.2ch] sm:text-[4.2rem] sm:leading-[0.92] lg:max-w-[12.8ch] lg:text-[5rem]">
-              <span className="block">Convierte tu tejado en</span>
+            <h1 className="max-w-[14.4ch] overflow-visible text-[2.55rem] font-black leading-[0.96] tracking-[-0.055em] text-blue-950 drop-shadow-[0_10px_26px_rgba(255,255,255,0.55)] min-[380px]:text-[2.85rem] sm:max-w-[13.2ch] sm:text-[4.2rem] sm:leading-[0.92] lg:max-w-[12.8ch] lg:text-[5rem]">
+              <span className="block font-black">Convierte tu tejado en</span>
               <span className="mt-2 block text-[1.08em] leading-[0.9] sm:mt-2.5">
                 <HighlightWord>ingresos</HighlightWord>
               </span>
-              <span className="mt-3 block text-[0.9em] leading-[0.98] sm:mt-3.5">
+              <span className="mt-3 block font-black text-[0.9em] leading-[0.98] sm:mt-3.5">
                 desde el primer mes
               </span>
             </h1>

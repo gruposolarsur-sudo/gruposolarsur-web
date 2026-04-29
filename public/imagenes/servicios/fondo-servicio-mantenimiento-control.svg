@@ -1,26 +1,103 @@
-<svg width="384" height="416" viewBox="0 0 384 416" fill="none" xmlns="http://www.w3.org/2000/svg">
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="Capa_1" xmlns="http://www.w3.org/2000/svg" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 384 416">
+  <!-- Generator: Adobe Illustrator 30.0.0, SVG Export Plug-In . SVG Version: 2.1.1 Build 123)  -->
   <defs>
-    <linearGradient id="monitorFill" x1="220" y1="96" x2="344" y2="186" gradientUnits="userSpaceOnUse">
-      <stop stop-color="#F8FBFF" stop-opacity="0.7"/>
-      <stop offset="1" stop-color="#60A5FA" stop-opacity="0.2"/>
+    <style>
+      .st0 {
+        stroke-width: 3.6px;
+      }
+
+      .st0, .st1, .st2, .st3, .st4, .st5, .st6 {
+        fill: none;
+        stroke-linecap: round;
+      }
+
+      .st0, .st1, .st4 {
+        stroke-opacity: .28;
+      }
+
+      .st0, .st2, .st6 {
+        stroke: #60a5fa;
+      }
+
+      .st1 {
+        stroke-width: 3px;
+      }
+
+      .st1, .st4 {
+        stroke: #3b82f6;
+      }
+
+      .st2 {
+        stroke-opacity: .24;
+      }
+
+      .st2, .st3 {
+        stroke-width: 4px;
+      }
+
+      .st3 {
+        stroke-opacity: .18;
+      }
+
+      .st3, .st7, .st8 {
+        stroke: #93c5fd;
+      }
+
+      .st7 {
+        fill: url(#Degradado_sin_nombre);
+        stroke-opacity: .62;
+      }
+
+      .st7, .st8 {
+        stroke-width: 3.2px;
+      }
+
+      .st8 {
+        fill: url(#Degradado_sin_nombre_2);
+        stroke-opacity: .6;
+      }
+
+      .st4 {
+        stroke-width: 3.4px;
+      }
+
+      .st5 {
+        stroke: #2563eb;
+        stroke-linejoin: round;
+        stroke-opacity: .38;
+      }
+
+      .st5, .st6 {
+        stroke-width: 4.2px;
+      }
+
+      .st6 {
+        stroke-opacity: .34;
+      }
+
+      .st9 {
+        fill: #60a5fa;
+        fill-opacity: .34;
+      }
+    </style>
+    <linearGradient id="Degradado_sin_nombre" data-name="Degradado sin nombre" x1="215.11" y1="452.23" x2="339.11" y2="542.23" gradientTransform="translate(0 -426)" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#f8fbff" stop-opacity=".7"/>
+      <stop offset="1" stop-color="#60a5fa" stop-opacity=".2"/>
     </linearGradient>
-    <linearGradient id="helmetFill" x1="212" y1="276" x2="338" y2="360" gradientUnits="userSpaceOnUse">
-      <stop stop-color="#EEF5FF" stop-opacity="0.56"/>
-      <stop offset="1" stop-color="#93C5FD" stop-opacity="0.22"/>
+    <linearGradient id="Degradado_sin_nombre_2" data-name="Degradado sin nombre 2" x1="210.27" y1="684.38" x2="336.27" y2="768.38" gradientTransform="translate(0 -426)" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#eef5ff" stop-opacity=".56"/>
+      <stop offset="1" stop-color="#93c5fd" stop-opacity=".22"/>
     </linearGradient>
   </defs>
-  <path d="M284 46L298 60C302 64 308 64 312 60L320 52C313 45 311 35 316 28L308 20C303 15 295 15 290 20L282 28C277 33 277 41 282 46L290 54L244 100" stroke="#2563EB" stroke-width="5" stroke-linecap="round" stroke-linejoin="round" stroke-opacity="0.36"/>
-  <path d="M317 29L332 14C336 10 342 9 347 12L356 17C350 26 351 37 359 44L350 53C345 58 337 58 332 53L317 38" fill="#DBEAFE" fill-opacity="0.24" stroke="#60A5FA" stroke-width="4" stroke-linejoin="round" stroke-opacity="0.34"/>
-  <rect x="220" y="100" width="124" height="92" rx="18" fill="url(#monitorFill)" stroke="#93C5FD" stroke-width="3.2" stroke-opacity="0.62"/>
-  <path d="M240 126H324" stroke="#3B82F6" stroke-width="3" stroke-linecap="round" stroke-opacity="0.28"/>
-  <circle cx="244" cy="126" r="5" fill="#60A5FA" fill-opacity="0.48"/>
-  <circle cx="262" cy="126" r="5" fill="#60A5FA" fill-opacity="0.34"/>
-  <path d="M242 166L260 154L278 160L300 136L322 144" stroke="#2563EB" stroke-width="4.2" stroke-linecap="round" stroke-linejoin="round" stroke-opacity="0.38"/>
-  <path d="M274 192V214M252 214H296" stroke="#60A5FA" stroke-width="4.2" stroke-linecap="round" stroke-opacity="0.34"/>
-  <path d="M236 234C250 224 264 222 278 234C292 246 306 246 320 234C334 222 348 224 362 234" stroke="#60A5FA" stroke-width="4" stroke-linecap="round" stroke-opacity="0.24"/>
-  <path d="M200 322C200 288 227 262 261 262C295 262 322 288 322 322H200Z" fill="url(#helmetFill)" stroke="#93C5FD" stroke-width="3.2" stroke-opacity="0.6"/>
-  <path d="M212 322H310" stroke="#60A5FA" stroke-width="4.2" stroke-linecap="round" stroke-opacity="0.34"/>
-  <path d="M260 276V322" stroke="#60A5FA" stroke-width="3.6" stroke-linecap="round" stroke-opacity="0.28"/>
-  <path d="M232 294C240 286 250 282 261 282C272 282 282 286 290 294" stroke="#3B82F6" stroke-width="3.4" stroke-linecap="round" stroke-opacity="0.28"/>
-  <path d="M184 354H332" stroke="#93C5FD" stroke-width="4" stroke-linecap="round" stroke-opacity="0.18"/>
+  <rect class="st7" x="217.49" y="26.96" width="124" height="92" rx="18" ry="18"/>
+  <path class="st1" d="M237.49,52.96h84"/>
+  <circle class="st9" cx="259.49" cy="52.96" r="5"/>
+  <path class="st5" d="M239.49,92.96l18-12,18,6,22-24,22,8"/>
+  <path class="st6" d="M279.49,118.96v22M257.49,140.96h44"/>
+  <path class="st2" d="M238.49,207.63c14-10,28-12,42,0,14,12,28,12,42,0s28-10,42,0"/>
+  <path class="st8" d="M197,306.27c0-34,27-60,61-60s61,26,61,60h-122,0Z"/>
+  <path class="st0" d="M257,260.27v46"/>
+  <path class="st4" d="M229,278.27c8-8,18-12,29-12s21,4,29,12"/>
+  <path class="st3" d="M184,354h148"/>
 </svg>
