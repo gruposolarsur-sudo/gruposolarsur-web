@@ -132,10 +132,11 @@ export default function ProjectsPage() {
                 </h1>
               </div>
               <p className="max-w-3xl text-lg leading-8 text-slate-600">
-                Hemos separado los proyectos en páginas independientes por
-                categoría para que cada servicio tenga su propio escaparate:
-                fotovoltaica, solar térmica, aerotermia, ayudas y subvenciones,
-                estudio y asesoramiento energético, y mantenimiento.
+                Explora casos reales ejecutados por Grupo Solar Sur y encuentra
+                ejemplos parecidos a tu vivienda, negocio o necesidad
+                energética. Aquí reunimos instalaciones, expedientes y
+                actuaciones técnicas organizadas por categoría para que compares
+                soluciones con contexto real.
               </p>
             </div>
 
