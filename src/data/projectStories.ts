@@ -306,6 +306,294 @@ export const projectStories: ProjectStory[] = [
     },
   },
   {
+    slug: "subvencion-placas-solares-el-puerto-de-santa-maria-cadiz",
+    title: "Subvención placas solares en El Puerto de Santa María (Cádiz)",
+    category: "Obra fotovoltaica subvencionada",
+    installationType: "Autoconsumo fotovoltaico subvencionado conectado a red",
+    zone: "El Puerto de Santa María, Cádiz",
+    province: "Cádiz",
+    image:
+      "/proyectos/fotovoltaica/cadiz/el-puerto-de-santa-maria/placas-solares-fotovoltaicas-el-puerto-de-santa-maria.webp",
+    imageAlt:
+      "Instalación de placas solares en El Puerto de Santa María con estructura inclinada sobre cubierta",
+    galleryImages: [
+      "/proyectos/fotovoltaica/cadiz/el-puerto-de-santa-maria/placas-solares-fotovoltaicas-el-puerto-de-santa-maria.webp",
+      "/proyectos/fotovoltaica/cadiz/el-puerto-de-santa-maria/instalacion-paneles-solares-vivienda-el-puerto-de-santa-maria.webp",
+      "/proyectos/fotovoltaica/cadiz/el-puerto-de-santa-maria/instalacion-placas-solares-el-puerto-de-santa-maria.webp",
+      "/proyectos/fotovoltaica/cadiz/el-puerto-de-santa-maria/montaje-placas-solares-el-puerto-de-santa-maria.webp",
+    ],
+    galleryImageAlts: [
+      "Vista general de la instalación fotovoltaica subvencionada en El Puerto de Santa María",
+      "Paneles solares residenciales instalados en vivienda de El Puerto de Santa María",
+      "Detalle del campo fotovoltaico y estructura inclinada en cubierta",
+      "Montaje de placas solares con estructura de aluminio en vivienda de Cádiz",
+    ],
+    summary:
+      "Instalación fotovoltaica residencial acogida al Plan Ecovivienda, con subvención del 80%, estructura inclinada sobre cubierta y una producción estimada cercana a 7.500 kWh al año.",
+    blogSummary:
+      "Publicamos un caso real en El Puerto de Santa María con 4,45 kWp, 10 paneles LONGi de 445 W, inversor híbrido monofásico de 4,6 kW, estructura inclinada y una subvención del 80% dentro del Plan Ecovivienda.",
+    publishedAt: "Obra subvencionada",
+    mapPosition: { x: 13, y: 58 },
+    serviceKeys: ["photovoltaic", "subsidies"],
+    solutionKey: "tilted",
+    technicalSheet: [
+      {
+        label: "Tipo",
+        value: "Autoconsumo fotovoltaico conectado a red",
+        icon: "type",
+      },
+      {
+        label: "Programa",
+        value: "Plan Ecovivienda con subvención del 80%",
+        icon: "status",
+      },
+      { label: "Potencia", value: "4,45 kWp", icon: "target" },
+      {
+        label: "Paneles",
+        value: "10 módulos LONGi 445 W monocristalinos",
+        icon: "module",
+      },
+      {
+        label: "Inversor",
+        value: "Híbrido monofásico de 4,6 kW",
+        icon: "inverter",
+      },
+      {
+        label: "Montaje",
+        value: "Estructura inclinada sobre cubierta",
+        icon: "mount",
+      },
+      {
+        label: "Control",
+        value: "App móvil con monitorización y vatímetro",
+        icon: "control",
+      },
+      {
+        label: "Protecciones",
+        value: "Cableado DC/AC y protecciones según normativa REBT",
+        icon: "shield",
+      },
+      {
+        label: "Coste final",
+        value: "2.029,60 € tras subvención",
+        icon: "unit",
+      },
+    ],
+    technicalNote:
+      "Proyecto residencial en El Puerto de Santa María con coste total de 10.148 €, subvención de 8.118,40 € y sistema preparado para futuras baterías con estructura inclinada de aluminio y fijaciones en acero inoxidable.",
+    contentSections: [
+      {
+        title: "Resultados del proyecto",
+        tone: "accent",
+        items: [
+          "Subvención obtenida del 80% sobre el coste elegible.",
+          "Coste final para el cliente de 2.029,60 €.",
+          "Producción estimada cercana a 7.500 kWh al año.",
+          "Reducción directa de la factura eléctrica desde el primer día.",
+        ],
+      },
+      {
+        title: "Ficha técnica de la instalación",
+        items: [
+          "Ubicación: El Puerto de Santa María (Cádiz).",
+          "Sistema de autoconsumo conectado a red con 4,45 kWp.",
+          "10 paneles LONGi de 445 W e inversor híbrido monofásico de 4,6 kW.",
+          "Estructura inclinada para optimizar orientación, producción y mantenimiento.",
+          "Monitorización remota mediante app y vatímetro.",
+        ],
+      },
+      {
+        title: "Instalación ejecutada en cubierta",
+        copy:
+          "La instalación se ha resuelto con estructura de aluminio y fijaciones de acero inoxidable, buscando durabilidad, seguridad y una integración limpia sobre la vivienda.",
+        items: [
+          "Montaje con estructura inclinada adaptada a la cubierta.",
+          "Cableado completo en corriente continua y alterna.",
+          "Protecciones eléctricas dimensionadas según REBT.",
+          "Sistema listo para una posible ampliación con baterías futuras.",
+        ],
+      },
+      {
+        title: "Subvención Plan Ecovivienda",
+        tone: "neutral",
+        copy:
+          "Este caso se acoge a una de las líneas del Plan Ecovivienda orientadas a rehabilitación energética residencial, con cobertura de ayuda en función de la mejora energética acreditada.",
+        items: [
+          "Cobertura de subvención entre el 40% y el 80% según el ahorro energético conseguido.",
+          "Mejora de la eficiencia energética del inmueble.",
+          "Reducción del consumo de energía no renovable.",
+          "Gestión documental y tramitación completa dentro del proyecto.",
+        ],
+        footnote:
+          "En este caso concreto, la ayuda económica asciende a 8.118,40 € sobre un coste total de 10.148 €.",
+      },
+      {
+        title: "Coste del proyecto",
+        items: [
+          "Coste total de la instalación: 10.148 €.",
+          "Subvención concedida: 8.118,40 €.",
+          "Coste final para el cliente: 2.029,60 €.",
+          "Pago inicial orientativo del 50%: 5.074 €.",
+        ],
+      },
+    ],
+    cta: {
+      title: "¿Quieres pagar solo una parte de tu instalación solar?",
+      copy:
+        "En Grupo SolarSur diseñamos tu sistema fotovoltaico, tramitamos la subvención y te acompañamos durante todo el proceso para reducir la inversión inicial.",
+      href: "/#contacto",
+      label: "Solicitar estudio gratuito",
+    },
+  },
+  {
+    slug: "subvencion-energia-solar-castilleja-de-guzman-sevilla",
+    title: "Nuestra propuesta",
+    category: "Subvenci\u00f3n energ\u00e9tica integral",
+    installationType: "Instalaci\u00f3n combinada fotovoltaica + solar t\u00e9rmica",
+    zone: "Castilleja de Guzm\u00e1n, Sevilla",
+    province: "Sevilla",
+    image:
+      "/proyectos/fotovoltaica/sevilla/castilleja-de-guzman/instalacion-placas-solares-castilleja-de-guzman.webp",
+    imageAlt:
+      "Instalaci\u00f3n combinada de placas solares en Castilleja de Guzm\u00e1n con sistema energ\u00e9tico residencial subvencionado",
+    galleryImages: [
+      "/proyectos/fotovoltaica/sevilla/castilleja-de-guzman/instalacion-placas-solares-castilleja-de-guzman.webp",
+      "/proyectos/fotovoltaica/sevilla/castilleja-de-guzman/placas-solares-castilleja-de-guzman.webp",
+      "/proyectos/fotovoltaica/sevilla/castilleja-de-guzman/instalacion-paneles-solares-castilleja-de-guzman.webp",
+    ],
+    galleryImageAlts: [
+      "Vista general de la instalaci\u00f3n energ\u00e9tica subvencionada en Castilleja de Guzm\u00e1n",
+      "Detalle del campo fotovoltaico instalado en la vivienda de Castilleja de Guzm\u00e1n",
+      "Montaje de paneles solares y sistema combinado sobre cubierta residencial en Sevilla",
+    ],
+    summary:
+      "Proyecto residencial acogido al Plan Ecovivienda que combina autoconsumo fotovoltaico y solar t\u00e9rmica para ACS, con subvenci\u00f3n de hasta el 80% y un planteamiento energ\u00e9tico completo para reducir consumo el\u00e9ctrico y demanda de agua caliente.",
+    blogSummary:
+      "Documentamos un caso real en Castilleja de Guzm\u00e1n con 4,84 kWp fotovoltaicos, 8 paneles AIKO de 605 W, inversor h\u00edbrido Huawei de 5 kW, sistema solar t\u00e9rmico por termosif\u00f3n de 200 litros y tramitaci\u00f3n del Plan Ecovivienda.",
+    publishedAt: "Obra subvencionada",
+    mapPosition: { x: 28, y: 48 },
+    serviceKeys: ["photovoltaic", "subsidies", "solar-thermal"],
+    technicalSheet: [
+      {
+        label: "Tipo",
+        value: "Rehabilitaci\u00f3n energ\u00e9tica con fotovoltaica y solar t\u00e9rmica",
+        icon: "type",
+      },
+      {
+        label: "Programa",
+        value: "Plan Ecovivienda con cobertura de hasta el 80%",
+        icon: "status",
+      },
+      { label: "Potencia FV", value: "4,84 kWp", icon: "target" },
+      {
+        label: "Paneles",
+        value: "8 m\u00f3dulos AIKO de 605 W",
+        icon: "module",
+      },
+      {
+        label: "Inversor",
+        value: "Huawei h\u00edbrido de 5 kW",
+        icon: "inverter",
+      },
+      {
+        label: "Solar t\u00e9rmica",
+        value: "Termosif\u00f3n con acumulador de 200 litros para ACS",
+        icon: "service",
+      },
+      {
+        label: "Montaje",
+        value: "Estructura de aluminio sobre cubierta",
+        icon: "mount",
+      },
+      {
+        label: "Control",
+        value: "Monitorizaci\u00f3n fotovoltaica mediante app m\u00f3vil",
+        icon: "control",
+      },
+      {
+        label: "Tramitaci\u00f3n",
+        value: "Legalizaci\u00f3n, certificados energ\u00e9ticos y subvenci\u00f3n incluida",
+        icon: "shield",
+      },
+      {
+        label: "Coste final",
+        value: "2.514,60 \u20ac seg\u00fan documentaci\u00f3n facilitada",
+        icon: "unit",
+      },
+    ],
+    technicalNote:
+      "Proyecto residencial en Castilleja de Guzm\u00e1n con planteamiento energ\u00e9tico completo: generaci\u00f3n fotovoltaica, agua caliente solar, legalizaci\u00f3n, certificados energ\u00e9ticos, libro del edificio y tramitaci\u00f3n del expediente subvencionable.",
+    contentSections: [
+      {
+        title: "Instalaci\u00f3n fotovoltaica",
+        items: [
+          "Potencia instalada de 4,84 kWp.",
+          "8 m\u00f3dulos AIKO de 605 W.",
+          "Inversor h\u00edbrido Huawei de 5 kW.",
+          "Estructura de aluminio sobre cubierta.",
+          "Monitorizaci\u00f3n del sistema mediante app m\u00f3vil.",
+        ],
+      },
+      {
+        title: "Instalaci\u00f3n solar t\u00e9rmica",
+        copy:
+          "El proyecto incorpora tambi\u00e9n un sistema solar t\u00e9rmico para producci\u00f3n de agua caliente sanitaria, con funcionamiento eficiente y apoyo el\u00e9ctrico inteligente cuando es necesario.",
+        items: [
+          "Dep\u00f3sito acumulador de 200 litros.",
+          "Sistema termosif\u00f3n sin consumo el\u00e9ctrico para circulaci\u00f3n.",
+          "Captadores solares de \u00faltima generaci\u00f3n.",
+          "Sistema de apoyo el\u00e9ctrico inteligente.",
+          "Cobertura superior al 70% del ACS.",
+        ],
+      },
+      {
+        title: "Instalaci\u00f3n",
+        items: [
+          "Instalaci\u00f3n completa llave en mano.",
+          "Cableado DC y AC con protecciones REBT.",
+          "Legalizaci\u00f3n de la instalaci\u00f3n.",
+          "Certificados energ\u00e9ticos y libro del edificio.",
+          "Tramitaci\u00f3n de subvenci\u00f3n incluida.",
+        ],
+      },
+      {
+        title: "Subvenci\u00f3n Plan Ecovivienda",
+        tone: "neutral",
+        items: [
+          "Programa de rehabilitaci\u00f3n energ\u00e9tica de viviendas.",
+          "Subvenci\u00f3n de hasta el 80%.",
+          "Ayuda estimada de 10.058,40 \u20ac seg\u00fan la documentaci\u00f3n facilitada.",
+          "Reducci\u00f3n del consumo energ\u00e9tico del inmueble.",
+        ],
+      },
+      {
+        title: "Coste del proyecto",
+        items: [
+          "Coste total de 10.390,91 \u20ac.",
+          "Subvenci\u00f3n estimada de 10.058,40 \u20ac.",
+          "Coste final para el cliente de 2.514,60 \u20ac.",
+        ],
+      },
+      {
+        title: "Resultados del proyecto",
+        tone: "accent",
+        items: [
+          "Subvenci\u00f3n obtenida de hasta el 80%.",
+          "Coste final documentado de 2.514,60 \u20ac.",
+          "Instalaci\u00f3n energ\u00e9tica completa para electricidad y ACS.",
+          "Reducci\u00f3n global del consumo energ\u00e9tico.",
+        ],
+      },
+    ],
+    cta: {
+      title: "\u00bfQuieres una instalaci\u00f3n completa con subvenci\u00f3n?",
+      copy:
+        "En Grupo SolarSur dise\u00f1amos soluciones a medida combinando fotovoltaica y solar t\u00e9rmica para maximizar tu ahorro y acompa\u00f1arte durante toda la tramitaci\u00f3n.",
+      href: "/#contacto",
+      label: "Solicitar estudio gratuito",
+    },
+  },
+  {
     slug: "instalacion-hibrida-sanlucar-la-mayor-sevilla",
     title: "Instalación fotovoltaica híbrida + solar térmica en Sanlúcar la Mayor (Sevilla)",
     category: "Obra híbrida FV + ACS",

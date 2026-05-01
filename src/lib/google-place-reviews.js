@@ -2,6 +2,24 @@ const GOOGLE_PLACE_ID = "ChIJwSztZwQTEg0Rv0lUXYxyDT4";
 const GOOGLE_PLACE_URL =
   "https://www.google.com/maps/place/?q=place_id:ChIJwSztZwQTEg0Rv0lUXYxyDT4";
 const REVIEWS_REVALIDATE_SECONDS = 60 * 60 * 24;
+const GOOGLE_API_KEY_ENV_NAMES = [
+  "GOOGLE_API_KEY",
+  "GOOGLE_PLACES_API_KEY",
+  "GOOGLE_MAPS_API_KEY",
+  "NEXT_PUBLIC_GOOGLE_API_KEY",
+];
+
+function resolveGoogleApiKey() {
+  for (const envName of GOOGLE_API_KEY_ENV_NAMES) {
+    const value = process.env[envName];
+
+    if (typeof value === "string" && value.trim()) {
+      return value.trim();
+    }
+  }
+
+  return "";
+}
 
 function normalizeLegacyReview(review) {
   return {
@@ -148,13 +166,13 @@ async function fetchNewPlaceDetails(apiKey) {
 }
 
 export async function getGooglePlaceReviews() {
-  const apiKey = process.env.GOOGLE_API_KEY;
+  const apiKey = resolveGoogleApiKey();
 
   if (!apiKey) {
     return {
       ok: false,
       status: 500,
-      error: "La variable de entorno GOOGLE_API_KEY no esta configurada.",
+      error: `No se ha encontrado ninguna clave de Google Places. Revisa estas variables: ${GOOGLE_API_KEY_ENV_NAMES.join(", ")}.`,
     };
   }
 

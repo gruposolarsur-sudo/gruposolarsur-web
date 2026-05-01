@@ -148,17 +148,19 @@ export function Hero() {
           {reassuranceItems.map(({ icon: Icon, title, copy }) => (
             <article
               key={title}
-              className="flex h-full flex-col rounded-[1.25rem] border border-slate-200/80 bg-white/88 px-4 py-5 shadow-[0_18px_40px_rgba(15,23,42,0.06)] sm:min-h-[184px] sm:rounded-[1.45rem] sm:px-5 sm:py-6 lg:min-h-[184px]"
+              className="flex h-full flex-col rounded-[1.25rem] border border-slate-200/80 bg-white/88 px-5 py-6 shadow-[0_18px_40px_rgba(15,23,42,0.06)] sm:min-h-[184px] sm:rounded-[1.45rem] sm:px-6 sm:py-7 lg:min-h-[184px]"
             >
-              <div className="flex h-full items-start gap-4">
+              <div className="flex h-full flex-col items-start gap-3 min-[430px]:flex-row min-[430px]:gap-4">
                 <div className="flex h-14 w-14 shrink-0 items-center justify-center rounded-[1.1rem] bg-blue-900 text-white shadow-lg shadow-blue-900/20">
                   <Icon size={24} strokeWidth={2.1} />
                 </div>
                 <div className="flex min-w-0 flex-1 flex-col">
-                  <h2 className="text-base font-semibold leading-6 text-blue-950">
+                  <h2 className="text-[1.02rem] font-semibold leading-[1.35] text-blue-950 sm:text-base sm:leading-6">
                     {title}
                   </h2>
-                  <p className="mt-2 text-sm leading-6 text-slate-500">{copy}</p>
+                  <p className="mt-2 max-w-[28ch] text-sm leading-7 text-slate-500 min-[430px]:max-w-none sm:leading-6">
+                    {copy}
+                  </p>
                 </div>
               </div>
             </article>

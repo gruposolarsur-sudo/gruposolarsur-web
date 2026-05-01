@@ -52,7 +52,7 @@ export function ProjectCategoryCarousel({
                   <p className="text-[0.68rem] font-extrabold uppercase tracking-[0.18em] text-blue-900/36">
                     Proyecto {index + 1}
                   </p>
-                  <p className="mt-1 break-words text-sm font-extrabold leading-6 text-blue-900">
+                  <p className="mt-1 break-words text-sm font-medium leading-6 text-blue-900">
                     {project.title}
                   </p>
                 </div>

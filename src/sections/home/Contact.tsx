@@ -166,8 +166,11 @@ export function Contact() {
                   ))}
                 </div>
 
-                <h3 className="mt-5 max-w-md text-3xl font-bold leading-tight tracking-tight text-white sm:text-[2.25rem]">
-                  Solicita tu estudio en menos de un minuto
+                <h3 className="mt-5 flex max-w-md items-start gap-3 text-3xl font-bold leading-tight tracking-tight text-white sm:text-[2.25rem]">
+                  <span className="mt-1 flex h-11 w-11 shrink-0 items-center justify-center rounded-full border border-white/15 bg-white/10 text-yellow-300">
+                    <Clock3 size={22} />
+                  </span>
+                  <span>Solicita tu estudio en menos de un minuto</span>
                 </h3>
 
                 <p className="mt-3 max-w-2xl text-base leading-7 text-blue-50/78">

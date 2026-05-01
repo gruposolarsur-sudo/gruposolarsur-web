@@ -2,3 +2,18 @@
 > gruposolarsur-web@0.1.0 dev
 > next dev --port 3000
 
+▲ Next.js 16.2.3 (Turbopack)
+- Local:         http://localhost:3000
+- Network:       http://169.254.248.255:3000
+- Environments: .env.local
+✓ Ready in 1047ms
+Creating turbopack project {
+  dir: 'C:\\Users\\danie\\Documents\\Proyectos\\gruposolarsur-web',
+  testMode: true
+}
+
+○ Compiling /contacto ...
+ GET /api/reviews 200 in 3.7s (next.js: 2.5s, application-code: 1167ms)
+ GET /contacto 200 in 8.7s (next.js: 6.7s, application-code: 2.0s)
+ GET /api/reviews 200 in 117ms (next.js: 53ms, application-code: 64ms)
+ GET / 200 in 6.4s (next.js: 2.9s, application-code: 3.5s)

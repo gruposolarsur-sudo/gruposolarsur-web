@@ -25,8 +25,8 @@ export function SavingsBanner() {
 
             <a
               href="#contacto"
-              className="inline-flex h-14 w-full items-center justify-center gap-2 rounded-full bg-blue-950 px-8 py-4 text-base font-extrabold !text-white shadow-[0_18px_40px_rgba(23,37,84,0.22)] transition hover:bg-blue-900 hover:!text-white sm:w-auto"
-              style={{ color: "#fff" }}
+              className="inline-flex h-14 w-full items-center justify-center gap-2 rounded-full bg-blue-950 px-8 py-4 text-base !font-normal !text-white shadow-[0_18px_40px_rgba(23,37,84,0.22)] transition hover:bg-blue-900 hover:!text-white sm:w-auto"
+              style={{ color: "#fff", fontWeight: 400 }}
             >
               Solicitar estudio gratuito
               <ArrowRight size={18} strokeWidth={2.2} aria-hidden="true" />

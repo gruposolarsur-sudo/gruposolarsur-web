@@ -100,10 +100,10 @@ export default async function ContactPage() {
                 <p className="text-[0.78rem] font-extrabold uppercase tracking-[0.32em] text-amber-500">
                   Contacto
                 </p>
-                <h1 className="mt-5 max-w-[12ch] text-4xl font-extrabold leading-[0.98] tracking-tight text-blue-950 sm:text-6xl lg:text-[4.6rem]">
+                <h1 className="mt-5 max-w-[12ch] text-4xl font-extrabold leading-[0.98] tracking-tight text-blue-900 sm:text-6xl lg:text-[4.6rem]">
                   Estamos en Gines, Sevilla
                 </h1>
-                <p className="mt-6 max-w-2xl text-lg font-medium leading-8 text-slate-600 sm:text-xl">
+                <p className="mt-6 max-w-2xl text-lg font-medium leading-8 text-blue-900/74 sm:text-xl">
                   Si quieres visitarnos, hablar con el equipo o pedir una ruta
                   directa hasta la oficina, aquí tienes la ubicación de Grupo
                   Solarsur y un acceso rápido a Google Maps.
@@ -117,10 +117,10 @@ export default async function ContactPage() {
                           <Icon size={20} aria-hidden="true" />
                         </span>
                         <span className="min-w-0">
-                          <span className="block text-xs font-extrabold uppercase tracking-[0.18em] text-slate-400">
+                          <span className="block text-xs font-extrabold uppercase tracking-[0.18em] text-blue-900/42">
                             {label}
                           </span>
-                          <span className="mt-1 block text-sm font-bold leading-6 text-blue-950">
+                          <span className="mt-1 block text-sm font-bold leading-6 text-blue-900">
                             {value}
                           </span>
                         </span>
@@ -184,7 +184,7 @@ export default async function ContactPage() {
                     <p className="text-[0.72rem] font-extrabold uppercase tracking-[0.18em] text-blue-600">
                       Oficina y punto de atención
                     </p>
-                    <p className="mt-2 text-base font-bold leading-7 text-blue-950">
+                    <p className="mt-2 text-base font-bold leading-7 text-blue-900">
                       Grupo Solarsur Energía Solar S.L. · C. Progreso, 9, 41960
                       Gines, Sevilla
                     </p>
@@ -193,7 +193,7 @@ export default async function ContactPage() {
                     href={directionsUrl}
                     rel="noreferrer"
                     target="_blank"
-                    className="inline-flex min-h-12 items-center justify-center gap-2 rounded-full bg-amber-300 px-5 py-3 text-sm font-bold text-blue-950 transition hover:bg-amber-200"
+                    className="inline-flex min-h-12 items-center justify-center gap-2 rounded-full bg-amber-300 px-5 py-3 text-sm font-bold text-blue-900 transition hover:bg-amber-200"
                   >
                     Abrir ruta
                     <ArrowRight size={16} aria-hidden="true" />
@@ -206,7 +206,7 @@ export default async function ContactPage() {
 
         <Contact />
 
-        <ReviewsSection initialData={reviewsData} />
+        <ReviewsSection />
       </main>
       <Footer />
     </>

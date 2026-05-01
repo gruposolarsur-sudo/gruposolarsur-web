@@ -1,15 +1,18 @@
 "use client";
 
-import type { ElementType, SVGProps } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { useState } from "react";
+import { useRouter } from "next/navigation";
+import type { ElementType, FormEvent, SVGProps } from "react";
+import { useDeferredValue, useEffect, useRef, useState } from "react";
 import {
+  ArrowRight,
   ChartNoAxesCombined,
   ChevronDown,
   FileText,
   Menu,
   Phone,
+  Search,
   SunMedium,
   Wrench,
   X,
@@ -24,6 +27,7 @@ import {
   projectServiceGroups,
   type ProjectServiceKey,
 } from "@/data/projectServices";
+import { quickSearchItems, siteSearchItems, type SiteSearchItem } from "@/data/siteSearch";
 import { Container } from "@/components/ui/Container";
 
 const navigation = [
@@ -153,15 +157,116 @@ const projectLinks = projectServiceGroups.map((service) => ({
   ...projectLinkStyles[service.key],
 }));
 
+const searchGroupStyles: Record<SiteSearchItem["group"], string> = {
+  Pagina: "bg-slate-100 text-slate-700",
+  Servicio: "bg-yellow-50 text-amber-700",
+  Categoria: "bg-blue-50 text-blue-700",
+  Proyecto: "bg-emerald-50 text-emerald-700",
+};
+
+function normalizeSearchValue(value: string) {
+  return value
+    .toLowerCase()
+    .normalize("NFD")
+    .replace(/[\u0300-\u036f]/g, "")
+    .replace(/\s+/g, " ")
+    .trim();
+}
+
+function getSearchScore(item: SiteSearchItem, query: string) {
+  const normalizedLabel = normalizeSearchValue(item.label);
+  const normalizedDescription = normalizeSearchValue(item.description);
+  const normalizedKeywords = normalizeSearchValue(item.keywordsText);
+  const queryTerms = query.split(" ").filter(Boolean);
+
+  if (!queryTerms.length) {
+    return Number.POSITIVE_INFINITY;
+  }
+
+  if (normalizedLabel === query) {
+    return 0;
+  }
+
+  if (normalizedLabel.startsWith(query)) {
+    return 1;
+  }
+
+  if (normalizedKeywords.includes(query) || normalizedDescription.includes(query)) {
+    return 2;
+  }
+
+  if (queryTerms.every((term) => normalizedLabel.includes(term))) {
+    return 3;
+  }
+
+  if (
+    queryTerms.every(
+      (term) =>
+        normalizedKeywords.includes(term) || normalizedDescription.includes(term),
+    )
+  ) {
+    return 4;
+  }
+
+  return Number.POSITIVE_INFINITY;
+}
+
 export function Header() {
+  const router = useRouter();
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isMobileServicesOpen, setIsMobileServicesOpen] = useState(false);
   const [isMobileProjectsOpen, setIsMobileProjectsOpen] = useState(false);
+  const [isSearchOpen, setIsSearchOpen] = useState(false);
+  const [searchQuery, setSearchQuery] = useState("");
+  const deferredSearchQuery = useDeferredValue(searchQuery);
+  const searchInputRef = useRef<HTMLInputElement>(null);
+
+  const normalizedSearchQuery = normalizeSearchValue(deferredSearchQuery);
+  const searchResults = normalizedSearchQuery
+    ? siteSearchItems
+        .map((item) => ({
+          item,
+          score: getSearchScore(item, normalizedSearchQuery),
+        }))
+        .filter((entry) => Number.isFinite(entry.score))
+        .sort((left, right) => {
+          if (left.score !== right.score) {
+            return left.score - right.score;
+          }
+
+          return left.item.label.localeCompare(right.item.label);
+        })
+        .slice(0, 8)
+        .map((entry) => entry.item)
+    : quickSearchItems;
+
+  useEffect(() => {
+    if (!isSearchOpen) {
+      return;
+    }
+
+    const focusTimer = window.setTimeout(() => {
+      searchInputRef.current?.focus();
+      searchInputRef.current?.select();
+    }, 30);
+
+    return () => window.clearTimeout(focusTimer);
+  }, [isSearchOpen]);
 
   function closeMobileMenu() {
     setIsMobileMenuOpen(false);
     setIsMobileServicesOpen(false);
     setIsMobileProjectsOpen(false);
+  }
+
+  function closeSearch() {
+    setIsSearchOpen(false);
+    setSearchQuery("");
+  }
+
+  function closeHeaderOverlays() {
+    closeMobileMenu();
+    closeSearch();
   }
 
   function toggleMobileMenu() {
@@ -170,7 +275,29 @@ export function Header() {
       return;
     }
 
+    closeSearch();
     setIsMobileMenuOpen(true);
+  }
+
+  function toggleSearch() {
+    if (isSearchOpen) {
+      closeSearch();
+      return;
+    }
+
+    closeMobileMenu();
+    setIsSearchOpen(true);
+  }
+
+  function handleSearchSubmit(event: FormEvent<HTMLFormElement>) {
+    event.preventDefault();
+
+    if (!normalizedSearchQuery || searchResults.length === 0) {
+      return;
+    }
+
+    router.push(searchResults[0].href);
+    closeHeaderOverlays();
   }
 
   return (
@@ -179,7 +306,7 @@ export function Header() {
         <Link
           className="flex shrink-0 items-center"
           href="/#inicio"
-          onClick={closeMobileMenu}
+          onClick={closeHeaderOverlays}
         >
           <Image
             src="/assets/logos/logo-solarsur.svg"
@@ -200,6 +327,7 @@ export function Header() {
               <Link
                 className="whitespace-nowrap transition hover:text-blue-900"
                 href="/#inicio"
+                onClick={closeHeaderOverlays}
               >
                 Inicio
               </Link>
@@ -210,6 +338,7 @@ export function Header() {
                 className="inline-flex items-center gap-1.5 whitespace-nowrap py-2 transition hover:text-blue-900 group-focus-within:text-blue-900"
                 href="/#servicios"
                 aria-haspopup="true"
+                onClick={closeHeaderOverlays}
               >
                 Servicios
                 <ChevronDown
@@ -229,6 +358,7 @@ export function Header() {
                       <Link
                         key={service.label}
                         href={service.href}
+                        onClick={closeHeaderOverlays}
                         className="flex gap-3 rounded-2xl border border-transparent px-4 py-3 transition hover:border-blue-100 hover:bg-blue-50/80 hover:text-blue-900"
                       >
                         <span
@@ -257,6 +387,7 @@ export function Header() {
                 className="inline-flex items-center gap-1.5 whitespace-nowrap py-2 transition hover:text-blue-900 group-focus-within:text-blue-900"
                 href="/proyectos"
                 aria-haspopup="true"
+                onClick={closeHeaderOverlays}
               >
                 Proyectos
                 <ChevronDown
@@ -271,6 +402,7 @@ export function Header() {
                 <div className="grid gap-2 rounded-[1.35rem] border border-slate-200 bg-white p-3 shadow-[0_24px_70px_rgba(15,23,42,0.16)] md:grid-cols-2">
                   <Link
                     href="/proyectos"
+                    onClick={closeHeaderOverlays}
                     className="md:col-span-2 rounded-2xl border border-blue-100 bg-[linear-gradient(180deg,#eff6ff_0%,#f8fbff_100%)] px-5 py-4 transition hover:border-blue-200 hover:bg-blue-50"
                   >
                     <span className="block text-sm font-bold text-blue-950">
@@ -288,6 +420,7 @@ export function Header() {
                       <Link
                         key={project.key}
                         href={project.href}
+                        onClick={closeHeaderOverlays}
                         className="flex gap-3 rounded-2xl border border-transparent px-4 py-3 transition hover:border-blue-100 hover:bg-blue-50/80 hover:text-blue-900"
                       >
                         <span
@@ -316,6 +449,7 @@ export function Header() {
                 <Link
                   className="whitespace-nowrap transition hover:text-blue-900"
                   href={item.href}
+                  onClick={closeHeaderOverlays}
                 >
                   {item.label}
                 </Link>
@@ -325,8 +459,22 @@ export function Header() {
         </nav>
 
         <div className="flex items-center gap-2 sm:gap-3">
+          <button
+            type="button"
+            onClick={toggleSearch}
+            className={`inline-flex h-11 w-11 shrink-0 items-center justify-center rounded-full border text-blue-950 shadow-sm transition ${
+              isSearchOpen
+                ? "border-blue-200 bg-blue-50 text-blue-900"
+                : "border-slate-200 bg-white hover:border-blue-200 hover:bg-blue-50"
+            }`}
+            aria-label={isSearchOpen ? "Cerrar buscador general" : "Abrir buscador general"}
+            aria-expanded={isSearchOpen}
+            aria-controls="site-search-panel"
+          >
+            <Search size={18} strokeWidth={2.2} aria-hidden="true" />
+          </button>
           <a
-            className="hidden items-center gap-2 rounded-full border border-slate-200 px-4 py-2 text-sm font-semibold text-blue-700 transition hover:border-blue-200 hover:bg-blue-50 xl:flex"
+            className="hidden h-11 items-center gap-2 rounded-full border border-slate-200 px-4 text-sm font-semibold text-blue-700 transition hover:border-blue-200 hover:bg-blue-50 xl:flex"
             href="tel:955515708"
           >
             <Phone size={16} className="text-blue-700" />
@@ -336,7 +484,7 @@ export function Header() {
             className="header-cta-heartbeat inline-flex items-center justify-center gap-2 rounded-full bg-blue-900 px-3 py-2.5 text-xs font-semibold !text-white shadow-lg shadow-blue-900/15 transition hover:bg-blue-800 hover:!text-white min-[380px]:px-4 sm:px-5 sm:py-3 sm:text-sm"
             href="/#contacto"
             style={{ color: "#fff" }}
-            onClick={closeMobileMenu}
+            onClick={closeHeaderOverlays}
           >
             <StudySearchIcon size={17} strokeWidth={2.5} aria-hidden="true" />
             <span className="min-[420px]:hidden">Estudio</span>
@@ -362,6 +510,100 @@ export function Header() {
           </button>
         </div>
       </Container>
+
+      {isSearchOpen ? (
+        <div
+          id="site-search-panel"
+          className="border-t border-slate-200 bg-white/98 shadow-[0_18px_48px_rgba(15,23,42,0.08)] backdrop-blur"
+        >
+          <Container className="py-3 sm:py-4">
+            <div className="grid gap-3">
+              <form
+                onSubmit={handleSearchSubmit}
+                className="flex items-center gap-3 rounded-[1.35rem] border border-blue-100 bg-[linear-gradient(180deg,#ffffff_0%,#f8fbff_100%)] px-4 py-3 shadow-[0_14px_34px_rgba(15,23,42,0.06)]"
+              >
+                <Search
+                  size={18}
+                  strokeWidth={2.2}
+                  className="shrink-0 text-blue-700"
+                  aria-hidden="true"
+                />
+                <input
+                  ref={searchInputRef}
+                  type="text"
+                  value={searchQuery}
+                  onChange={(event) => setSearchQuery(event.target.value)}
+                  placeholder="Busca servicios, proyectos, categorias o paginas"
+                  className="min-w-0 flex-1 bg-transparent text-sm text-blue-950 outline-none placeholder:text-slate-400 sm:text-base"
+                  aria-label="Buscar en la web"
+                />
+                {searchQuery ? (
+                  <button
+                    type="button"
+                    onClick={() => setSearchQuery("")}
+                    className="inline-flex h-9 w-9 shrink-0 items-center justify-center rounded-full border border-slate-200 bg-white text-slate-500 transition hover:border-blue-200 hover:text-blue-900"
+                    aria-label="Borrar búsqueda"
+                  >
+                    <X size={16} strokeWidth={2.2} aria-hidden="true" />
+                  </button>
+                ) : null}
+              </form>
+
+              <div className="overflow-hidden rounded-[1.35rem] border border-slate-200 bg-white shadow-[0_14px_36px_rgba(15,23,42,0.06)]">
+                <div className="flex flex-wrap items-center justify-between gap-2 border-b border-slate-200 px-4 py-3">
+                  <p className="text-[0.72rem] font-extrabold uppercase tracking-[0.18em] text-blue-900/56">
+                    {normalizedSearchQuery ? "Resultados" : "Accesos rápidos"}
+                  </p>
+                  <p className="text-xs text-slate-500">
+                    {normalizedSearchQuery
+                      ? `${searchResults.length} coincidencias`
+                      : "Pulsa Enter para abrir el primer resultado"}
+                  </p>
+                </div>
+
+                {searchResults.length > 0 ? (
+                  <div className="grid">
+                    {searchResults.map((item) => (
+                      <Link
+                        key={`${item.group}-${item.href}-${item.label}`}
+                        href={item.href}
+                        onClick={closeHeaderOverlays}
+                        className="flex items-center justify-between gap-4 border-b border-slate-100 px-4 py-3 transition hover:bg-blue-50/70 last:border-b-0"
+                      >
+                        <div className="min-w-0">
+                          <div className="flex flex-wrap items-center gap-2">
+                            <span
+                              className={`inline-flex min-h-7 items-center rounded-full px-2.5 py-1 text-[0.68rem] font-extrabold uppercase ${searchGroupStyles[item.group]}`}
+                            >
+                              {item.group}
+                            </span>
+                            <span className="truncate text-sm font-bold text-blue-950 sm:text-[0.96rem]">
+                              {item.label}
+                            </span>
+                          </div>
+                          <p className="mt-1 text-sm leading-6 text-slate-500">
+                            {item.description}
+                          </p>
+                        </div>
+                        <ArrowRight
+                          size={16}
+                          className="shrink-0 text-blue-700"
+                          aria-hidden="true"
+                        />
+                      </Link>
+                    ))}
+                  </div>
+                ) : (
+                  <div className="px-4 py-5 text-sm leading-6 text-slate-500">
+                    No encontramos resultados para esa búsqueda. Prueba con una
+                    provincia, un servicio o el nombre de un proyecto.
+                  </div>
+                )}
+              </div>
+            </div>
+          </Container>
+        </div>
+      ) : null}
 
       {isMobileMenuOpen ? (
         <div

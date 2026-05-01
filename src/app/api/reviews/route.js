@@ -5,31 +5,39 @@ import {
   getGooglePlaceReviews,
 } from "@/lib/google-place-reviews";
 
-export const revalidate = 86400;
+export const revalidate = REVIEWS_REVALIDATE_SECONDS;
 
 export async function GET() {
-  const result = await getGooglePlaceReviews();
+  const reviewsResult = await getGooglePlaceReviews();
 
-  if (!result.ok) {
+  if (!reviewsResult.ok) {
     return NextResponse.json(
       {
-        error: result.error,
         reviews: [],
         rating: 0,
-        user_ratings_total: 0,
+        total: 0,
+        status:
+          reviewsResult.status === 500
+            ? "CONFIG_OR_INTERNAL_ERROR"
+            : "UPSTREAM_ERROR",
+        error_message: reviewsResult.error,
       },
-      {
-        status: result.status,
-        headers: {
-          "Cache-Control": `s-maxage=${REVIEWS_REVALIDATE_SECONDS}, stale-while-revalidate=${REVIEWS_REVALIDATE_SECONDS}`,
-        },
-      },
+      { status: reviewsResult.status },
     );
   }
 
-  return NextResponse.json(result.data, {
-    headers: {
-      "Cache-Control": `s-maxage=${REVIEWS_REVALIDATE_SECONDS}, stale-while-revalidate=${REVIEWS_REVALIDATE_SECONDS}`,
+  return NextResponse.json(
+    {
+      ...reviewsResult.data,
+      total: reviewsResult.data.user_ratings_total,
+      status: "OK",
+      error_message: null,
     },
-  });
+    {
+      status: 200,
+      headers: {
+        "Cache-Control": `s-maxage=${REVIEWS_REVALIDATE_SECONDS}, stale-while-revalidate=${REVIEWS_REVALIDATE_SECONDS}`,
+      },
+    },
+  );
 }

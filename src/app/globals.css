@@ -103,18 +103,6 @@ a {
   text-decoration: none;
 }
 
-@media (max-width: 639px) {
-  :where(h1, h2) {
-    font-weight: 900 !important;
-    -webkit-text-stroke: 0.25px rgba(15, 23, 42, 0.14);
-  }
-
-  :where(h3, h4, h5, h6) {
-    font-weight: 800 !important;
-    -webkit-text-stroke: 0.18px rgba(15, 23, 42, 0.1);
-  }
-}
-
 @keyframes hero-sun-halo {
   0%,
   100% {
@@ -577,6 +565,15 @@ a {
   transform: scaleX(0);
   animation: process-progress 4s ease-in-out infinite;
   animation-delay: var(--process-delay, 0s);
+}
+
+.reviews-carousel-track {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+.reviews-carousel-track::-webkit-scrollbar {
+  display: none;
 }
 
 @media (prefers-reduced-motion: reduce) {

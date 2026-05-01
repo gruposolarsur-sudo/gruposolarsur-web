@@ -188,8 +188,8 @@ export function Services() {
 
             <a
               href="#contacto"
-              className="mt-8 inline-flex min-h-14 w-full items-center justify-center gap-2 rounded-full bg-blue-900 px-7 py-4 text-base font-bold !text-white shadow-[0_18px_40px_rgba(23,37,84,0.22)] transition hover:bg-blue-800 hover:!text-white sm:w-auto"
-              style={{ color: "#fff" }}
+                className="mt-8 inline-flex min-h-14 w-full items-center justify-center gap-2 rounded-full bg-blue-900 px-7 py-4 text-base !font-normal !text-white shadow-[0_18px_40px_rgba(23,37,84,0.22)] transition hover:bg-blue-800 hover:!text-white sm:w-auto"
+                style={{ color: "#fff", fontWeight: 400 }}
             >
               Solicitar estudio gratuito
               <ArrowRight size={18} aria-hidden="true" />
